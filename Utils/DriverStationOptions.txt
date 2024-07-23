@@ -1,0 +1,4 @@
+192.168.0.50
+robot.Robot
+robot.run
+robot.shutdown
