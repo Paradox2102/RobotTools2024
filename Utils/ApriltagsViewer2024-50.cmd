@@ -1,1 +1,0 @@
-java -jar ApriltagsViewer2024.jar 192.168.0.50
