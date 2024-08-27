@@ -68,10 +68,17 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backRightMinSteeringPower = 0.30;
   private static final double k_frontRightMinsteeringPower = 0.30;
 
-  private static final int k_frontLeftSteeringZero = -1950;
-  private static final int k_backLeftSteeringZero = -764;
-  private static final int k_backRightSteeringZero = -1940;
-  private static final int k_frontRightSteeringZero = 1470;
+  // Blue Robot
+  // private static final int k_frontLeftSteeringZero = -1950;
+  // private static final int k_backLeftSteeringZero = -764;
+  // private static final int k_backRightSteeringZero = -1940;
+  // private static final int k_frontRightSteeringZero = 1470;
+
+  // White Robot
+  private static final int k_frontLeftSteeringZero = 255;
+  private static final int k_backLeftSteeringZero = 326;
+  private static final int k_backRightSteeringZero = -2019;
+  private static final int k_frontRightSteeringZero = -1965;
 
   private static final double k_frontLeftSteeringP = 0.8 / 360;
   private static final double k_backLeftSteeringP = 0.8 / 360;
@@ -83,10 +90,17 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backRightSteeringD = 0.005;
   private static final double k_frontRightSteeringD = 0.005;
 
-  private static final double k_frontLeftMinDrivePower = 0.29;
-  private static final double k_backLeftMinDrivePower = 0.29;
-  private static final double k_backRightMinDrivePower = 0.30;
-  private static final double k_frontRightMinDrivePower = 0.30;
+  // Blue Robot
+  // private static final double k_frontLeftMinDrivePower = 0.29;
+  // private static final double k_backLeftMinDrivePower = 0.29;
+  // private static final double k_backRightMinDrivePower = 0.30;
+  // private static final double k_frontRightMinDrivePower = 0.30;
+
+  // White Robot
+  private static final double k_frontLeftMinDrivePower = 0.38;
+  private static final double k_backLeftMinDrivePower = 0.38;
+  private static final double k_backRightMinDrivePower = 0.38;
+  private static final double k_frontRightMinDrivePower = 0.38;
 
   static final double k_maxDriveSpeed = 2500;
   static final double k_ticksPerMeter = 3579 / 1.345;
@@ -265,6 +279,7 @@ public class DriveSubsystem extends SubsystemBase {
     // m_frontLeft.getSteeringPosition(),
     // m_backLeft.getSteeringPosition(), m_backRight.getSteeringPosition(),
     // m_frontRight.getSteeringPosition()));
+
     // Logger.log("DriveSubsystem", 1, String.format(",%f,%f,%f,%f",
     // m_frontLeft.getSteeringPositionInDegrees(),
     // m_backLeft.getSteeringPositionInDegrees(),

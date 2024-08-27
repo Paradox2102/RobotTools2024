@@ -48,10 +48,10 @@ public class TestDriveRamp extends Command {
     Logger.log("TestDriveRamp", 2, "initialize()");
     Logger.log("TestDriveRamp", 1, ",power,FL,BL,BR,FR");
     m_power = 0;
-    m_frontLeft.setSteeringPosition(0);
-    m_backLeft.setSteeringPosition(0);
-    m_backRight.setSteeringPosition(0);
-    m_frontRight.setSteeringPosition(0);
+    // m_frontLeft.setSteeringPosition(0);
+    // m_backLeft.setSteeringPosition(0);
+    // m_backRight.setSteeringPosition(0);
+    // m_frontRight.setSteeringPosition(0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
