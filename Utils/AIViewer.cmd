@@ -1,0 +1,1 @@
+java -jar AIViewer.jar 10.21.2.10
