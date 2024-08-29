@@ -46,6 +46,7 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public DriveSubsystem() {
     Logger.log("DriveSubsystem", 3, "DriveSubsystem()");
+    Logger.log("DriveSubsystem", 1, String.format("LPWM=%d,LDIR=%d,RPWM=%d,RDIR=%d", k_leftMotorPWMPin, k_leftMotorDirPin, k_rightMotorPWMPin, k_rightMotorDirPin));
 
     m_leftMotor.setFeedbackDevice(m_leftEncoder);
     m_rightMotor.setFeedbackDevice(m_rightEncoder);
