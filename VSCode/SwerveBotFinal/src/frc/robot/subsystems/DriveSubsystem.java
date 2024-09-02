@@ -19,7 +19,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import robotCore.Device;
 import robotCore.Gyro;
 import robotCore.Logger;
+import robotCore.apriltags.ApriltagLocation;
+import robotCore.apriltags.ApriltagLocations;
 import robotCore.apriltags.ApriltagsCamera;
+import robotCore.apriltags.ApriltagsCamera.ApriltagsCameraType;
 import robotCore.apriltags.PositionServer;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -139,6 +142,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   private SwerveDrivePoseEstimator m_poseEstimator;
 
+  private static final String k_cameraIP = "127.0.1.1";
+  private static final int k_cameraPort = 5800;
+
+  public static ApriltagLocation m_aprilTags[] = {
+      new ApriltagLocation(1, 2, 3, 90),
+      new ApriltagLocation(2, 3, 4, 180),
+      new ApriltagLocation(3, 4, 3, -90),
+      new ApriltagLocation(4, 3, 3, 0),
+  };
+
   /**
    * Creates a new DriveSubsystem.
    */
@@ -198,6 +211,9 @@ public class DriveSubsystem extends SubsystemBase {
     m_poseEstimator = new SwerveDrivePoseEstimator(m_kinematics, m_gyro.getRotation2d(), getModulePositions(),
         new Pose2d(1, 3, Rotation2d.fromDegrees(0)));
 
+    ApriltagLocations.setLocations(m_aprilTags);
+    m_camera.setCameraInfo(0, 5, 0, ApriltagsCameraType.PiCam_640x480);
+    m_camera.connect(k_cameraIP, k_cameraPort);
     m_posServer.start();
 
   }
@@ -274,6 +290,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_poseEstimator.updateWithTime(ApriltagsCamera.getTime(), m_gyro.getRotation2d(), getModulePositions());
     m_posServer.setPosition(m_poseEstimator.getEstimatedPosition());
+    m_camera.processRegions(m_poseEstimator);
 
     // Logger.log("DriveSubsystem", 1, String.format(",%f,%f,%f,%f",
     // m_frontLeft.getSteeringPosition(),
