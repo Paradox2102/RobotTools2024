@@ -68,6 +68,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void setPower(double leftPower, double rightPower) {
+    // Logger.log("DriveSubsystem", 1, String.format("setPower(%f,%f)", leftPower, rightPower));
     m_leftMotor.setControlMode(SmartMotorMode.Power);
     m_rightMotor.setControlMode(SmartMotorMode.Power);
 

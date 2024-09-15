@@ -7,12 +7,8 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="src/lib/classgraph-4.8.90.jar"/>
+	<classpathentry kind="lib" path="src/lib/remotelauncher-client.jar"/>
 	<classpathentry kind="lib" path="src/lib/pi4j-core.jar"/>
-	<classpathentry kind="lib" path="src/lib/ejml-simple-0.42.jar"/>
-	<classpathentry kind="lib" path="src/lib/ejml-core-0.42.jar"/>
-	<classpathentry kind="lib" path="src/lib/ejml-ddense-0.42.jar"/>
-	<classpathentry kind="lib" path="src/lib/jackson-annotations-2.17.1.jar"/>
-	<classpathentry kind="lib" path="src/lib/quickbuf-runtime-1.4.jar"/>
 	<classpathentry kind="lib" path="src/lib/robotCore.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
