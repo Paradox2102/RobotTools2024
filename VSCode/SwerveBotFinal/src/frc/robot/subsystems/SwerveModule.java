@@ -154,9 +154,17 @@ public class SwerveModule {
         m_steeringMotor.setDTerm(d);
     }
 
+    public Rotation2d getSteeringRotation2d() {
+        return Rotation2d.fromDegrees(getSteeringPositionInDegrees());
+    }
+
+    public SwerveModuleState getState() {
+        return new SwerveModuleState(getDriveSpeedInMetersPerSecond(), getSteeringRotation2d());
+    }
+
     public void setDesiredState(SwerveModuleState desiredState) {
 
-        Rotation2d encoderRotation = Rotation2d.fromDegrees(getSteeringPositionInDegrees());
+        Rotation2d encoderRotation = getSteeringPositionRotation2d();
 
         // Optimize the reference state to avoid spinning further than 90 degrees
         SwerveModuleState state = SwerveModuleState.optimize(desiredState, encoderRotation);

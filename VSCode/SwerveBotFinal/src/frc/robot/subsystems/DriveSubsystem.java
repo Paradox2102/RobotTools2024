@@ -7,6 +7,11 @@
 
 package frc.robot.subsystems;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
+
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -142,13 +147,16 @@ public class DriveSubsystem extends SubsystemBase {
 
   private SwerveDrivePoseEstimator m_poseEstimator;
 
+  private final double k_turnDeadZone = 3;
+  private final double k_turnP = 20.0 / 180.0;
+
   private static final String k_cameraIP = "127.0.1.1";
   private static final int k_cameraPort = 5800;
 
   public static ApriltagLocation m_aprilTags[] = {
-      new ApriltagLocation(1, 2, 3, 90),
-      new ApriltagLocation(2, 3, 4, 180),
-      new ApriltagLocation(3, 4, 3, -90),
+      new ApriltagLocation(1, 3, 2+1-.35, 90),
+      new ApriltagLocation(2, 4, 3, 180),
+      new ApriltagLocation(3, 3, 4, -90),
       new ApriltagLocation(4, 3, 3, 0),
   };
 
@@ -216,6 +224,76 @@ public class DriveSubsystem extends SubsystemBase {
     m_camera.connect(k_cameraIP, k_cameraPort);
     m_posServer.start();
 
+    AutoBuilder.configureHolonomic(this::getPose2d,
+        this::ResetPose,
+        this::getChassisSpeeds,
+        this::setChassisSpeeds,
+        new HolonomicPathFollowerConfig(
+            new PIDConstants(1, 0, 0),
+            new PIDConstants(1, 0, 0),
+            k_maxDriveSpeedMetersPerSecond,
+            (3.266 * 2.54) / 100,
+            new ReplanningConfig(false, false)),
+        () -> false,
+        this);
+
+  }
+
+  /*
+   * Return the angle to the specified Apriltags target
+   */
+  public double getTargetAngle(int target) {
+    ApriltagLocation location = ApriltagLocations.findTag(target);
+
+    if (location == null) {
+      throw new RuntimeException(String.format("Invalid target: %d", target));
+    }
+
+    Pose2d pose = getPose2d();
+    double dx = location.m_xMeters - pose.getX();
+    double dy = location.m_yMeters - pose.getY();
+
+    return Math.toDegrees(Math.atan2(dy, dx));
+  }
+
+  /*
+   * Compute the rotation rate needed to perform a turn to target maneuver
+   */
+  public double computeAutoAim(double targetAngleInDegrees) {
+    Pose2d pos = getPose2d();
+
+    double da = Gyro.normalizeAngle(pos.getRotation().getDegrees() - targetAngleInDegrees);
+
+    // Logger.log("DriveSubsystem", 1, String.format("computeAutoAim: da=%f", da));
+
+    if (Math.abs(da) > k_turnDeadZone) {
+      return -k_turnP * da;
+    }
+
+    return 0; // On target
+  }
+
+  public Pose2d getPose2d() {
+    return m_poseEstimator.getEstimatedPosition();
+  }
+
+  private void ResetPose(Pose2d pose) {
+    m_poseEstimator.resetPosition(m_gyro.getRotation2d(), getModulePositions(), pose);
+  }
+
+  public SwerveModuleState[] getModuleStates() {
+    SwerveModuleState[] states = {
+        m_frontLeft.getState(), m_frontRight.getState(), m_backLeft.getState(),
+        m_backRight.getState() };
+    return states;
+  }
+
+  public ChassisSpeeds getChassisSpeeds() {
+    return m_kinematics.toChassisSpeeds(getModuleStates());
+  }
+
+  public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
+    setModuleStates(m_kinematics.toSwerveModuleStates(chassisSpeeds));
   }
 
   private void setModuleStates(SwerveModuleState[] swerveModuleStates) {
@@ -249,13 +327,9 @@ public class DriveSubsystem extends SubsystemBase {
         ChassisSpeeds.discretize(
             fieldRelative
                 ? ChassisSpeeds.fromFieldRelativeSpeeds(
-                    xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+                    xSpeed, ySpeed, rot, m_poseEstimator.getEstimatedPosition().getRotation())
                 : new ChassisSpeeds(xSpeed, ySpeed, rot),
             periodSeconds));
-
-    // Logger.log("DriveSubsystem", 1,
-    // String.format("xs=%f,ys=%f,m0.angle=%f", xSpeed, ySpeed,
-    // swerveModuleStates[0].angle.getDegrees()));
 
     setModuleStates(swerveModuleStates);
   }

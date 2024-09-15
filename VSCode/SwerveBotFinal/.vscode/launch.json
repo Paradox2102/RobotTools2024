@@ -23,7 +23,7 @@
             "request": "launch",
             "mainClass": "robotCore.Launch",
             "projectName": "SwerveBotFinal",
-            "args": "192.168.0.50:8999 frc.robot.Main --"
+            "args": "10.21.2.2:8999 frc.robot.Main --"
         }
     ]
 }

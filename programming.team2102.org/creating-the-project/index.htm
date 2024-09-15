@@ -1,0 +1,566 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+	
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+			<link rel="pingback" href="http://programming.team2102.org/xmlrpc.php">
+		<title>Creating the project &#8211; Robotics Programming</title>
+<meta name='robots' content='max-image-preview:large'>
+<link rel='dns-prefetch' href='//s.w.org'>
+<link rel="alternate" type="application/rss+xml" title="Robotics Programming &raquo; Feed" href="../feed/index.htm">
+<link rel="alternate" type="application/rss+xml" title="Robotics Programming &raquo; Comments Feed" href="../comments/feed/index.htm">
+<link rel="alternate" type="application/rss+xml" title="Robotics Programming &raquo; Creating the project Comments Feed" href="feed/index.htm">
+<script type="text/javascript">
+window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/13.1.0\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/programming.team2102.org\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.9.2"}};
+/*! This file is auto-generated */
+!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([127987,65039,8205,9895,65039],[127987,65039,8203,9895,65039])?!1:!s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])&&!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([10084,65039,8205,55357,56613],[10084,65039,8203,55357,56613])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+</script>
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='crayon-css' href='../wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=_2.7.2_beta' type='text/css' media='all'>
+<link rel='stylesheet' id='crayon-theme-classic-css' href='../wp-content/plugins/crayon-syntax-highlighter/themes/classic/classic.css?ver=_2.7.2_beta' type='text/css' media='all'>
+<link rel='stylesheet' id='crayon-font-monaco-css' href='../wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=_2.7.2_beta' type='text/css' media='all'>
+<link rel='stylesheet' id='wp-block-library-css' href='../wp-includes/css/dist/block-library/style.min.css?ver=5.9.2' type='text/css' media='all'>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--color--neve-link-color: var(--nv-primary-accent);--wp--preset--color--neve-link-hover-color: var(--nv-secondary-accent);--wp--preset--color--nv-site-bg: var(--nv-site-bg);--wp--preset--color--nv-light-bg: var(--nv-light-bg);--wp--preset--color--nv-dark-bg: var(--nv-dark-bg);--wp--preset--color--neve-text-color: var(--nv-text-color);--wp--preset--color--nv-text-dark-bg: var(--nv-text-dark-bg);--wp--preset--color--nv-c-1: var(--nv-c-1);--wp--preset--color--nv-c-2: var(--nv-c-2);--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+</style>
+<link rel='stylesheet' id='neve-style-css' href='../wp-content/themes/neve/style-main-new.min.css?ver=3.2.0' type='text/css' media='all'>
+<style id='neve-style-inline-css' type='text/css'>
+.nv-meta-list li.meta:not(:last-child):after { content:"/" }
+ :root{ --container: 748px;--postWidth:100%; --primaryBtnBg: var(--nv-primary-accent); --primaryBtnHoverBg: var(--nv-primary-accent); --primaryBtnColor: #ffffff; --secondaryBtnColor: var(--nv-primary-accent); --primaryBtnHoverColor: #ffffff; --secondaryBtnHoverColor: var(--nv-primary-accent);--primaryBtnBorderRadius:3px;--secondaryBtnBorderRadius:3px;--secondaryBtnBorderWidth:3px;--btnPadding:13px 15px;--primaryBtnPadding:13px 15px;--secondaryBtnPadding:10px 12px; --bodyFontFamily: Arial,Helvetica,sans-serif; --bodyFontSize: 15px; --bodyLineHeight: 1.6; --bodyLetterSpacing: 0px; --bodyFontWeight: 400; --h1FontSize: 36px; --h1FontWeight: 700; --h1LineHeight: 1.2; --h1LetterSpacing: 0px; --h1TextTransform: none; --h2FontSize: 28px; --h2FontWeight: 700; --h2LineHeight: 1.3; --h2LetterSpacing: 0px; --h2TextTransform: none; --h3FontSize: 24px; --h3FontWeight: 700; --h3LineHeight: 1.4; --h3LetterSpacing: 0px; --h3TextTransform: none; --h4FontSize: 20px; --h4FontWeight: 700; --h4LineHeight: 1.6; --h4LetterSpacing: 0px; --h4TextTransform: none; --h5FontSize: 16px; --h5FontWeight: 700; --h5LineHeight: 1.6; --h5LetterSpacing: 0px; --h5TextTransform: none; --h6FontSize: 14px; --h6FontWeight: 700; --h6LineHeight: 1.6; --h6LetterSpacing: 0px; --h6TextTransform: none;--formFieldBorderWidth:2px;--formFieldBorderRadius:3px; --formFieldBgColor: var(--nv-site-bg); --formFieldBorderColor: #dddddd; --formFieldColor: var(--nv-text-color);--formFieldPadding:10px 12px; } .single-post-container .alignfull > [class*="__inner-container"], .single-post-container .alignwide > [class*="__inner-container"]{ max-width:718px } .nv-meta-list{ --avatarSize: 20px; } .single .nv-meta-list{ --avatarSize: 20px; } .nv-post-cover{ --height: 250px;--padding:40px 15px;--justify: flex-start; --textAlign: left; --vAlign: center; } .nv-post-cover .nv-title-meta-wrap, .nv-page-title-wrap, .entry-header{ --textAlign: left; } .nv-is-boxed.nv-title-meta-wrap{ --padding:40px 15px; --bgColor: var(--nv-dark-bg); } .nv-overlay{ --opacity: 50; --blendMode: normal; } .nv-is-boxed.nv-comments-wrap{ --padding:20px; } .nv-is-boxed.comment-respond{ --padding:20px; } .global-styled{ --bgColor: var(--nv-site-bg); } .header-top{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .header-main{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .header-bottom{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .header-menu-sidebar-bg{ --justify: flex-start; --textAlign: left;--flexG: 1; --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .header-menu-sidebar{ width: 360px; } .builder-item--logo{ --maxWidth: 120px;--padding:10px 0;--margin:0; --textAlign: left;--justify: flex-start; } .builder-item--nav-icon,.header-menu-sidebar .close-sidebar-panel .navbar-toggle{ --borderRadius:0; } .builder-item--nav-icon{ --padding:10px 15px;--margin:0; } .builder-item--primary-menu{ --hoverColor: var(--nv-secondary-accent); --activeColor: var(--nv-primary-accent); --spacing: 20px; --height: 25px;--padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --fontWeight: 500; --textTransform: none; --iconSize: 1em; } .hfg-is-group.has-primary-menu .inherit-ff{ --inheritedFW: 500; } .footer-top-inner .row{ grid-template-columns:1fr 1fr 1fr; --vAlign: flex-start; } .footer-top{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .footer-main-inner .row{ grid-template-columns:1fr 1fr 1fr; --vAlign: flex-start; } .footer-main{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-color); --bgColor: var(--nv-site-bg); } .footer-bottom-inner .row{ grid-template-columns:1fr 1fr 1fr; --vAlign: flex-start; } .footer-bottom{ --rowBColor: var(--nv-light-bg); --color: var(--nv-text-dark-bg); --bgColor: var(--nv-dark-bg); } .builder-item--footer_copyright{ --padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --fontWeight: 500; --textTransform: none; --iconSize: 1em; --textAlign: left;--justify: flex-start; } @media(min-width: 576px){ :root{ --container: 992px;--postWidth:50%;--btnPadding:13px 15px;--primaryBtnPadding:13px 15px;--secondaryBtnPadding:10px 12px; --bodyFontSize: 16px; --bodyLineHeight: 1.6; --bodyLetterSpacing: 0px; --h1FontSize: 38px; --h1LineHeight: 1.2; --h1LetterSpacing: 0px; --h2FontSize: 30px; --h2LineHeight: 1.2; --h2LetterSpacing: 0px; --h3FontSize: 26px; --h3LineHeight: 1.4; --h3LetterSpacing: 0px; --h4FontSize: 22px; --h4LineHeight: 1.5; --h4LetterSpacing: 0px; --h5FontSize: 18px; --h5LineHeight: 1.6; --h5LetterSpacing: 0px; --h6FontSize: 14px; --h6LineHeight: 1.6; --h6LetterSpacing: 0px; } .single-post-container .alignfull > [class*="__inner-container"], .single-post-container .alignwide > [class*="__inner-container"]{ max-width:962px } .nv-meta-list{ --avatarSize: 20px; } .single .nv-meta-list{ --avatarSize: 20px; } .nv-post-cover{ --height: 320px;--padding:60px 30px;--justify: flex-start; --textAlign: left; --vAlign: center; } .nv-post-cover .nv-title-meta-wrap, .nv-page-title-wrap, .entry-header{ --textAlign: left; } .nv-is-boxed.nv-title-meta-wrap{ --padding:60px 30px; } .nv-is-boxed.nv-comments-wrap{ --padding:30px; } .nv-is-boxed.comment-respond{ --padding:30px; } .header-menu-sidebar-bg{ --justify: flex-start; --textAlign: left;--flexG: 1; } .header-menu-sidebar{ width: 360px; } .builder-item--logo{ --maxWidth: 120px;--padding:10px 0;--margin:0; --textAlign: left;--justify: flex-start; } .builder-item--nav-icon{ --padding:10px 15px;--margin:0; } .builder-item--primary-menu{ --spacing: 20px; --height: 25px;--padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --iconSize: 1em; } .builder-item--footer_copyright{ --padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --iconSize: 1em; --textAlign: left;--justify: flex-start; } }@media(min-width: 960px){ :root{ --container: 1170px;--postWidth:33.333333333333%;--btnPadding:13px 15px;--primaryBtnPadding:13px 15px;--secondaryBtnPadding:10px 12px; --bodyFontSize: 16px; --bodyLineHeight: 1.7; --bodyLetterSpacing: 0px; --h1FontSize: 40px; --h1LineHeight: 1.1; --h1LetterSpacing: 0px; --h2FontSize: 32px; --h2LineHeight: 1.2; --h2LetterSpacing: 0px; --h3FontSize: 28px; --h3LineHeight: 1.4; --h3LetterSpacing: 0px; --h4FontSize: 24px; --h4LineHeight: 1.5; --h4LetterSpacing: 0px; --h5FontSize: 20px; --h5LineHeight: 1.6; --h5LetterSpacing: 0px; --h6FontSize: 16px; --h6LineHeight: 1.6; --h6LetterSpacing: 0px; } body:not(.single):not(.archive):not(.blog):not(.search):not(.error404) .neve-main > .container .col, body.post-type-archive-course .neve-main > .container .col, body.post-type-archive-llms_membership .neve-main > .container .col{ max-width: 75%; } body:not(.single):not(.archive):not(.blog):not(.search):not(.error404) .nv-sidebar-wrap, body.post-type-archive-course .nv-sidebar-wrap, body.post-type-archive-llms_membership .nv-sidebar-wrap{ max-width: 25%; } .neve-main > .archive-container .nv-index-posts.col{ max-width: 100%; } .neve-main > .archive-container .nv-sidebar-wrap{ max-width: 0%; } .neve-main > .single-post-container .nv-single-post-wrap.col{ max-width: 70%; } .single-post-container .alignfull > [class*="__inner-container"], .single-post-container .alignwide > [class*="__inner-container"]{ max-width:789px } .container-fluid.single-post-container .alignfull > [class*="__inner-container"], .container-fluid.single-post-container .alignwide > [class*="__inner-container"]{ max-width:calc(70% + 15px) } .neve-main > .single-post-container .nv-sidebar-wrap{ max-width: 30%; } .nv-meta-list{ --avatarSize: 20px; } .single .nv-meta-list{ --avatarSize: 20px; } .nv-post-cover{ --height: 400px;--padding:60px 40px;--justify: flex-start; --textAlign: left; --vAlign: center; } .nv-post-cover .nv-title-meta-wrap, .nv-page-title-wrap, .entry-header{ --textAlign: left; } .nv-is-boxed.nv-title-meta-wrap{ --padding:60px 40px; } .nv-is-boxed.nv-comments-wrap{ --padding:40px; } .nv-is-boxed.comment-respond{ --padding:40px; } .header-menu-sidebar-bg{ --justify: flex-start; --textAlign: left;--flexG: 1; } .header-menu-sidebar{ width: 360px; } .builder-item--logo{ --maxWidth: 120px;--padding:10px 0;--margin:0; --textAlign: left;--justify: flex-start; } .builder-item--nav-icon{ --padding:10px 15px;--margin:0; } .builder-item--primary-menu{ --spacing: 20px; --height: 25px;--padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --iconSize: 1em; } .builder-item--footer_copyright{ --padding:0;--margin:0; --fontSize: 1em; --lineHeight: 1.6; --letterSpacing: 0px; --iconSize: 1em; --textAlign: left;--justify: flex-start; } }:root{--nv-primary-accent:#2f5aae;--nv-secondary-accent:#2f5aae;--nv-site-bg:#ffffff;--nv-light-bg:#f4f5f7;--nv-dark-bg:#121212;--nv-text-color:#272626;--nv-text-dark-bg:#ffffff;--nv-c-1:#9463ae;--nv-c-2:#be574b;--nv-fallback-ff:Arial, Helvetica, sans-serif;}
+</style>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery.min.js?ver=3.6.0' id='jquery-core-js'></script>
+<script type='text/javascript' src='../wp-includes/js/jquery/jquery-migrate.min.js?ver=3.3.2' id='jquery-migrate-js'></script>
+<script type='text/javascript' id='crayon_js-js-extra'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"_2.7.2_beta","is_admin":"0","ajaxurl":"http:\/\/programming.team2102.org\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"Press %s to Copy, %s to Paste","minimize":"Click To Expand Code"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=_2.7.2_beta' id='crayon_js-js'></script>
+<link rel="https://api.w.org/" href="../wp-json/index.htm"><link rel="alternate" type="application/json" href="../wp-json/wp/v2/pages/28"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://programming.team2102.org/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.9.2">
+<link rel="canonical" href="index.htm">
+<link rel='shortlink' href='index.htm?p=28'>
+<link rel="alternate" type="application/json+oembed" href="../wp-json/oembed/1.0/embed-12?url=http%3A%2F%2Fprogramming.team2102.org%2Fcreating-the-project%2F">
+<link rel="alternate" type="text/xml+oembed" href="../wp-json/oembed/1.0/embed-13?url=http%3A%2F%2Fprogramming.team2102.org%2Fcreating-the-project%2F&#038;format=xml">
+
+	</head>
+
+<body class="page-template-default page page-id-28  nv-blog-grid nv-sidebar-right menu_sidebar_slide_left" id="neve_body">
+<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-dark-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0.49803921568627"></fefuncr><fefuncg type="table" tablevalues="0 0.49803921568627"></fefuncg><fefuncb type="table" tablevalues="0 0.49803921568627"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-grayscale"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.54901960784314 0.98823529411765"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.71764705882353 0.25490196078431"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-red"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 1"></fefuncr><fefuncg type="table" tablevalues="0 0.27843137254902"></fefuncg><fefuncb type="table" tablevalues="0.5921568627451 0.27843137254902"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-midnight"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0 0"></fefuncr><fefuncg type="table" tablevalues="0 0.64705882352941"></fefuncg><fefuncb type="table" tablevalues="0 1"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-magenta-yellow"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.78039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.94901960784314"></fefuncg><fefuncb type="table" tablevalues="0.35294117647059 0.47058823529412"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-purple-green"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.65098039215686 0.40392156862745"></fefuncr><fefuncg type="table" tablevalues="0 1"></fefuncg><fefuncb type="table" tablevalues="0.44705882352941 0.4"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 0 0" width="0" height="0" focusable="false" role="none" style="visibility: hidden; position: absolute; left: -9999px; overflow: hidden;"><defs><filter id="wp-duotone-blue-orange"><fecolormatrix color-interpolation-filters="sRGB" type="matrix" values=" .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 .299 .587 .114 0 0 "></fecolormatrix><fecomponenttransfer color-interpolation-filters="sRGB"><fefuncr type="table" tablevalues="0.098039215686275 1"></fefuncr><fefuncg type="table" tablevalues="0 0.66274509803922"></fefuncg><fefuncb type="table" tablevalues="0.84705882352941 0.41960784313725"></fefuncb><fefunca type="table" tablevalues="1 1"></fefunca></fecomponenttransfer><fecomposite in2="SourceGraphic" operator="in"></fecomposite></filter></defs></svg><div class="wrapper">
+	
+	<header class="header" role="banner" next-page-hide="">
+		<a class="neve-skip-link show-on-focus" href="#content">
+			Skip to content		</a>
+		<div id="header-grid" class="hfg_header site-header">
+	
+<nav class="header--row header-main hide-on-mobile hide-on-tablet layout-full-contained nv-navbar header--row" data-row-id="main" data-show-on="desktop">
+
+	<div class="header--row-inner header-main-inner">
+		<div class="container">
+			<div class="row row--wrapper" data-section="hfg_header_layout_main">
+				<div class="hfg-slot left"><div class="builder-item desktop-left"><div class="item--inner builder-item--logo" data-section="title_tagline" data-item-id="logo">
+	
+<div class="site-logo">
+	<a class="brand" href="../index.htm" title="Robotics Programming" aria-label="Robotics Programming"><div class="nv-title-tagline-wrap"><p class="site-title">Robotics Programming</p><small>Team 2102 programming tutorials</small></div></a></div>
+
+	</div>
+
+</div></div><div class="hfg-slot right"><div class="builder-item has-nav"><div class="item--inner builder-item--primary-menu has_menu" data-section="header_menu_primary" data-item-id="primary-menu">
+	<div class="nv-nav-wrap">
+	<div role="navigation" class="style-plain nav-menu-primary" aria-label="Primary Menu">
+
+		<ul id="nv-primary-navigation-main" class="primary-menu-ul nav-ul"><li id="menu-item-16" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-16"><a href="../index.htm">HOME</a></li>
+<li id="menu-item-26" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="../robot-java/index.htm">Minibot</a></li>
+<li id="menu-item-254" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="../nerfbot/index.htm">Nerfbot</a></li>
+<li id="menu-item-2723" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2723"><a href="../swervebot/index.htm">SwerveBot</a></li>
+<li id="menu-item-333" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333"><a href="../more/index.htm">More</a></li>
+</ul>	</div>
+</div>
+
+	</div>
+
+</div></div>							</div>
+		</div>
+	</div>
+</nav>
+
+
+<nav class="header--row header-main hide-on-desktop layout-full-contained nv-navbar header--row" data-row-id="main" data-show-on="mobile">
+
+	<div class="header--row-inner header-main-inner">
+		<div class="container">
+			<div class="row row--wrapper" data-section="hfg_header_layout_main">
+				<div class="hfg-slot left"><div class="builder-item tablet-left mobile-left"><div class="item--inner builder-item--logo" data-section="title_tagline" data-item-id="logo">
+	
+<div class="site-logo">
+	<a class="brand" href="../index.htm" title="Robotics Programming" aria-label="Robotics Programming"><div class="nv-title-tagline-wrap"><p class="site-title">Robotics Programming</p><small>Team 2102 programming tutorials</small></div></a></div>
+
+	</div>
+
+</div></div><div class="hfg-slot right"><div class="builder-item tablet-left mobile-left"><div class="item--inner builder-item--nav-icon" data-section="header_menu_icon" data-item-id="nav-icon">
+	<div class="menu-mobile-toggle item-button navbar-toggle-wrapper">
+	<button type="button" class=" navbar-toggle" value="Navigation Menu" aria-label="Navigation Menu ">
+					<span class="bars">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</span>
+					<span class="screen-reader-text">Navigation Menu</span>
+	</button>
+</div> <!--.navbar-toggle-wrapper-->
+
+
+	</div>
+
+</div></div>							</div>
+		</div>
+	</div>
+</nav>
+
+<div id="header-menu-sidebar" class="header-menu-sidebar menu-sidebar-panel slide_left" data-row-id="sidebar">
+	<div id="header-menu-sidebar-bg" class="header-menu-sidebar-bg">
+		<div class="close-sidebar-panel navbar-toggle-wrapper">
+			<button type="button" class="hamburger is-active  navbar-toggle active" value="Navigation Menu" aria-label="Navigation Menu ">
+									<span class="bars">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</span>
+									<span class="screen-reader-text">
+				Navigation Menu					</span>
+			</button>
+		</div>
+		<div id="header-menu-sidebar-inner" class="header-menu-sidebar-inner ">
+						<div class="builder-item has-nav"><div class="item--inner builder-item--primary-menu has_menu" data-section="header_menu_primary" data-item-id="primary-menu">
+	<div class="nv-nav-wrap">
+	<div role="navigation" class="style-plain nav-menu-primary" aria-label="Primary Menu">
+
+		<ul id="nv-primary-navigation-sidebar" class="primary-menu-ul nav-ul"><li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home menu-item-16"><a href="../index.htm">HOME</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-26"><a href="../robot-java/index.htm">Minibot</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-254"><a href="../nerfbot/index.htm">Nerfbot</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-2723"><a href="../swervebot/index.htm">SwerveBot</a></li>
+<li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-333"><a href="../more/index.htm">More</a></li>
+</ul>	</div>
+</div>
+
+	</div>
+
+</div>					</div>
+	</div>
+</div>
+<div class="header-menu-sidebar-overlay hfg-ov"></div>
+</div>
+	</header>
+
+	
+
+	
+	<main id="content" class="neve-main" role="main">
+
+<div class="container single-page-container">
+	<div class="row">
+				<div class="nv-single-page-wrap col">
+			<div class="nv-page-title-wrap nv-big-title">
+	<div class="nv-page-title ">
+				<h1>Creating the project</h1>
+					</div><!--.nv-page-title-->
+</div> <!--.nv-page-title-wrap-->
+	<div class="nv-content-wrap entry-content">
+<p>Since the project requires a lot of setup and support files, the easiest way to create a project is to copy another project as a template. The project we are going to copy is the&nbsp;<strong>TimedRobot&nbsp;</strong>project. It would be nice if there were a nice&nbsp;VS Code wizard to create the project, but in lieu&nbsp;of that, I have created a small Java program called&nbsp;<strong>CreateRobotProjectVSCode</strong>&nbsp;which we can use to make a workable copy of the&nbsp;<strong>TimedRobot</strong>&nbsp;project and then we can load that new project into VS Code.</p>
+
+
+
+<p>To run this program, open the&nbsp;<strong>Windows File Explorer</strong>, find the&nbsp;<strong>VSCode&nbsp;</strong>folder inside&nbsp;<strong>RobotTools2024</strong>&nbsp;/&nbsp;<strong>VSCode&nbsp;</strong>, and then&nbsp;double click on the&nbsp;<strong>CreateRobotProjectVSCode.jar</strong>&nbsp;file. This should&nbsp;display the following dialog box.</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large"><img width="330" height="244" src="../wp-content/uploads/2021/04/CreateProject.jpg" alt="" class="wp-image-32" srcset="../wp-content/uploads/2021/04/CreateProject.jpg 330w, ../wp-content/uploads/2021/04/CreateProject-300x222.jpg 300w" sizes="(max-width: 330px) 100vw, 330px"></figure></div>
+
+
+
+<p>In the&nbsp;<strong>Project Name</strong>&nbsp;field, enter the name of your new project (e.g.&nbsp;<strong>Johns</strong><strong>Robot</strong>) and leave the&nbsp;<strong>Template</strong>&nbsp;field set to&nbsp;<strong>TimedRobot</strong>. Don’t put spaces or other punctuation in your project name; you’ll regret it later. Then click the&nbsp;<strong>Create</strong>&nbsp;button. If all goes well, it should create a project with the name you gave.</p>
+
+
+
+<p>Once the project has been created, go back to&nbsp;Visual Studio and choose the&nbsp;<strong>File / Open Folder&nbsp;</strong>command:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><a href="../wp-content/uploads/2021/04/OpenFolder.jpg"><img loading="lazy" src="../wp-content/uploads/2021/04/OpenFolder.jpg" alt="" class="wp-image-39" width="552" height="408" srcset="../wp-content/uploads/2021/04/OpenFolder.jpg 953w, ../wp-content/uploads/2021/04/OpenFolder-300x222.jpg 300w, ../wp-content/uploads/2021/04/OpenFolder-768x567.jpg 768w" sizes="(max-width: 552px) 100vw, 552px"></a></figure></div>
+
+
+
+<p>&nbsp;And select the&nbsp;folder that you just created (e.g.&nbsp;<strong>JohnsRobot</strong>):</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><a href="../wp-content/uploads/2021/04/OpenJohnsRobot.jpg"><img loading="lazy" src="../wp-content/uploads/2021/04/OpenJohnsRobot.jpg" alt="" class="wp-image-43" width="583" height="365" srcset="../wp-content/uploads/2021/04/OpenJohnsRobot.jpg 944w, ../wp-content/uploads/2021/04/OpenJohnsRobot-300x188.jpg 300w, ../wp-content/uploads/2021/04/OpenJohnsRobot-768x482.jpg 768w" sizes="(max-width: 583px) 100vw, 583px"></a></figure></div>
+
+
+
+<p>Click the&nbsp;<strong>Select Folder</strong>&nbsp;button and it should load your project:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-full is-resized"><a href="../wp-content/uploads/2022/05/GetStarted.jpg"><img loading="lazy" src="../wp-content/uploads/2022/05/GetStarted.jpg" alt="" class="wp-image-2100" width="587" height="337" srcset="../wp-content/uploads/2022/05/GetStarted.jpg 873w, ../wp-content/uploads/2022/05/GetStarted-300x173.jpg 300w, ../wp-content/uploads/2022/05/GetStarted-150x86.jpg 150w, ../wp-content/uploads/2022/05/GetStarted-768x442.jpg 768w" sizes="(max-width: 587px) 100vw, 587px"></a></figure></div>
+
+
+
+<p>Close the “<strong>Get Started</strong>” in the right pane and expand the&nbsp;<strong>src </strong>tree  in the left pane to see a listing of the source files for your program. Click on <strong>Robot.java</strong> in this pane to display this source file in the right pane:</p>
+
+
+
+<div class="wp-block-image"><figure class="aligncenter size-large is-resized"><img loading="lazy" src="../wp-content/uploads/2024/08/Robot-1024x711.jpg" alt="" class="wp-image-3051" width="581" height="403" srcset="../wp-content/uploads/2024/08/Robot-1024x711.jpg 1024w, ../wp-content/uploads/2024/08/Robot-300x208.jpg 300w, ../wp-content/uploads/2024/08/Robot-150x104.jpg 150w, ../wp-content/uploads/2024/08/Robot-768x533.jpg 768w, ../wp-content/uploads/2024/08/Robot.jpg 1238w" sizes="(max-width: 581px) 100vw, 581px"></figure></div>
+
+
+
+<p>Your program consists of a&nbsp;<strong>Robot&nbsp;</strong>class which inherits from the built in&nbsp;<strong>TimedRobot</strong>&nbsp;class. Let’s take a look and try and understand the structure of this class:</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-66e6fff00bfff613299673" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+public class Robot extends TimedRobot {
+    @SuppressWarnings("unused")
+    private RobotContainer m_robotContainer;</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-66e6fff00bfff613299673-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00bfff613299673-2">2</div><div class="crayon-num" data-line="crayon-66e6fff00bfff613299673-3">3</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-66e6fff00bfff613299673-1"><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-e">Robot</span><span class="crayon-h"> </span><span class="crayon-r">extends</span><span class="crayon-h"> </span><span class="crayon-e">TimedRobot</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00bfff613299673-2"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-sy">@</span><span class="crayon-e">SuppressWarnings</span><span class="crayon-sy">(</span><span class="crayon-s">"unused"</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-66e6fff00bfff613299673-3"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-m">private</span><span class="crayon-h"> </span><span class="crayon-e">RobotContainer </span><span class="crayon-i">m_robotContainer</span><span class="crayon-sy">;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+
+
+
+
+<p>The first thing we see is the declaration of,&nbsp;<strong>m_robotContainer</strong>. This will contain an instance of the&nbsp;<strong>RobotContainer</strong>&nbsp;class which will hold many of the resources that we will need for our program. Note that we are not initializing this variable here, instead we wait and do that when the&nbsp;<strong>robotInit</strong>&nbsp;function is called:</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-66e6fff00c00a354629589" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+	/**
+	 * This function is run when the robot is first started up and should be used
+	 * for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		Logger.log("Robot", 3, "robotInit()");
+		m_robotContainer = new RobotContainer();
+	}</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-66e6fff00c00a354629589-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00a354629589-2">2</div><div class="crayon-num" data-line="crayon-66e6fff00c00a354629589-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00a354629589-4">4</div><div class="crayon-num" data-line="crayon-66e6fff00c00a354629589-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00a354629589-6">6</div><div class="crayon-num" data-line="crayon-66e6fff00c00a354629589-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00a354629589-8">8</div><div class="crayon-num" data-line="crayon-66e6fff00c00a354629589-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-66e6fff00c00a354629589-1"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00a354629589-2"><span class="crayon-c">	 * This function is run when the robot is first started up and should be used</span></div><div class="crayon-line" id="crayon-66e6fff00c00a354629589-3"><span class="crayon-c">	 * for any initialization code.</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00a354629589-4"><span class="crayon-c">	 */</span></div><div class="crayon-line" id="crayon-66e6fff00c00a354629589-5"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00a354629589-6"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">robotInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-66e6fff00c00a354629589-7"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">3</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"robotInit()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00a354629589-8"><span class="crayon-h">		</span><span class="crayon-i">m_robotContainer</span><span class="crayon-h"> </span>=<span class="crayon-h"> </span><span class="crayon-r">new</span><span class="crayon-h"> </span><span class="crayon-e">RobotContainer</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00a354629589-9"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+
+
+
+
+<p>As the comment suggests, this function will be called once the robot in initialized and is where we should do any initialization that is required. Here is where we create the instance of&nbsp;<strong>RobotContainer</strong>.</p>
+
+
+
+<p>The next function we see is&nbsp;<strong>robotPeriodic</strong>:</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-66e6fff00c00c547193495" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+	/**
+	 * This function is called every robot packet, no matter the mode. Use this for
+	 * items like diagnostics that you want ran during disabled, autonomous,
+	 * teleoperated and test.
+	 *
+	 * This runs after the mode specific periodic functions, but before LiveWindow
+	 * and SmartDashboard integrated updating.
+	 */
+	@Override
+	public void robotPeriodic() {
+		Logger.log("Robot", -1, "robotPeriodic()");
+		// Runs the Scheduler. This is responsible for polling buttons, adding
+		// newly-scheduled
+		// commands, running already-scheduled commands, removing finished or
+		// interrupted commands,
+		// and running subsystem periodic() methods. This must be called from the
+		// robot's periodic
+		// block in order for anything in the Command-based framework to work.
+		CommandScheduler.getInstance().run();
+	}</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-2">2</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-4">4</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-6">6</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-8">8</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-10">10</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-12">12</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-14">14</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-16">16</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-18">18</div><div class="crayon-num" data-line="crayon-66e6fff00c00c547193495-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00c547193495-20">20</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-66e6fff00c00c547193495-1"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-2"><span class="crayon-c">	 * This function is called every robot packet, no matter the mode. Use this for</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-3"><span class="crayon-c">	 * items like diagnostics that you want ran during disabled, autonomous,</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-4"><span class="crayon-c">	 * teleoperated and test.</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-5"><span class="crayon-c">	 *</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-6"><span class="crayon-c">	 * This runs after the mode specific periodic functions, but before LiveWindow</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-7"><span class="crayon-c">	 * and SmartDashboard integrated updating.</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-8"><span class="crayon-c">	 */</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-9"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-10"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">robotPeriodic</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-11"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span>-<span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"robotPeriodic()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-12"><span class="crayon-h">		</span><span class="crayon-c">// Runs the Scheduler. This is responsible for polling buttons, adding</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-13"><span class="crayon-h">		</span><span class="crayon-c">// newly-scheduled</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-14"><span class="crayon-h">		</span><span class="crayon-c">// commands, running already-scheduled commands, removing finished or</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-15"><span class="crayon-h">		</span><span class="crayon-c">// interrupted commands,</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-16"><span class="crayon-h">		</span><span class="crayon-c">// and running subsystem periodic() methods. This must be called from the</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-17"><span class="crayon-h">		</span><span class="crayon-c">// robot's periodic</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-18"><span class="crayon-h">		</span><span class="crayon-c">// block in order for anything in the Command-based framework to work.</span></div><div class="crayon-line" id="crayon-66e6fff00c00c547193495-19"><span class="crayon-h">		</span><span class="crayon-i">CommandScheduler</span><span class="crayon-sy">.</span><span class="crayon-e">getInstance</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">run</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00c547193495-20"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+
+
+
+
+<p>As the comment explains, this function will be called periodically as long as your program is running. It is principally used to run the&nbsp;<strong>Command Scheduler</strong>, but would be the place to put any code that you needed to run regardless of the mode or whether the robot is enabled or disabled.</p>
+
+
+
+<p>Next we see a set of&nbsp;eight&nbsp;functions which are used to control the four modes of the robot,&nbsp;<strong>Disabled</strong>,&nbsp;<strong>Autonomous, Teleop,</strong>&nbsp;and&nbsp;<strong>Test</strong>.</p>
+
+
+
+<!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-66e6fff00c00d672136786" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style=" margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea wrap="soft" class="crayon-plain print-no" data-settings="dblclick" readonly="" style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 */
+	@Override
+	public void disabledInit() {
+		Logger.log("Robot", 2, "disabledInit()");
+	}
+
+	@Override
+	public void disabledPeriodic() {
+		Logger.log("Robot", -1, "disbledPeriodic()");
+	}
+
+	/**
+	 * This autonomous runs the autonomous command selected by your
+	 * {@link RobotContainer} class.
+	 */
+	@Override
+	public void autonomousInit() {
+		Logger.log("Robot", 2, "autonomousInit()");
+	}
+
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		Logger.log("Robot", -1, "autonomousPeriodic()");
+	}
+
+	@Override
+	public void teleopInit() {
+		Logger.log("Robot", 2, "teleopInit()");
+	}
+
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
+		Logger.log("Robot", -1, "teleopPeriodic()");
+	}
+
+	@Override
+	public void testInit() {
+		Logger.log("Robot", 2, "testInit()");
+		// Cancels all running commands at the start of test mode.
+		CommandScheduler.getInstance().cancelAll();
+	}
+
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() {
+		Logger.log("Robot", -1, "testPeriodic()");
+	}</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-2">2</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-4">4</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-6">6</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-8">8</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-10">10</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-12">12</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-14">14</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-16">16</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-18">18</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-20">20</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-22">22</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-24">24</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-26">26</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-28">28</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-30">30</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-32">32</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-34">34</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-36">36</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-37">37</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-38">38</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-39">39</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-40">40</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-41">41</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-42">42</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-43">43</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-44">44</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-45">45</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-46">46</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-47">47</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-48">48</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-49">49</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-50">50</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-51">51</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-52">52</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-53">53</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-54">54</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-55">55</div><div class="crayon-num crayon-striped-num" data-line="crayon-66e6fff00c00d672136786-56">56</div><div class="crayon-num" data-line="crayon-66e6fff00c00d672136786-57">57</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-66e6fff00c00d672136786-1"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-2"><span class="crayon-c">	 * This function is called once each time the robot enters Disabled mode.</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-3"><span class="crayon-c">	 */</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-4"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-5"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">disabledInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-6"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"disabledInit()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-7"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-8">&nbsp;</div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-9"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-10"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">disabledPeriodic</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-11"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span>-<span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"disbledPeriodic()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-12"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-13">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-14"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-15"><span class="crayon-c">	 * This autonomous runs the autonomous command selected by your</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-16"><span class="crayon-c">	 * {@link RobotContainer} class.</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-17"><span class="crayon-c">	 */</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-18"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-19"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">autonomousInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-20"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"autonomousInit()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-21"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-22">&nbsp;</div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-23"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-24"><span class="crayon-c">	 * This function is called periodically during autonomous.</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-25"><span class="crayon-c">	 */</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-26"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-27"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">autonomousPeriodic</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-28"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span>-<span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"autonomousPeriodic()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-29"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-30">&nbsp;</div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-31"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-32"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">teleopInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-33"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"teleopInit()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-34"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-35">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-36"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-37"><span class="crayon-c">	 * This function is called periodically during operator control.</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-38"><span class="crayon-c">	 */</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-39"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-40"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">teleopPeriodic</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-41"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span>-<span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"teleopPeriodic()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-42"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-43">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-44"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-45"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">testInit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-46"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-cn">2</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"testInit()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-47"><span class="crayon-h">		</span><span class="crayon-c">// Cancels all running commands at the start of test mode.</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-48"><span class="crayon-h">		</span><span class="crayon-i">CommandScheduler</span><span class="crayon-sy">.</span><span class="crayon-e">getInstance</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">cancelAll</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-49"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-50">&nbsp;</div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-51"><span class="crayon-h">	</span><span class="crayon-c">/**</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-52"><span class="crayon-c">	 * This function is called periodically during test mode.</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-53"><span class="crayon-c">	 */</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-54"><span class="crayon-h">	</span><span class="crayon-sy">@</span><span class="crayon-e">Override</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-55"><span class="crayon-e">	</span><span class="crayon-m">public</span><span class="crayon-h"> </span><span class="crayon-t">void</span><span class="crayon-h"> </span><span class="crayon-e">testPeriodic</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-h"> </span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-66e6fff00c00d672136786-56"><span class="crayon-h">		</span><span class="crayon-i">Logger</span><span class="crayon-sy">.</span><span class="crayon-e">log</span><span class="crayon-sy">(</span><span class="crayon-s">"Robot"</span><span class="crayon-sy">,</span><span class="crayon-h"> </span>-<span class="crayon-cn">1</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-s">"testPeriodic()"</span><span class="crayon-sy">)</span><span class="crayon-sy">;</span></div><div class="crayon-line" id="crayon-66e6fff00c00d672136786-57"><span class="crayon-h">	</span><span class="crayon-sy">}</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0014 seconds] -->
+
+
+
+
+<p>The comments in the code are pretty self explanatory. Each of the modes has a function (e.g.&nbsp;<strong>autonomousInit</strong>) which is called when&nbsp;that mode starts. Then, as long as the robot stays in that particular mode, that&nbsp;mode’s ‘<strong>periodic</strong>’ function&nbsp;(e.g.&nbsp;<strong>autonomousPeriodic</strong>)&nbsp;will be repeatedly called.</p>
+
+
+
+<p>Before we move on, I would like to bring your attention the the numerous calls to&nbsp;<strong>Logger.log(…)</strong>. This is a debugging function which allows you to add logging to your program. This can be most useful when trying to figure out why your program is not behaving the way you expect.&nbsp;The&nbsp;<strong>log</strong>&nbsp;function takes 3 parameters. The <strong>first </strong>is a tag which identifies this particular log and is usually the class name. </p>
+
+
+
+<p>The <strong>second </strong>is a priority which determines when the log will be displayed. The higher the number, the more likely that this line will be displayed. You can change the logging level by calling <a href="../RobotCoreDoc/classrobot_core_1_1_logger.html#a60166425c66aa3b8e48a31b07d25ab9f" target="_blank" rel="noreferrer noopener">setLogLevel</a>.</p>
+
+
+
+<p> The third parameter is whatever you wish to log.&nbsp;I strongly suggest that you make use of this feature when writing your code. It can make finding an elusive problem much easier later, especially when the problem only manifests itself when running the robot in competition.</p>
+
+
+
+<p><a href="../running-the-program/index.htm" data-type="page" data-id="65">Next: Running the program</a></p>
+</div>		</div>
+		<div class="nv-sidebar-wrap col-sm-12 nv-right blog-sidebar ">
+		<aside id="secondary" role="complementary">
+		
+		<div id="nav_menu-3" class="widget widget_nav_menu"><p class="widget-title">Chapter</p><div class="menu-minibot-container"><ul id="menu-minibot" class="menu"><li id="menu-item-25" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25"><a href="../robot-java/index.htm">Minibot</a></li>
+<li id="menu-item-31" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-28 current_page_item menu-item-31"><a href="index.htm" aria-current="page">Creating the project</a></li>
+<li id="menu-item-67" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-67"><a href="../running-the-program/index.htm">Running the program</a></li>
+<li id="menu-item-113" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-113"><a href="../drive-subsystem/index.htm">Drive Subsystem</a></li>
+<li id="menu-item-125" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-125"><a href="../commands/index.htm">Commands</a></li>
+<li id="menu-item-146" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-146"><a href="../arcade-drive/index.htm">Arcade Drive</a></li>
+<li id="menu-item-169" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-169"><a href="../wheel-encoders/index.htm">Wheel Encoders</a></li>
+<li id="menu-item-178" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-178"><a href="../speed-control/index.htm">Speed Control</a></li>
+<li id="menu-item-221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-221"><a href="../drive-straight/index.htm">Drive Straight</a></li>
+<li id="menu-item-227" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-227"><a href="../turn-command/index.htm">Turn Command</a></li>
+<li id="menu-item-233" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-233"><a href="../combining-commands/index.htm">Combining Commands</a></li>
+<li id="menu-item-239" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-239"><a href="../using-sensors/index.htm">Using Sensors</a></li>
+<li id="menu-item-245" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-245"><a href="../escape/index.htm">Escape!</a></li>
+<li id="menu-item-132" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-132"><a href="../RobotCoreDoc/annotated.html">RobotCore Documentaion</a></li>
+</ul></div></div>
+			</aside>
+</div>
+	</div>
+</div>
+
+</main><!--/.neve-main-->
+
+<footer class="site-footer" id="site-footer" next-page-hide="">
+	<div class="hfg_footer">
+		<div class="footer--row footer-bottom layout-full-contained" id="cb-row--footer-bottom" data-row-id="bottom" data-show-on="desktop">
+	<div class="footer--row-inner footer-bottom-inner footer-content-wrap">
+		<div class="container">
+			<div class="hfg-grid nv-footer-content hfg-grid-bottom row--wrapper row " data-section="hfg_footer_layout_bottom">
+				<div class="hfg-slot left"><div class="builder-item desktop-left tablet-left mobile-left"><div class="item--inner builder-item--footer_copyright" data-section="footer_copyright" data-item-id="footer_copyright">
+	<div class="component-wrap">
+	<div>
+		<p>Copyright  © 2024 John Gaby</p>	</div>
+</div>
+
+	</div>
+
+</div></div><div class="hfg-slot c-left"></div><div class="hfg-slot center"></div>							</div>
+		</div>
+	</div>
+</div>
+
+	</div>
+</footer>
+
+</div><!--/.wrapper-->
+<script type='text/javascript' id='neve-script-js-extra'>
+/* <![CDATA[ */
+var NeveProperties = {"ajaxurl":"http:\/\/programming.team2102.org\/wp-admin\/admin-ajax.php","nonce":"73f4a69e60","isRTL":"","isCustomize":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../wp-content/themes/neve/assets/js/build/modern/frontend.js?ver=3.2.0' id='neve-script-js' async=""></script>
+<script type='text/javascript' id='neve-script-js-after'>
+	var html = document.documentElement;
+	var theme = html.getAttribute('data-neve-theme') || 'light';
+	var variants = {"logo":{"light":{"src":false,"srcset":false,"sizes":false},"dark":{"src":false,"srcset":false,"sizes":false},"same":true}};
+
+	function setCurrentTheme( theme ) {
+		var pictures = document.getElementsByClassName( 'neve-site-logo' );
+		for(var i = 0; i<pictures.length; i++) {
+			var picture = pictures.item(i);
+			if( ! picture ) {
+				continue;
+			};
+			var fileExt = picture.src.slice((Math.max(0, picture.src.lastIndexOf(".")) || Infinity) + 1);
+			if ( fileExt === 'svg' ) {
+				picture.removeAttribute('width');
+				picture.removeAttribute('height');
+				picture.style = 'width: var(--maxWidth)';
+			}
+			var compId = picture.getAttribute('data-variant');
+			if ( compId && variants[compId] ) {
+				var isConditional = variants[compId]['same'];
+				if ( theme === 'light' || isConditional || variants[compId]['dark']['src'] === false ) {
+					picture.src = variants[compId]['light']['src'];
+					picture.srcset = variants[compId]['light']['srcset'] || '';
+					picture.sizes = variants[compId]['light']['sizes'];
+					continue;
+				};
+				picture.src = variants[compId]['dark']['src'];
+				picture.srcset = variants[compId]['dark']['srcset'] || '';
+				picture.sizes = variants[compId]['dark']['sizes'];
+			};
+		};
+	};
+
+	var observer = new MutationObserver(function(mutations) {
+		mutations.forEach(function(mutation) {
+			if (mutation.type == 'attributes') {
+				theme = html.getAttribute('data-neve-theme');
+				setCurrentTheme(theme);
+			};
+		});
+	});
+
+	observer.observe(html, {
+		attributes: true
+	});
+</script>
+<script type='text/javascript' src='../wp-includes/js/comment-reply.min.js?ver=5.9.2' id='comment-reply-js'></script>
+</body>
+
+</html>
