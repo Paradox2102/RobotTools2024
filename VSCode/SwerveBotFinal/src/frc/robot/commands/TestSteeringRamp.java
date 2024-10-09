@@ -80,6 +80,6 @@ public class TestSteeringRamp extends Command {
   @Override
   public boolean isFinished() {
     Logger.log("TestSteeringRamp", -1, "isFinished()");
-    return m_power >= 0.5;
+    return m_power >= 0.7;
   }
 }

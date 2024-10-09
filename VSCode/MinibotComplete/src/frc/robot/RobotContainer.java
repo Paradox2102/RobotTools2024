@@ -9,6 +9,7 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ArcadeDriveCommand;
 import frc.robot.commands.CalibrateSpeedCommand;
 import frc.robot.commands.DriveCourseCommand;
@@ -38,6 +39,7 @@ public class RobotContainer {
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final DigitalInput m_irSensor = new DigitalInput(Device.IO_4);
   private final CommandJoystick m_joystick = new CommandJoystick(0);
+  private final CommandXboxController m_xbox = new CommandXboxController(0);
 
   private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
 
@@ -61,7 +63,7 @@ public class RobotContainer {
     m_joystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem, 0.75, 3.0));
     m_joystick.button(2).onTrue(new DriveForDistanceCommand(m_driveSubsystem, 0.6, 30));
     m_joystick.button(3).onTrue(new TestMotorSpeedCommand(m_driveSubsystem));
-    m_joystick.button(4).whileTrue(new CalibrateSpeedCommand(m_driveSubsystem));
+    m_joystick.button(4).toggleOnTrue(new CalibrateSpeedCommand(m_driveSubsystem));
     m_joystick.button(5).onTrue(new TurnCommand(m_driveSubsystem, 0.5, -180));
     m_joystick.button(6).onTrue(new DriveCourseCommand(m_driveSubsystem));
     m_joystick.button(7).onTrue(new DriveToLineCommand(m_driveSubsystem, m_irSensor));

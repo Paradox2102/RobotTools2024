@@ -71,22 +71,49 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
 
+  // Red Robot
+  // private static final double k_frontLeftMinSteeringPower = 0.27;
+  // private static final double k_backLeftMinSteeringPower = 0.31;
+  // private static final double k_backRightMinSteeringPower = 0.35;
+  // private static final double k_frontRightMinsteeringPower = 0.36;
+
+  // private static final int k_frontLeftSteeringZero = 373;
+  // private static final int k_backLeftSteeringZero = 1560;
+  // private static final int k_backRightSteeringZero = 444;
+  // private static final int k_frontRightSteeringZero = -1861;
+
+  // static final double k_maxDriveSpeed = 2400;
+  // private static final double k_frontLeftMinDrivePower = 0.33;
+  // private static final double k_backLeftMinDrivePower = 0.33;
+  // private static final double k_backRightMinDrivePower = 0.34;
+  // private static final double k_frontRightMinDrivePower = 0.34;
+
+  // public static final double k_drivePTerm = 0.0010;
+  // public static final double k_driveITerm = 0.0001;
+  // public static final double k_driveIZone = 200;
+
+  // private static final double k_frontLeftDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 1 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 1 / k_maxDriveSpeed;
+
+  // Blue/White Robot
   private static final double k_frontLeftMinSteeringPower = 0.33;
   private static final double k_backLeftMinSteeringPower = 0.33;
   private static final double k_backRightMinSteeringPower = 0.30;
   private static final double k_frontRightMinsteeringPower = 0.30;
 
   // Blue Robot
-  private static final int k_frontLeftSteeringZero = -1950;
-  private static final int k_backLeftSteeringZero = -764;
-  private static final int k_backRightSteeringZero = -1940;
-  private static final int k_frontRightSteeringZero = 1470;
+  // private static final int k_frontLeftSteeringZero = -1950;
+  // private static final int k_backLeftSteeringZero = -764;
+  // private static final int k_backRightSteeringZero = -1940;
+  // private static final int k_frontRightSteeringZero = 1470;
 
   // White Robot
-  // private static final int k_frontLeftSteeringZero = 255;
-  // private static final int k_backLeftSteeringZero = 326;
-  // private static final int k_backRightSteeringZero = -2019;
-  // private static final int k_frontRightSteeringZero = -1965;
+  private static final int k_frontLeftSteeringZero = 255;
+  private static final int k_backLeftSteeringZero = 326;
+  private static final int k_backRightSteeringZero = -2019;
+  private static final int k_frontRightSteeringZero = -1965;
 
   private static final double k_frontLeftSteeringP = 0.8 / 360;
   private static final double k_backLeftSteeringP = 0.8 / 360;
@@ -98,28 +125,32 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backRightSteeringD = 0.005;
   private static final double k_frontRightSteeringD = 0.005;
 
+
   // Blue Robot
-  private static final double k_frontLeftMinDrivePower = 0.29;
-  private static final double k_backLeftMinDrivePower = 0.29;
-  private static final double k_backRightMinDrivePower = 0.30;
-  private static final double k_frontRightMinDrivePower = 0.30;
+  // static final double k_maxDriveSpeed = 2500;
+  // private static final double k_frontLeftMinDrivePower = 0.29;
+  // private static final double k_backLeftMinDrivePower = 0.29;
+  // private static final double k_backRightMinDrivePower = 0.30;
+  // private static final double k_frontRightMinDrivePower = 0.30;
 
   // White Robot
-  // private static final double k_frontLeftMinDrivePower = 0.38;
-  // private static final double k_backLeftMinDrivePower = 0.38;
-  // private static final double k_backRightMinDrivePower = 0.38;
-  // private static final double k_frontRightMinDrivePower = 0.38;
-
   static final double k_maxDriveSpeed = 2500;
+  private static final double k_frontLeftMinDrivePower = 0.38;
+  private static final double k_backLeftMinDrivePower = 0.38;
+  private static final double k_backRightMinDrivePower = 0.38;
+  private static final double k_frontRightMinDrivePower = 0.38;
+
   static final double k_ticksPerMeter = 3579 / 1.345;
   public static final double k_maxDriveSpeedMetersPerSecond = k_maxDriveSpeed / k_ticksPerMeter; // = 0.9395 m/s
   public static final double k_maxAngularSpeed = 2.0; // radians / sec
 
+  // White/Blue
   private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
   private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
   private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
   private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
 
+  // White/Blue
   public static final double k_drivePTerm = 0.0010;
   public static final double k_driveITerm = 0.0004;
   public static final double k_driveIZone = 200;
@@ -154,7 +185,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int k_cameraPort = 5800;
 
   public static ApriltagLocation m_aprilTags[] = {
-      new ApriltagLocation(1, 3, 2+1-.35, 90),
+      new ApriltagLocation(1, 3, 2 + 1 - .35, 90),
       new ApriltagLocation(2, 4, 3, 180),
       new ApriltagLocation(3, 3, 4, -90),
       new ApriltagLocation(4, 3, 3, 0),
@@ -221,7 +252,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     ApriltagLocations.setLocations(m_aprilTags);
     m_camera.setCameraInfo(0, 5, 0, ApriltagsCameraType.PiCam_640x480);
-    m_camera.connect(k_cameraIP, k_cameraPort);
+    // m_camera.connect(k_cameraIP, k_cameraPort);
     m_posServer.start();
 
     AutoBuilder.configureHolonomic(this::getPose2d,

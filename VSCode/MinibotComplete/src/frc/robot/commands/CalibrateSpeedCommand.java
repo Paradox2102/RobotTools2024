@@ -17,7 +17,7 @@ import robotCore.Logger;
  */
 public class CalibrateSpeedCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private final double k_speed = 0.25;
+  private final double k_speed = 0.4;
 
   private Encoder m_leftEncoder;
   private Encoder m_rightEncoder;

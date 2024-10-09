@@ -17,7 +17,7 @@ import robotCore.Logger;
  */
 public class CalibrateDrive extends Command {
   private final DriveSubsystem m_subsystem;
-  private final double m_speed = 1000;
+  private final double m_speed = 2000;
   private final SwerveModule m_frontLeft;
   private final SwerveModule m_backLeft;
   private final SwerveModule m_backRight;
