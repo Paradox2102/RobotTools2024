@@ -13,8 +13,9 @@ var searchData=
   ['commands_10',['Commands',['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1_commands.html',1,'edu::wpi::first::wpilibj2::command']]],
   ['commandscheduler_11',['CommandScheduler',['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1_command_scheduler.html',1,'edu::wpi::first::wpilibj2::command']]],
   ['commandutil_12',['CommandUtil',['../classcom_1_1pathplanner_1_1lib_1_1auto_1_1_command_util.html',1,'com::pathplanner::lib::auto']]],
-  ['conditionalcommand_13',['ConditionalCommand',['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1_conditional_command.html',1,'edu::wpi::first::wpilibj2::command']]],
-  ['constraintszone_14',['ConstraintsZone',['../classcom_1_1pathplanner_1_1lib_1_1path_1_1_constraints_zone.html',1,'com::pathplanner::lib::path']]],
-  ['controlword_15',['ControlWord',['../classedu_1_1wpi_1_1first_1_1hal_1_1_control_word.html',1,'edu::wpi::first::hal']]],
-  ['current_16',['Current',['../classedu_1_1wpi_1_1first_1_1units_1_1_current.html',1,'edu::wpi::first::units']]]
+  ['commandxboxcontroller_13',['CommandXboxController',['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1button_1_1_command_xbox_controller.html',1,'edu::wpi::first::wpilibj2::command::button']]],
+  ['conditionalcommand_14',['ConditionalCommand',['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1_conditional_command.html',1,'edu::wpi::first::wpilibj2::command']]],
+  ['constraintszone_15',['ConstraintsZone',['../classcom_1_1pathplanner_1_1lib_1_1path_1_1_constraints_zone.html',1,'com::pathplanner::lib::path']]],
+  ['controlword_16',['ControlWord',['../classedu_1_1wpi_1_1first_1_1hal_1_1_control_word.html',1,'edu::wpi::first::hal']]],
+  ['current_17',['Current',['../classedu_1_1wpi_1_1first_1_1units_1_1_current.html',1,'edu::wpi::first::units']]]
 ];

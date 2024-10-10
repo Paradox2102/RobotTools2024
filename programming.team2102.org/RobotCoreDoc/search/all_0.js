@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['a_0',['a',['../classedu_1_1wpi_1_1first_1_1wpilibj_1_1_xbox_controller.html#a200e36d0a7239c9f83831738e207dba9',1,'edu::wpi::first::wpilibj::XboxController']]],
+  ['a_0',['a',['../classedu_1_1wpi_1_1first_1_1wpilibj_1_1_xbox_controller.html#a200e36d0a7239c9f83831738e207dba9',1,'edu.wpi.first.wpilibj.XboxController.a()'],['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1button_1_1_command_xbox_controller.html#a39424791c780cfb40bc69500f3b810c8',1,'edu.wpi.first.wpilibj2.command.button.CommandXboxController.a()'],['../classedu_1_1wpi_1_1first_1_1wpilibj2_1_1command_1_1button_1_1_command_xbox_controller.html#a5d96c39e93d7c1837bb873549d259300',1,'edu.wpi.first.wpilibj2.command.button.CommandXboxController.a(EventLoop loop)']]],
   ['a1_5fa_1',['A1_A',['../classrobot_core_1_1_device.html#a7ac367904965b1d4f54114252911afde',1,'robotCore::Device']]],
   ['a1_5fb_2',['A1_B',['../classrobot_core_1_1_device.html#a8362051102ac58eb8f81b7c01f465b09',1,'robotCore::Device']]],
   ['a2_5fa_3',['A2_A',['../classrobot_core_1_1_device.html#af83c20eb29a28d5f8f62ed2d2ca02348',1,'robotCore::Device']]],
