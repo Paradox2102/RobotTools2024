@@ -297,7 +297,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   private SwerveDrivePoseEstimator m_poseEstimator;
 
-  private final double k_turnDeadZone = 3;
+  private final double k_turnDeadZone = 4;
   private final double k_turnP = 20.0 / 180.0;
 
   private static final String k_cameraIP = "127.0.1.1";
