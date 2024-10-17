@@ -10,12 +10,6 @@
           "data": {
             "commands": [
               {
-                "type": "named",
-                "data": {
-                  "name": "Spinup"
-                }
-              },
-              {
                 "type": "sequential",
                 "data": {
                   "commands": [
@@ -29,12 +23,6 @@
                       "type": "named",
                       "data": {
                         "name": "Aim"
-                      }
-                    },
-                    {
-                      "type": "named",
-                      "data": {
-                        "name": "Shoot"
                       }
                     }
                   ]

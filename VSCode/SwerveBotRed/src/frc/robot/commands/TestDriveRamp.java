@@ -15,21 +15,22 @@ import robotCore.Logger;
 /**
  * An example command that uses an example subsystem.
  */
-public class CalibrateDrive extends Command {
+public class TestDriveRamp extends Command {
   private final DriveSubsystem m_subsystem;
-  private final double m_speed = 1500;
   private final SwerveModule m_frontLeft;
   private final SwerveModule m_backLeft;
   private final SwerveModule m_backRight;
   private final SwerveModule m_frontRight;
 
+  private double m_power;
+
   /**
-   * Creates a new CalibrateDrive.
+   * Creates a new TestDriveRamp.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public CalibrateDrive(DriveSubsystem subsystem) {
-    Logger.log("CalibrateDrive", 3, "CalibrateDrive()");
+  public TestDriveRamp(DriveSubsystem subsystem) {
+    Logger.log("TestDriveRamp", 3, "TestDriveRamp()");
 
     m_subsystem = subsystem;
     m_frontLeft = m_subsystem.getFrontLeftModule();
@@ -44,44 +45,43 @@ public class CalibrateDrive extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("CalibrateDrive", 2, "initialize()");
-    Logger.log("CalibrateDrive", 1, ",target,FL,BL,BR,FR");
-
+    Logger.log("TestDriveRamp", 2, "initialize()");
+    Logger.log("TestDriveRamp", 1, ",power,FL,BL,BR,FR");
+    m_power = 0;
     m_frontLeft.setSteeringPosition(0);
     m_backLeft.setSteeringPosition(0);
     m_backRight.setSteeringPosition(0);
     m_frontRight.setSteeringPosition(0);
-
-    m_frontLeft.setDriveSpeed(m_speed);
-    m_backLeft.setDriveSpeed(m_speed);
-    m_backRight.setDriveSpeed(m_speed);
-    m_frontRight.setDriveSpeed(m_speed);
-
-    // m_frontLeft.setDrivePower(0.6);
-    // m_backLeft.setDrivePower(0.6);
-    // m_backRight.setDrivePower(0.6);
-    // m_frontRight.setDrivePower(0.6);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("CalibrateDrive", -1, "execute()");
-    Logger.log("CalibrateDrive", 1, String.format(",%f,%f,%f,%f,%f", m_speed, m_frontLeft.getDriveSpeed(),
+    Logger.log("TestDriveRamp", -1, "execute()");
+
+    // m_power = 0.6;
+    m_frontLeft.setDrivePower(m_power);
+    m_backLeft.setDrivePower(m_power);
+    m_backRight.setDrivePower(m_power);
+    m_frontRight.setDrivePower(m_power);
+
+    Logger.log("TestDriveRamp", 1, String.format(",%f,%f,%f,%f,%f", m_power, m_frontLeft.getDriveSpeed(),
         m_backLeft.getDriveSpeed(), m_backRight.getDriveSpeed(), m_frontRight.getDriveSpeed()));
+
+    m_power += 0.006;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("CalibrateDrive", 2, String.format("end(%b)", interrupted));
+    Logger.log("TestDriveRamp", 2, String.format("end(%b)", interrupted));
     m_subsystem.stop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("CalibrateDrive", -1, "isFinished()");
-    return false;
+    Logger.log("TestDriveRamp", -1, "isFinished()");
+    return m_power > 1.2;
   }
 }
