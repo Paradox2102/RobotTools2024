@@ -84,18 +84,18 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_commandXbox.leftBumper().toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
-    m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem, true, 0));
+    // m_commandXbox.leftBumper().toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
+    // m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem, true, 0));
 
-    m_commandXbox.a().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
-    m_commandXbox.b().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget1));
-    m_commandXbox.y().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget2));
-    m_commandXbox.x().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget4));
-    m_commandXbox.start().toggleOnTrue(m_auto1);
+    // m_commandXbox.a().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
+    // m_commandXbox.b().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget1));
+    // m_commandXbox.y().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget2));
+    // m_commandXbox.x().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget4));
+    // m_commandXbox.start().toggleOnTrue(m_auto1);
 
 
-    // m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem, false, 0));
-    // m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
+    m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem, false, 0));
+    m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
     // m_commandJoystick.button(3).onTrue(new FeederCommand(m_feederSubsystem, true, 10));
     // m_commandJoystick.button(3).onTrue(new TurnToTarget(m_driveSubsystem, 4));
     // m_commandJoystick.button(4).onTrue(new TurnToTarget(m_driveSubsystem, 1));

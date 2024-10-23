@@ -72,40 +72,40 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncB = Device.A2_B;
 
   // SwerveBot01 (White Robot)
-  private static final double k_frontLeftMinSteeringPower = 0.33;
-  private static final double k_backLeftMinSteeringPower = 0.33;
-  private static final double k_backRightMinSteeringPower = 0.30;
-  private static final double k_frontRightMinsteeringPower = 0.30;
+  // private static final double k_frontzLeftMinSteeringPower = 0.33;
+  // private static final double k_backLeftMinSteeringPower = 0.33;
+  // private static final double k_backRightMinSteeringPower = 0.30;
+  // private static final double k_frontRightMinsteeringPower = 0.30;
 
-  private static final int k_frontLeftSteeringZero = 255;
-  private static final int k_backLeftSteeringZero = 326;
-  private static final int k_backRightSteeringZero = -2019;
-  private static final int k_frontRightSteeringZero = -1965;
+  // private static final int k_frontLeftSteeringZero = 255;
+  // private static final int k_backLeftSteeringZero = 326;
+  // private static final int k_backRightSteeringZero = -2019;
+  // private static final int k_frontRightSteeringZero = -1965;
 
-  private static final double k_frontLeftSteeringP = 0.8 / 360;
-  private static final double k_backLeftSteeringP = 0.8 / 360;
-  private static final double k_backRightSteeringP = 0.9 / 360;
-  private static final double k_frontRightSteeringP = 0.8 / 360;
+  // private static final double k_frontLeftSteeringP = 0.8 / 360;
+  // private static final double k_backLeftSteeringP = 0.8 / 360;
+  // private static final double k_backRightSteeringP = 0.9 / 360;
+  // private static final double k_frontRightSteeringP = 0.8 / 360;
 
-  private static final double k_frontLeftSteeringD = 0.005;
-  private static final double k_backLeftSteeringD = 0.005;
-  private static final double k_backRightSteeringD = 0.005;
-  private static final double k_frontRightSteeringD = 0.005;
+  // private static final double k_frontLeftSteeringD = 0.005;
+  // private static final double k_backLeftSteeringD = 0.005;
+  // private static final double k_backRightSteeringD = 0.005;
+  // private static final double k_frontRightSteeringD = 0.005;
 
-  static final double k_maxDriveSpeed = 2500;
-  private static final double k_frontLeftMinDrivePower = 0.38;
-  private static final double k_backLeftMinDrivePower = 0.38;
-  private static final double k_backRightMinDrivePower = 0.38;
-  private static final double k_frontRightMinDrivePower = 0.38;
+  // static final double k_maxDriveSpeed = 2500;
+  // private static final double k_frontLeftMinDrivePower = 0.38;
+  // private static final double k_backLeftMinDrivePower = 0.38;
+  // private static final double k_backRightMinDrivePower = 0.38;
+  // private static final double k_frontRightMinDrivePower = 0.38;
 
-  private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
-  private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
-  private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
-  private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
 
-  public static final double k_drivePTerm = 0.0010;
-  public static final double k_driveITerm = 0.0004;
-  public static final double k_driveIZone = 200;  
+  // public static final double k_drivePTerm = 0.0010;
+  // public static final double k_driveITerm = 0.0004;
+  // public static final double k_driveIZone = 200;  
 
   // SwerveBot02 (Yellow Robot)
   // private static final double k_frontLeftMinSteeringPower = 0.33;
@@ -180,40 +180,40 @@ public class DriveSubsystem extends SubsystemBase {
   // private static final double k_frontRightSteeringD = 0.005;
 
   // SwerveBot04 (Blue Robot)
-  // private static final double k_frontLeftMinSteeringPower = 0.33;
-  // private static final double k_backLeftMinSteeringPower = 0.33;
-  // private static final double k_backRightMinSteeringPower = 0.30;
-  // private static final double k_frontRightMinsteeringPower = 0.30;
+  private static final double k_frontLeftMinSteeringPower = 0.33;
+  private static final double k_backLeftMinSteeringPower = 0.33;
+  private static final double k_backRightMinSteeringPower = 0.30;
+  private static final double k_frontRightMinsteeringPower = 0.30;
 
-  // private static final int k_frontLeftSteeringZero = -1950;
-  // private static final int k_backLeftSteeringZero = -764;
-  // private static final int k_backRightSteeringZero = -1940;
-  // private static final int k_frontRightSteeringZero = 1470;
+  private static final int k_frontLeftSteeringZero = -1950;
+  private static final int k_backLeftSteeringZero = -764;
+  private static final int k_backRightSteeringZero = -1940;
+  private static final int k_frontRightSteeringZero = 1470;
 
-  // static final double k_maxDriveSpeed = 2500;
-  // private static final double k_frontLeftMinDrivePower = 0.29;
-  // private static final double k_backLeftMinDrivePower = 0.29;
-  // private static final double k_backRightMinDrivePower = 0.30;
-  // private static final double k_frontRightMinDrivePower = 0.30;
+  static final double k_maxDriveSpeed = 2500;
+  private static final double k_frontLeftMinDrivePower = 0.29;
+  private static final double k_backLeftMinDrivePower = 0.29;
+  private static final double k_backRightMinDrivePower = 0.30;
+  private static final double k_frontRightMinDrivePower = 0.30;
 
-  // private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
-  // private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
-  // private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
-  // private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
+  private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
+  private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
+  private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
+  private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
 
-  // public static final double k_drivePTerm = 0.0010;
-  // public static final double k_driveITerm = 0.0004;
-  // public static final double k_driveIZone = 200;
+  public static final double k_drivePTerm = 0.0010;
+  public static final double k_driveITerm = 0.0004;
+  public static final double k_driveIZone = 200;
 
-  // private static final double k_frontLeftSteeringP = 0.8 / 360;
-  // private static final double k_backLeftSteeringP = 0.8 / 360;
-  // private static final double k_backRightSteeringP = 0.9 / 360;
-  // private static final double k_frontRightSteeringP = 0.8 / 360;
+  private static final double k_frontLeftSteeringP = 0.8 / 360;
+  private static final double k_backLeftSteeringP = 0.8 / 360;
+  private static final double k_backRightSteeringP = 0.9 / 360;
+  private static final double k_frontRightSteeringP = 0.8 / 360;
 
-  // private static final double k_frontLeftSteeringD = 0.005;
-  // private static final double k_backLeftSteeringD = 0.005;
-  // private static final double k_backRightSteeringD = 0.005;
-  // private static final double k_frontRightSteeringD = 0.005;
+  private static final double k_frontLeftSteeringD = 0.005;
+  private static final double k_backLeftSteeringD = 0.005;
+  private static final double k_backRightSteeringD = 0.005;
+  private static final double k_frontRightSteeringD = 0.005;
 
   //////////////////////
 
