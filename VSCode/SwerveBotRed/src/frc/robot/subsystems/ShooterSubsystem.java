@@ -55,6 +55,7 @@ public class ShooterSubsystem extends SubsystemBase {
   public void setSpeed(double speed) {
     m_motor.setControlMode(SmartMotorMode.Speed);
     m_motor.set(speed);
+    Logger.log("ShooterSubsystem", -1, "Somethin is wron with the SmartMotorMode()");
   }
 
   public Encoder getEncoder() {
