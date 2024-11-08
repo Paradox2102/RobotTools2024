@@ -185,7 +185,7 @@ public class SwerveModule {
         Rotation2d encoderRotation = getSteeringPositionRotation2d();
 
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = desiredState; //optimize(desiredState, encoderRotation);
+        SwerveModuleState state = optimize(desiredState, encoderRotation);
 
         state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
 

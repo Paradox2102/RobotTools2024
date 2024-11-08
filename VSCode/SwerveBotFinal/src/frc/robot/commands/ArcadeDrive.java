@@ -29,7 +29,7 @@ public class ArcadeDrive extends Command {
     TrackTarget4
   }
 
-  public static Mode m_mode = Mode.MaintainOrientation;
+  public static Mode m_mode = Mode.Normal; //Mode.MaintainOrientation;
   private final DriveSubsystem m_subsystem;
   private final DoubleSupplier m_x;
   private final DoubleSupplier m_y;

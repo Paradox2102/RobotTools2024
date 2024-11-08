@@ -74,6 +74,11 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncB = Device.A2_B;
 
   // SwerveBot05 (Black Robot Original Motors)
+  private final Translation2d m_frontLeftLocation = new Translation2d(0.0940562, 0.0940562);
+  private final Translation2d m_backLeftLocation = new Translation2d(-0.0940562, 0.0940562);
+  private final Translation2d m_backRightLocation = new Translation2d(-0.0940562, -0.0940562);
+  private final Translation2d m_frontRightLocation = new Translation2d(0.0940562, -0.0940562);
+
   private static final double k_frontLeftMinSteeringPower = 0.31;
   private static final double k_backLeftMinSteeringPower = 0.33;
   private static final double k_backRightMinSteeringPower = 0.32;
@@ -325,11 +330,6 @@ public class DriveSubsystem extends SubsystemBase {
   SwerveModule m_frontRight = new SwerveModule(FRDrivePWM, FRDriveDir, FRDriveEncInt, FRDriveEncDir,
       FRTurnPWM, FRTurnDir, FRTurnEncA, FRTurnEncB, FRI2CAddr, "FrontRight");
 
-  private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
-  private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
-  private final Translation2d m_backRightLocation = new Translation2d(-0.05842, -0.05842);
-  private final Translation2d m_frontRightLocation = new Translation2d(0.05842, -0.05842);
-
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
       m_frontLeftLocation, m_backLeftLocation, m_backRightLocation, m_frontRightLocation);
 
@@ -471,8 +471,11 @@ public class DriveSubsystem extends SubsystemBase {
 
   public SwerveModuleState[] getModuleStates() {
     SwerveModuleState[] states = {
-        m_frontLeft.getState(), m_frontRight.getState(), m_backLeft.getState(),
-        m_backRight.getState() };
+        m_frontLeft.getState(), 
+        m_backLeft.getState(),
+        m_backRight.getState(),
+        m_frontRight.getState() 
+    };
     return states;
   }
 
@@ -495,9 +498,9 @@ public class DriveSubsystem extends SubsystemBase {
   private SwerveModulePosition[] getModulePositions() {
     return new SwerveModulePosition[] {
         m_frontLeft.getPosition(),
-        m_frontRight.getPosition(),
         m_backLeft.getPosition(),
-        m_backRight.getPosition()
+        m_backRight.getPosition(),
+        m_frontRight.getPosition()
     };
   }
 

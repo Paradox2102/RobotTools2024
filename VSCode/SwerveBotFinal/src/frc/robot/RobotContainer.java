@@ -59,11 +59,11 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_joystick.getX(),
-    //     () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
+    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_joystick.getX(),
+        () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
 
-    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(), 
-              () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
+    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(), 
+    //           () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
 
     NamedCommands.registerCommand("Shoot", new FeederCommand(m_feederSubsystem, true, 4));
     NamedCommands.registerCommand("Aim", new TurnToTarget(m_driveSubsystem, 1));
