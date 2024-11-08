@@ -20,7 +20,9 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Robot;
 import robotCore.Device;
 import robotCore.Gyro;
 import robotCore.Logger;
@@ -71,8 +73,44 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
 
+  // SwerveBot05 (Black Robot Original Motors)
+  private static final double k_frontLeftMinSteeringPower = 0.31;
+  private static final double k_backLeftMinSteeringPower = 0.33;
+  private static final double k_backRightMinSteeringPower = 0.32;
+  private static final double k_frontRightMinsteeringPower = 0.42;
+
+  private static final int k_frontLeftSteeringZero = 1467;
+  private static final int k_backLeftSteeringZero = 227;
+  private static final int k_backRightSteeringZero = 1360;
+  private static final int k_frontRightSteeringZero = -2020;
+
+  static final double k_maxDriveSpeed = 2400;
+  private static final double k_frontLeftMinDrivePower = 0.27;
+  private static final double k_backLeftMinDrivePower = 0.28;
+  private static final double k_backRightMinDrivePower = 0.28;
+  private static final double k_frontRightMinDrivePower = 0.28;
+
+  private static final double k_frontLeftDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_backLeftDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_backRightDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_frontRightDriveF = 1.03 / k_maxDriveSpeed;
+
+  public static final double k_drivePTerm = 0.0002;
+  public static final double k_driveITerm = 0.00005;
+  public static final double k_driveIZone = 200;
+
+  private static final double k_frontLeftSteeringP = 1.0 / 360;
+  private static final double k_backLeftSteeringP = 1.0 / 360;
+  private static final double k_backRightSteeringP = 1.0 / 360;
+  private static final double k_frontRightSteeringP = 1.0 / 360;
+
+  private static final double k_frontLeftSteeringD = 0.010;
+  private static final double k_backLeftSteeringD = 0.010;
+  private static final double k_backRightSteeringD = 0.010;
+  private static final double k_frontRightSteeringD = 0.010;
+
   // SwerveBot01 (White Robot)
-  // private static final double k_frontzLeftMinSteeringPower = 0.33;
+  // private static final double k_frontLeftMinSteeringPower = 0.33;
   // private static final double k_backLeftMinSteeringPower = 0.33;
   // private static final double k_backRightMinSteeringPower = 0.30;
   // private static final double k_frontRightMinsteeringPower = 0.30;
@@ -105,7 +143,7 @@ public class DriveSubsystem extends SubsystemBase {
 
   // public static final double k_drivePTerm = 0.0010;
   // public static final double k_driveITerm = 0.0004;
-  // public static final double k_driveIZone = 200;  
+  // public static final double k_driveIZone = 200;
 
   // SwerveBot02 (Yellow Robot)
   // private static final double k_frontLeftMinSteeringPower = 0.33;
@@ -179,41 +217,41 @@ public class DriveSubsystem extends SubsystemBase {
   // private static final double k_backRightSteeringD = 0.005;
   // private static final double k_frontRightSteeringD = 0.005;
 
-  // SwerveBot04 (Blue Robot)
-  private static final double k_frontLeftMinSteeringPower = 0.33;
-  private static final double k_backLeftMinSteeringPower = 0.33;
-  private static final double k_backRightMinSteeringPower = 0.30;
-  private static final double k_frontRightMinsteeringPower = 0.30;
+  // // SwerveBot04 (Blue Robot)
+  // private static final double k_frontLeftMinSteeringPower = 0.33;
+  // private static final double k_backLeftMinSteeringPower = 0.33;
+  // private static final double k_backRightMinSteeringPower = 0.30;
+  // private static final double k_frontRightMinsteeringPower = 0.30;
 
-  private static final int k_frontLeftSteeringZero = -1950;
-  private static final int k_backLeftSteeringZero = -764;
-  private static final int k_backRightSteeringZero = -1940;
-  private static final int k_frontRightSteeringZero = 1470;
+  // private static final int k_frontLeftSteeringZero = -1950;
+  // private static final int k_backLeftSteeringZero = -764;
+  // private static final int k_backRightSteeringZero = -1940;
+  // private static final int k_frontRightSteeringZero = 1470;
 
-  static final double k_maxDriveSpeed = 2500;
-  private static final double k_frontLeftMinDrivePower = 0.29;
-  private static final double k_backLeftMinDrivePower = 0.29;
-  private static final double k_backRightMinDrivePower = 0.30;
-  private static final double k_frontRightMinDrivePower = 0.30;
+  // static final double k_maxDriveSpeed = 2500;
+  // private static final double k_frontLeftMinDrivePower = 0.29;
+  // private static final double k_backLeftMinDrivePower = 0.29;
+  // private static final double k_backRightMinDrivePower = 0.30;
+  // private static final double k_frontRightMinDrivePower = 0.30;
 
-  private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
-  private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
-  private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
-  private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_frontLeftDriveF = 1.05 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 1.05 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 0.95 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 0.95 / k_maxDriveSpeed;
 
-  public static final double k_drivePTerm = 0.0010;
-  public static final double k_driveITerm = 0.0004;
-  public static final double k_driveIZone = 200;
+  // public static final double k_drivePTerm = 0.0010;
+  // public static final double k_driveITerm = 0.0004;
+  // public static final double k_driveIZone = 200;
 
-  private static final double k_frontLeftSteeringP = 0.8 / 360;
-  private static final double k_backLeftSteeringP = 0.8 / 360;
-  private static final double k_backRightSteeringP = 0.9 / 360;
-  private static final double k_frontRightSteeringP = 0.8 / 360;
+  // private static final double k_frontLeftSteeringP = 0.8 / 360;
+  // private static final double k_backLeftSteeringP = 0.8 / 360;
+  // private static final double k_backRightSteeringP = 0.9 / 360;
+  // private static final double k_frontRightSteeringP = 0.8 / 360;
 
-  private static final double k_frontLeftSteeringD = 0.005;
-  private static final double k_backLeftSteeringD = 0.005;
-  private static final double k_backRightSteeringD = 0.005;
-  private static final double k_frontRightSteeringD = 0.005;
+  // private static final double k_frontLeftSteeringD = 0.005;
+  // private static final double k_backLeftSteeringD = 0.005;
+  // private static final double k_backRightSteeringD = 0.005;
+  // private static final double k_frontRightSteeringD = 0.005;
 
   //////////////////////
 
@@ -371,7 +409,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     ApriltagLocations.setLocations(m_aprilTags);
     m_camera.setCameraInfo(0, 5, 0, ApriltagsCameraType.PiCam_640x480);
-    m_camera.connect(k_cameraIP, k_cameraPort);
+    // m_camera.connect(k_cameraIP, k_cameraPort);
     m_posServer.start();
 
     AutoBuilder.configureHolonomic(this::getPose2d,
@@ -482,6 +520,8 @@ public class DriveSubsystem extends SubsystemBase {
             periodSeconds));
 
     setModuleStates(swerveModuleStates);
+
+    // Robot.sleep(1000);
   }
 
   public void stop() {
@@ -520,11 +560,12 @@ public class DriveSubsystem extends SubsystemBase {
     // m_frontLeft.getSteeringPosition(),
     // m_backLeft.getSteeringPosition(), m_backRight.getSteeringPosition(),
     // m_frontRight.getSteeringPosition()));
+    // RobotBase.sleep(100);
 
     // Logger.log("DriveSubsystem", 1, String.format(",%f,%f,%f,%f",
-    // m_frontLeft.getSteeringPositionInDegrees(),
-    // m_backLeft.getSteeringPositionInDegrees(),
-    // m_backRight.getSteeringPositionInDegrees(),
-    // m_frontRight.getSteeringPositionInDegrees()));
+    //     m_frontLeft.getSteeringPositionInDegrees(),
+    //     m_backLeft.getSteeringPositionInDegrees(),
+    //     m_backRight.getSteeringPositionInDegrees(),
+    //     m_frontRight.getSteeringPositionInDegrees()));
   }
 }

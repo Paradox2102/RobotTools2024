@@ -24,6 +24,7 @@ import frc.robot.commands.FeederCommand;
 import frc.robot.commands.SetArcadeDriveMode;
 import frc.robot.commands.SpinupCommand;
 import frc.robot.commands.TestDriveRamp;
+import frc.robot.commands.TestSteering;
 import frc.robot.commands.TestSteeringRamp;
 import frc.robot.commands.TurnToTarget;
 import frc.robot.subsystems.DriveSubsystem;
@@ -46,7 +47,7 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final FeederSubsystem m_feederSubsystem = new FeederSubsystem();
   private final CommandJoystick m_commandJoystick = new CommandJoystick(0);
-  // private final Joystick m_joystick = new Joystick(0);
+  private final Joystick m_joystick = new Joystick(0);
   private final XboxController m_xbox = new XboxController(0);
   private final CommandXboxController m_commandXbox = new CommandXboxController(0);
 
@@ -94,25 +95,27 @@ public class RobotContainer {
     // m_commandXbox.start().toggleOnTrue(m_auto1);
 
 
-    m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem, false, 0));
-    m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
+    // m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem, false, 0));
+    // m_commandJoystick.button(2).toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
     // m_commandJoystick.button(3).onTrue(new FeederCommand(m_feederSubsystem, true, 10));
     // m_commandJoystick.button(3).onTrue(new TurnToTarget(m_driveSubsystem, 4));
     // m_commandJoystick.button(4).onTrue(new TurnToTarget(m_driveSubsystem, 1));
 
-    // m_commandJoystick.button(1).onTrue(new TestSteeringRamp(m_driveSubsystem));
-    // m_commandJoystick.button(2).onTrue(new TestDriveRamp(m_driveSubsystem));
-    // m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
+    m_commandJoystick.button(1).onTrue(new TestSteeringRamp(m_driveSubsystem));
+    m_commandJoystick.button(2).onTrue(new TestDriveRamp(m_driveSubsystem));
+    m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
+    m_commandJoystick.button(4).whileTrue(new TestSteering(m_driveSubsystem));
     // m_commandJoystick.button(4).onTrue(new CalibrateDistance(m_driveSubsystem));
     // m_commandJoystick.button(5).toggleOnTrue(new
     // SpinupCommand(m_ShooterSubsystem));
     // m_commandJoystick.button(6).toggleOnTrue(new FeederCommand(m_feederSubsystem,
     // true, 3));
 
-    // m_commandJoystick.button(7).whileTrue(new CalibrateSteering(m_driveSubsystem, 0));
-    // m_commandJoystick.button(8).whileTrue(new CalibrateSteering(m_driveSubsystem, 90));
-    // m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem, 180));
-    // m_commandJoystick.button(10).whileTrue(new CalibrateSteering(m_driveSubsystem, 270));
+    double da = 0;
+    m_commandJoystick.button(7).whileTrue(new CalibrateSteering(m_driveSubsystem, 0 + da));
+    m_commandJoystick.button(8).whileTrue(new CalibrateSteering(m_driveSubsystem, 90 + da));
+    m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem, 180 + da));
+    m_commandJoystick.button(10).whileTrue(new CalibrateSteering(m_driveSubsystem, 270 + da));
 
     // m_commandJoystick.button(11).onTrue(m_auto1);
   }
