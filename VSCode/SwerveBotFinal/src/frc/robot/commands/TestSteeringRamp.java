@@ -64,6 +64,7 @@ public class TestSteeringRamp extends Command {
     m_frontRightModule.setSteeringPower(m_power);
 
     m_power += 0.002;
+    // m_power = 1.05;
   }
 
   // Called once the command ends or is interrupted.
@@ -80,6 +81,6 @@ public class TestSteeringRamp extends Command {
   @Override
   public boolean isFinished() {
     Logger.log("TestSteeringRamp", -1, "isFinished()");
-    return m_power >= 0.7;
+    return m_power >= 1;
   }
 }

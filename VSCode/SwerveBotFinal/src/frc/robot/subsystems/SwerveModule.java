@@ -201,6 +201,11 @@ public class SwerveModule {
         //                 desiredState.angle.getDegrees(), encoderRotation.getDegrees(),
         //                 desiredState.speedMetersPerSecond));
 
+        // System.out.print(String.format("%.2f,", state.speedMetersPerSecond));
+        // if (m_name.equals("FrontRight")) {
+        //     System.out.println(String.format("%.0f", desiredState.angle.getDegrees()));
+        // }
+
         setDriveSpeedInMetersPerSecond(state.speedMetersPerSecond);
         setSteeringPosition(state.angle.getDegrees());
 
