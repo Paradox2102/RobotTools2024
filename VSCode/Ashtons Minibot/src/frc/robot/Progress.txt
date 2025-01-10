@@ -1,0 +1,2 @@
+October 1st, Still need to get robot to move at 1000 but cant incresse speed for some reason
+October 3rd, Robot drives straight, next is to make it turn

@@ -29,7 +29,7 @@ public class TestTurnPowerCommand extends Command {
    *
    * @param subsystem The subsystem used by this command.
    */
-  public TestTurnPowerCommand(DriveSubsystem subsystem, ModulePosition position, double time) {
+  public TestTurnPowerCommand(DriveSubsystem subsystem, ModulePosition position) {
     Logger.log("TestTurnPowerCommand", 3, "TestTurnPowerCommand()");
 
     m_subsystem = subsystem;
@@ -46,11 +46,13 @@ public class TestTurnPowerCommand extends Command {
   @Override
   public void initialize() {
     Logger.log("TestTurnPowerCommand", 2, "initialize()");
+    Logger.log("TestTurnPowerCommand", 0, ",Power,Position");
 
     // m_timer.reset();
     // m_timer.start();
+    m_power = 0.0;
 
-    m_swerve.setSteeringPower(m_power);
+    m_swerve.setTurningPower(m_power);
     m_power += 0.0025;
   }
 
@@ -59,7 +61,16 @@ public class TestTurnPowerCommand extends Command {
   public void execute() {
     Logger.log("TestTurnPowerCommand", -1, "execute()");
 
-    m_swerve.setSteeringPower(m_power);
+    // Logger.log("TestTurnPowerCommand", 0, String.format(",%d,%d", 
+    //                                                                 m_power,
+    //                                                                 m_swerve.getSteerPosition()
+    //                                                               )
+    //           );
+
+    // Logger.log("TestTurnPowerCommand", 0, String.format(",%f,%d", m_power, m_swerve.getSteerPosition()));
+    Logger.log("TestMotorSpeedCommand", 0, String.format(",%f,%f", m_power, m_swerve.getTurnPosition()));
+    
+    m_swerve.setTurningPower(m_power);
     m_power += 0.0025;
   }
 
@@ -68,13 +79,13 @@ public class TestTurnPowerCommand extends Command {
   public void end(boolean interrupted) {
     Logger.log("TestTurnPowerCommand", 2, String.format("end(%b)", interrupted));
 
-    m_swerve.setSteeringPower(0.0);
+    m_swerve.setTurningPower(0.0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     Logger.log("TestTurnPowerCommand", -1, "isFinished()");
-    return m_power > 1.3;
+    return m_power >= 1.3;
   }
 }

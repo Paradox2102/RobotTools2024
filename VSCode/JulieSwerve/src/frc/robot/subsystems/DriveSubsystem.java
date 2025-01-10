@@ -51,7 +51,16 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRDriveEncDir = Device.Q2_DIR;
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
+
+  private static final double k_frontLeftSteeringP = 1.2 / 360;
+  private static final double k_frontRightSteeringP = 0.95 / 360;
+  private static final double k_backLeftSteeringP = 1.0 / 360;
+  private static final double k_backRightSteeringP = 1.0 / 360;
   
+  private static final double k_frontLeftSteeringD = 0.009;
+  private static final double k_frontRightSteeringD = 0.004;
+  private static final double k_backLeftSteeringD = 0.006;
+  private static final double k_backRightSteeringD = 0.005;
 
   SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
     FLTurnPWM, FLTurnDir, FLTurnEncA, FLTurnEncB, FLI2CAddr, "FrontLeft");
@@ -74,6 +83,26 @@ public class DriveSubsystem extends SubsystemBase {
    */
   public DriveSubsystem() {
     Logger.log("DriveSubsystem", 3, "DriveSubsystem()");
+
+    m_frontLeft.setSteeringMinPower(0.3825);
+    m_frontRight.setSteeringMinPower(0.3075);
+    m_backLeft.setSteeringMinPower(0.3775);
+    m_backRight.setSteeringMinPower(0.4075);
+
+    m_frontLeft.setSteeringZero(-1905);
+    m_frontRight.setSteeringZero(293);
+    m_backLeft.setSteeringZero(-1977);
+    m_backRight.setSteeringZero(134);
+
+    m_frontLeft.setSteeringPTerm(k_frontLeftSteeringP);
+    m_frontRight.setSteeringPTerm(k_frontRightSteeringP);
+    m_backLeft.setSteeringPTerm(k_backLeftSteeringP);
+    m_backRight.setSteeringPTerm(k_backRightSteeringP);
+
+    m_frontLeft.setSteeringDTerm(k_frontLeftSteeringD);
+    m_frontRight.setSteeringDTerm(k_frontRightSteeringD);
+    m_backLeft.setSteeringDTerm(k_backLeftSteeringD);
+    m_backRight.setSteeringDTerm(k_backRightSteeringD);
   }
 
   public SwerveModule getModule(ModulePosition pos) {

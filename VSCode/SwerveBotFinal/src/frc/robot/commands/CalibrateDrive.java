@@ -17,7 +17,7 @@ import robotCore.Logger;
  */
 public class CalibrateDrive extends Command {
   private final DriveSubsystem m_subsystem;
-  private final double m_speed = 1500;
+  private final double m_speed = 1200;
   private final SwerveModule m_frontLeft;
   private final SwerveModule m_backLeft;
   private final SwerveModule m_backRight;
@@ -57,10 +57,10 @@ public class CalibrateDrive extends Command {
     m_backRight.setDriveSpeed(m_speed);
     m_frontRight.setDriveSpeed(m_speed);
 
-    // m_frontLeft.setDrivePower(0.6);
-    // m_backLeft.setDrivePower(0.6);
-    // m_backRight.setDrivePower(0.6);
-    // m_frontRight.setDrivePower(0.6);
+    // m_frontLeft.setDrivePower(1);
+    // m_backLeft.setDrivePower(1);
+    // m_backRight.setDrivePower(1);
+    // m_frontRight.setDrivePower(1);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
