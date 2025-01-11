@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import robotCore.Device;
+import robotCore.Gyro;
 import robotCore.Logger;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -52,6 +53,8 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
 
+  private final Gyro m_gyro = new Gyro();
+
   SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
       FLTurnPWM, FLTurnDir, FLTurnEncA, FLTurnEncB, FLI2CAddr, "FrontLeft");
   SwerveModule m_backLeft = new SwerveModule(BLDrivePWM, BLDriveDir, BLDriveEncInt, BLDriveEncDir,
@@ -89,6 +92,10 @@ public class DriveSubsystem extends SubsystemBase {
 
   public SwerveModule getFrontRighModule() {
     return m_frontRight;
+  }
+
+  public double getYaw() {
+    return m_gyro.getYaw();
   }
 
   @Override

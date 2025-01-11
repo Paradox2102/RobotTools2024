@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.SwerveModule;
@@ -22,7 +23,10 @@ public class TestSteeringMotors extends Command {
   private final SwerveModule m_BRModule;
   private final SwerveModule m_FRModule;
 
+  private final static double k_time = 2.0;
   private final static double k_power = 0.5;
+  private int m_state = 0;
+  private final Timer m_timer = new Timer();
 
   /**
    * Creates a new TestSteeringMotors.
@@ -47,10 +51,14 @@ public class TestSteeringMotors extends Command {
   public void initialize() {
     Logger.log("TestSteeringMotors", 2, ",FL,BL,BR,FR");
 
+    m_state = 0;
+    m_timer.start();
+    m_timer.reset();
+
     m_FLModule.setSteeringPower(k_power);
-    m_BLModule.setSteeringPower(k_power);
-    m_BRModule.setSteeringPower(k_power);
-    m_FRModule.setSteeringPower(k_power);
+    // m_BLModule.setSteeringPower(k_power);
+    // m_BRModule.setSteeringPower(k_power);
+    // m_FRModule.setSteeringPower(k_power);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -58,7 +66,28 @@ public class TestSteeringMotors extends Command {
   public void execute() {
     Logger.log("TestSteeringMotors", -1, "execute()");
 
-    Logger.log("TestSterringMotor", 1, String.format(",%f,%f,%f,%f", m_FLModule.getDriveSpeed(), m_BLModule.getDriveSpeed(), m_BRModule.getDriveSpeed(), m_FRModule.getDriveSpeed()));
+    Logger.log("TestSterringMotor", 1, String.format(",%f,%f,%f,%f", m_FLModule.getSteeringPosition(), m_BLModule.getSteeringPosition(), m_BRModule.getSteeringPosition(), m_FRModule.getSteeringPosition()));
+
+    if (m_timer.get() >= k_time) {
+      m_subsystem.stop();
+
+      m_state++;
+      switch (m_state) {
+        case 1:
+          m_BLModule.setSteeringPower(k_power);
+          break;
+
+        case 2:
+          m_BRModule.setSteeringPower(k_power);
+          break;
+
+        case 3:
+          m_FRModule.setSteeringPower(k_power);
+          break;
+      }
+
+      m_timer.reset();
+    }
   }
 
   // Called once the command ends or is interrupted.
@@ -73,6 +102,6 @@ public class TestSteeringMotors extends Command {
   @Override
   public boolean isFinished() {
     Logger.log("TestSteeringMotors", -1, "isFinished()");
-    return false;
+    return m_state >= 4;
   }
 }

@@ -20,9 +20,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
-import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Robot;
 import robotCore.Device;
 import robotCore.Gyro;
 import robotCore.Logger;
@@ -72,6 +70,51 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRDriveEncDir = Device.Q2_DIR;
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
+
+    // SwerveBot04 (Blue Robot new design)
+  private final boolean k_invertGyro = true;
+  private final double k_turnDeadZone = 3;
+  private final double k_turnP = 20.0 / 180.0;
+
+  private final Translation2d m_frontLeftLocation = new Translation2d(0.0940562, 0.0940562);
+  private final Translation2d m_backLeftLocation = new Translation2d(-0.0940562, 0.0940562);
+  private final Translation2d m_backRightLocation = new Translation2d(-0.0940562, -0.0940562);
+  private final Translation2d m_frontRightLocation = new Translation2d(0.0940562, -0.0940562);
+
+  private static final double k_frontLeftMinSteeringPower = 0.31;
+  private static final double k_backLeftMinSteeringPower = 0.33;
+  private static final double k_backRightMinSteeringPower = 0.32;
+  private static final double k_frontRightMinsteeringPower = 0.42;
+
+  private static final int k_frontLeftSteeringZero = 1467;
+  private static final int k_backLeftSteeringZero = 227;
+  private static final int k_backRightSteeringZero = 1360;
+  private static final int k_frontRightSteeringZero = -2020;
+
+  static final double k_maxDriveSpeed = 2400;
+  private static final double k_frontLeftMinDrivePower = 0.27;
+  private static final double k_backLeftMinDrivePower = 0.28;
+  private static final double k_backRightMinDrivePower = 0.28;
+  private static final double k_frontRightMinDrivePower = 0.28;
+
+  private static final double k_frontLeftDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_backLeftDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_backRightDriveF = 1.03 / k_maxDriveSpeed;
+  private static final double k_frontRightDriveF = 1.03 / k_maxDriveSpeed;
+
+  public static final double k_drivePTerm = 0.0002;
+  public static final double k_driveITerm = 0.00005;
+  public static final double k_driveIZone = 200;
+
+  private static final double k_frontLeftSteeringP = 1.0 / 360;
+  private static final double k_backLeftSteeringP = 1.0 / 360;
+  private static final double k_backRightSteeringP = 1.0 / 360;
+  private static final double k_frontRightSteeringP = 1.0 / 360;
+
+  private static final double k_frontLeftSteeringD = 0.010;
+  private static final double k_backLeftSteeringD = 0.010;
+  private static final double k_backRightSteeringD = 0.010;
+  private static final double k_frontRightSteeringD = 0.010;
 
   // SwerveBot05 (Black Robot New Motors)
   // private final double k_turnDeadZone = 3;
@@ -195,49 +238,49 @@ public class DriveSubsystem extends SubsystemBase {
   // public static final double k_driveIZone = 200;
 
   // SwerveBot02 (Yellow Robot)
-  private final boolean k_invertGyro = true;
-  private final double k_turnDeadZone = 3;
-  private final double k_turnP = 20.0 / 180.0;
+  // private final boolean k_invertGyro = true;
+  // private final double k_turnDeadZone = 3;
+  // private final double k_turnP = 20.0 / 180.0;
 
-  private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
-  private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
-  private final Translation2d m_backRightLocation = new Translation2d(-0.05842, -0.05842);
-  private final Translation2d m_frontRightLocation = new Translation2d(0.05842, -0.05842);
+  // private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
+  // private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
+  // private final Translation2d m_backRightLocation = new Translation2d(-0.05842, -0.05842);
+  // private final Translation2d m_frontRightLocation = new Translation2d(0.05842, -0.05842);
 
-  private static final double k_frontLeftMinSteeringPower = 0.33;
-  private static final double k_backLeftMinSteeringPower = 0.35;
-  private static final double k_backRightMinSteeringPower = 0.28;
-  private static final double k_frontRightMinsteeringPower = 0.31;
+  // private static final double k_frontLeftMinSteeringPower = 0.33;
+  // private static final double k_backLeftMinSteeringPower = 0.35;
+  // private static final double k_backRightMinSteeringPower = 0.28;
+  // private static final double k_frontRightMinsteeringPower = 0.31;
 
-  private static final int k_frontLeftSteeringZero = -766;
-  private static final int k_backLeftSteeringZero = -682;
-  private static final int k_backRightSteeringZero = -1865;
-  private static final int k_frontRightSteeringZero = -1833;
+  // private static final int k_frontLeftSteeringZero = -766;
+  // private static final int k_backLeftSteeringZero = -682;
+  // private static final int k_backRightSteeringZero = -1865;
+  // private static final int k_frontRightSteeringZero = -1833;
 
-  static final double k_maxDriveSpeed = 2500;
-  private static final double k_frontLeftMinDrivePower = 0.30;
-  private static final double k_backLeftMinDrivePower = 0.29;
-  private static final double k_backRightMinDrivePower = 0.28;
-  private static final double k_frontRightMinDrivePower = 0.29;
+  // static final double k_maxDriveSpeed = 2500;
+  // private static final double k_frontLeftMinDrivePower = 0.30;
+  // private static final double k_backLeftMinDrivePower = 0.29;
+  // private static final double k_backRightMinDrivePower = 0.28;
+  // private static final double k_frontRightMinDrivePower = 0.29;
 
-  public static final double k_drivePTerm = 0.0010;
-  public static final double k_driveITerm = 0.0001;
-  public static final double k_driveIZone = 200;
+  // public static final double k_drivePTerm = 0.0010;
+  // public static final double k_driveITerm = 0.0001;
+  // public static final double k_driveIZone = 200;
 
-  private static final double k_frontLeftDriveF = 0.9 / k_maxDriveSpeed;
-  private static final double k_backLeftDriveF = 1.0 / k_maxDriveSpeed;
-  private static final double k_backRightDriveF = 0.9 / k_maxDriveSpeed;
-  private static final double k_frontRightDriveF = 0.9 / k_maxDriveSpeed;
+  // private static final double k_frontLeftDriveF = 0.9 / k_maxDriveSpeed;
+  // private static final double k_backLeftDriveF = 1.0 / k_maxDriveSpeed;
+  // private static final double k_backRightDriveF = 0.9 / k_maxDriveSpeed;
+  // private static final double k_frontRightDriveF = 0.9 / k_maxDriveSpeed;
 
-  private static final double k_frontLeftSteeringP = 0.8 / 360;
-  private static final double k_backLeftSteeringP = 0.8 / 360;
-  private static final double k_backRightSteeringP = 0.9 / 360;
-  private static final double k_frontRightSteeringP = 0.8 / 360;
+  // private static final double k_frontLeftSteeringP = 0.8 / 360;
+  // private static final double k_backLeftSteeringP = 0.8 / 360;
+  // private static final double k_backRightSteeringP = 0.9 / 360;
+  // private static final double k_frontRightSteeringP = 0.8 / 360;
 
-  private static final double k_frontLeftSteeringD = 0.005;
-  private static final double k_backLeftSteeringD = 0.005;
-  private static final double k_backRightSteeringD = 0.005;
-  private static final double k_frontRightSteeringD = 0.005;
+  // private static final double k_frontLeftSteeringD = 0.005;
+  // private static final double k_backLeftSteeringD = 0.005;
+  // private static final double k_backRightSteeringD = 0.005;
+  // private static final double k_frontRightSteeringD = 0.005;
 
   // SwerveBot03 (Red Robot)
   // private final boolean k_invertGyro = false;

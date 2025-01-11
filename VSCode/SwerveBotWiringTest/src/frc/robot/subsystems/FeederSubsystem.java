@@ -19,8 +19,8 @@ import robotCore.SmartMotor.SmartMotorMode;
 public class FeederSubsystem extends SubsystemBase {
   private static final int k_PWMPin = Device.M3_1_PWM;
   private static final int k_DIRPin = Device.M3_1_DIR;
-  private static final int k_encInt = Device.Q3_INT;
-  private static final int k_encDir = Device.Q3_DIR;
+  private static final int k_encInt = Device.Q4_INT;
+  private static final int k_encDir = Device.Q4_DIR;
   private static final int k_ballCounter = Device.IO_1;
   private static final int k_I2CAddr = 5;
   

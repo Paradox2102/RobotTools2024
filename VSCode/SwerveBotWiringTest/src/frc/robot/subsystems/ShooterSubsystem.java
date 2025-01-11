@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import robotCore.Device;
+import robotCore.DigitalCounter;
 import robotCore.Encoder;
 import robotCore.Logger;
 import robotCore.PWMMotor;
@@ -18,8 +19,9 @@ import robotCore.SmartMotor.SmartMotorMode;
 public class ShooterSubsystem extends SubsystemBase {
   private static final int k_PWMPin = Device.M3_2_PWM;
   private static final int k_DIRPin = Device.M3_2_DIR;
-  private static final int k_EncIntPin = Device.Q4_INT;
-  private static final int k_EncDirPin = Device.Q4_DIR;
+  private static final int k_EncIntPin = Device.Q3_INT;
+  private static final int k_EncDirPin = Device.Q3_DIR;
+  private static final int k_ballCounter = Device.IO_1;
   private static final int k_I2CAddr = 5;
 
   // Large Motor
@@ -38,6 +40,7 @@ public class ShooterSubsystem extends SubsystemBase {
   
   PWMMotor m_motor = new PWMMotor(k_PWMPin, k_DIRPin, k_I2CAddr);
   Encoder m_encoder = new Encoder(EncoderType.Quadrature, k_EncIntPin, k_EncDirPin);
+  DigitalCounter m_ballCounter = new DigitalCounter(k_ballCounter);
 
   /**
    * Creates a new ShooterSubsystem.
@@ -64,8 +67,12 @@ public class ShooterSubsystem extends SubsystemBase {
     m_motor.set(speed);
   }
 
-  public Encoder getEncoder() {
-    return m_encoder;
+  public double getSpeed() {
+    return m_encoder.getSpeed();
+  }
+
+  public int getBallCount() {
+    return m_ballCounter.get();
   }
 
   @Override

@@ -7,11 +7,16 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.TestBallCounter;
+import frc.robot.commands.TestDriveMotors;
+import frc.robot.commands.TestFeeder;
+import frc.robot.commands.TestGyro;
+import frc.robot.commands.TestShooter;
+import frc.robot.commands.TestSteeringMotors;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FeederSubsystem;
@@ -32,7 +37,6 @@ public class RobotContainer {
   private final ShooterSubsystem m_shooterSubsystem = new ShooterSubsystem();
   private final FeederSubsystem m_feederSubsystem = new FeederSubsystem();
   private final CommandJoystick m_commandJoystick = new CommandJoystick(0);
-  private final Joystick m_joystick = new Joystick(0);
 
   private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
 
@@ -52,7 +56,12 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-  
+    m_commandJoystick.button(1).whileTrue(new TestSteeringMotors(m_driveSubsystem));
+    m_commandJoystick.button(2).onTrue(new TestDriveMotors(m_driveSubsystem));
+    m_commandJoystick.button(3).toggleOnTrue(new TestFeeder(m_feederSubsystem));
+    m_commandJoystick.button(4).toggleOnTrue(new TestShooter(m_shooterSubsystem));
+    m_commandJoystick.button(5).toggleOnTrue(new TestBallCounter(m_shooterSubsystem));
+    m_commandJoystick.button(6).toggleOnTrue(new TestGyro(m_driveSubsystem));
   }
 
   /**
