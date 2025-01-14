@@ -16,7 +16,7 @@ import robotCore.Logger;
  */
 public class SpinupCommand extends Command {
   private final ShooterSubsystem m_subsystem;
-  private final double m_speed = 0.90;
+  private final double m_speed = 1.00;
 
   /**
    * Creates a new SpinupCommand.
