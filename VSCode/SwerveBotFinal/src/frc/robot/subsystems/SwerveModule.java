@@ -11,7 +11,7 @@ import robotCore.PWMMotor;
 import robotCore.SmartMotor.SmartMotorMode;
 
 public class SwerveModule {
-    private final static double k_deadZone = 2.0;
+    private final static double k_deadZone = 3.0;
 
     private final PWMMotor m_driveMotor;
     private final PWMMotor m_steeringMotor;

@@ -56,7 +56,7 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    m_commandJoystick.button(1).whileTrue(new TestSteeringMotors(m_driveSubsystem));
+    m_commandJoystick.button(1).onTrue(new TestSteeringMotors(m_driveSubsystem));
     m_commandJoystick.button(2).onTrue(new TestDriveMotors(m_driveSubsystem));
     m_commandJoystick.button(3).toggleOnTrue(new TestFeeder(m_feederSubsystem));
     m_commandJoystick.button(4).toggleOnTrue(new TestShooter(m_shooterSubsystem));

@@ -24,7 +24,7 @@ public class TestDriveMotors extends Command {
   private final SwerveModule m_FRModule;
 
   private final static double k_time = 2.0;
-  private final static double k_power = 0.4;
+  private final static double k_power = 1.0;
   private int m_state = 0;
   private final Timer m_timer = new Timer();
 

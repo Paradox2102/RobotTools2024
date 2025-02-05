@@ -8902,6 +8902,18 @@ Uri: http://programming.team2102.org/wp-content/uploads/2025/01/BeamBreakSensors
 File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\BeamBreakSensorsMounted.jpg
 Content Type: image/jpeg
 
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/BeamBreakWiring-1-150x96.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\BeamBreakWiring-1-150x96.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/BeamBreakWiring-1-300x192.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\BeamBreakWiring-1-300x192.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/BeamBreakWiring-1.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\BeamBreakWiring-1.jpg
+Content Type: image/jpeg
+
 Uri: http://programming.team2102.org/wp-content/uploads/2025/01/BeamBreakWiring-150x77.jpg
 File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\BeamBreakWiring-150x77.jpg
 Content Type: image/jpeg
@@ -9404,6 +9416,22 @@ Content Type: image/jpeg
 
 Uri: http://programming.team2102.org/wp-content/uploads/2025/01/ShooterWiring.jpg
 File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\ShooterWiring.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/SteeringGearInstalled-150x122.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\SteeringGearInstalled-150x122.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/SteeringGearInstalled-300x243.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\SteeringGearInstalled-300x243.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/SteeringGearInstalled-768x623.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\SteeringGearInstalled-768x623.jpg
+Content Type: image/jpeg
+
+Uri: http://programming.team2102.org/wp-content/uploads/2025/01/SteeringGearInstalled.jpg
+File Name: D:\SDASVN\2024\LocalSite\programming.team2102.org\wp-content\uploads\2025\01\SteeringGearInstalled.jpg
 Content Type: image/jpeg
 
 Uri: http://programming.team2102.org/wp-content/uploads/2025/01/SteeringTest-150x84.jpg

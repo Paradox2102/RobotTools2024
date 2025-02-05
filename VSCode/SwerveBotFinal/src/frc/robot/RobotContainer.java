@@ -76,12 +76,11 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () ->
-    // m_joystick.getX(),
-    // () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
+    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_joystick.getX(),
+    () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
 
-    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(),
-        () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
+    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(),
+    //     () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
 
     NamedCommands.registerCommand("Shoot", new FeederCommand(m_feederSubsystem, true, 4));
     NamedCommands.registerCommand("Aim", new TurnToTarget(m_driveSubsystem, 1));
@@ -108,7 +107,7 @@ public class RobotContainer {
     // m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem,
     // true, 0));
 
-    m_commandXbox.a().onTrue(new ResetGyro());
+    // m_commandXbox.a().onTrue(new ResetGyro());
 
     // m_commandXbox.a().onTrue(new
     // SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
@@ -129,9 +128,9 @@ public class RobotContainer {
     // m_commandJoystick.button(3).onTrue(new TurnToTarget(m_driveSubsystem, 4));
     // m_commandJoystick.button(4).onTrue(new TurnToTarget(m_driveSubsystem, 1));
 
-    // m_commandJoystick.button(1).onTrue(new TestSteeringRamp(m_driveSubsystem));
-    // m_commandJoystick.button(2).onTrue(new TestDriveRamp(m_driveSubsystem));
-    // m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
+    m_commandJoystick.button(1).onTrue(new TestSteeringRamp(m_driveSubsystem));
+    m_commandJoystick.button(2).onTrue(new TestDriveRamp(m_driveSubsystem));
+    m_commandJoystick.button(3).whileTrue(new CalibrateDrive(m_driveSubsystem));
     // m_commandJoystick.button(4).whileTrue(new TestSteering(m_driveSubsystem));
     // m_commandJoystick.button(5).whileTrue(new
     // PrintModuleAngles(m_driveSubsystem));
@@ -142,15 +141,11 @@ public class RobotContainer {
     // m_commandJoystick.button(6).toggleOnTrue(new FeederCommand(m_feederSubsystem,
     // true, 3));
 
-    // double da = 0;
-    // m_commandJoystick.button(7).whileTrue(new CalibrateSteering(m_driveSubsystem,
-    // 0 + da));
-    // m_commandJoystick.button(8).whileTrue(new CalibrateSteering(m_driveSubsystem,
-    // 90 + da));
-    // m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem,
-    // 180 + da));
-    // m_commandJoystick.button(10).whileTrue(new
-    // CalibrateSteering(m_driveSubsystem, 270 + da));
+    double da = 0;
+    m_commandJoystick.button(7).whileTrue(new CalibrateSteering(m_driveSubsystem, 0 + da));
+    m_commandJoystick.button(8).whileTrue(new CalibrateSteering(m_driveSubsystem, 90 + da));
+    m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem, 180 + da));
+    m_commandJoystick.button(10).whileTrue(new CalibrateSteering(m_driveSubsystem, 270 + da));
 
     // m_commandJoystick.button(11).onTrue(m_auto1);
   }
