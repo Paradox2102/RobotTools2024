@@ -18,22 +18,29 @@ import robotCore.Logger;
  */
 public class DriveForDistanceCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private double m_power;
+  private double m_speed;
   private double m_distance;
   private Encoder m_leftEncoder;
+  private Encoder m_rightEncoder;
+
+  /*private static final double k_scale	= 0.8;*/
+  private static final double k_ticksPerInch = 2000 / 42.5;
+
   
   /**
    * Creates a new DriveForDistanceCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForDistanceCommand(DriveSubsystem subsystem, double power, double time) {
+  public DriveForDistanceCommand(DriveSubsystem subsystem, double speed, double distance) {
     Logger.log("DriveForDistanceCommand", 3, "DriveForDistanceCommand()");
 
     m_subsystem = subsystem;
     m_distance = distance;
-    m_power = power;
+    m_speed = speed;
+    m_distance = distance * k_ticksPerInch;
     m_leftEncoder = subsystem.getLeftEncoder();
+    m_rightEncoder = subsystem.getRightEncoder();
   
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
@@ -44,8 +51,13 @@ public class DriveForDistanceCommand extends Command {
   @Override
   public void initialize() {
     Logger.log("DriveForDistanceCommand", 2, "initialize()");
-     Logger.log("PowerCheck", 2, String.format("Power: %f", m_power));
-      m_subsystem.setpower(m_power , m_power);
+     Logger.log("PowerCheck", 2, String.format("Power: %f", m_speed));
+    
+
+      m_leftEncoder.reset();
+      m_rightEncoder.reset();
+
+      m_subsystem.setPower(m_speed , m_speed);
 
   }
 
@@ -53,19 +65,25 @@ public class DriveForDistanceCommand extends Command {
   @Override
   public void execute() {
     Logger.log("DriveForDistanceCommand", -1, "execute()");
+
+    /*int leftDistance = m_leftEncoder.get();
+    int rightDistance = m_rightEncoder.get();
+    int deltaDistance = rightDistance - leftDistance;*/
+
+    m_subsystem.setPower(m_speed/*deltaDistance*k_scale*/, m_speed/*-deltaDistance*k_scale*/);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     Logger.log("DriveForDistanceCommand", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setpower(0, 0);
+    m_subsystem.setPower(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
     Logger.log("DriveForDistanceCommand", -1, "isFinished()");
-    return(false);
+    return(m_leftEncoder.get() >= m_distance);
   }
 }

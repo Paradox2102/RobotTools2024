@@ -7,64 +7,51 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DriveSubsystem;
+import frc.robot.subsystems.ExampleSubsystem;
 import robotCore.Logger;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class DriveForTimeCommands extends Command {
-  private final DriveSubsystem m_subsystem;
-  private Timer m_timer = new Timer();
-  private double m_power;
-  private double m_time;
+public class ExampleCommand extends Command {
+  private final ExampleSubsystem m_subsystem;
 
   /**
-   * Creates a new DriveForTimeCommands.
+   * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForTimeCommands(DriveSubsystem subsystem, double power, double time) {
-    Logger.log("DriveForTimeCommands", 3, "DriveForTimeCommands()");
+  public ExampleCommand(ExampleSubsystem subsystem) {
+    Logger.log("ExampleCommand", 3, "ExampleCommand()");
 
     m_subsystem = subsystem;
-
-    m_power = power;
-    m_time = time;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
-    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("DriveForTimeCommands", 2, "initialize()");
-     Logger.log("PowerCheck", 2, String.format("Power: %f", m_power));
-      m_subsystem.setPower(m_power , m_power);
-      m_timer.reset();
-      m_timer.start();
+    Logger.log("ExampleCommand", 2, "initialize()");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("DriveForTimeCommands", -1, "execute()");
+    Logger.log("ExampleCommand", -1, "execute()");
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("DriveForTimeCommands", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setPower(0, 0);
+    Logger.log("ExampleCommand", 2, String.format("end(%b)", interrupted));
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("DriveForTimeCommands", -1, "isFinished()");
-    return(m_timer.get() >= m_time);
+    Logger.log("ExampleCommand", -1, "isFinished()");
+    return false;
   }
 }

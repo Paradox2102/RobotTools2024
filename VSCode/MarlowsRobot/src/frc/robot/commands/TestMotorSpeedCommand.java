@@ -7,64 +7,73 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
+import robotCore.Encoder;
 import robotCore.Logger;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class DriveForTimeCommands extends Command {
+public class TestMotorSpeedCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private Timer m_timer = new Timer();
+  
   private double m_power;
-  private double m_time;
+
+  private final Encoder m_leftEncoder;
+  private final Encoder m_rightEncoder;
+
 
   /**
-   * Creates a new DriveForTimeCommands.
+   * Creates a new TestMotorSpeedCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForTimeCommands(DriveSubsystem subsystem, double power, double time) {
-    Logger.log("DriveForTimeCommands", 3, "DriveForTimeCommands()");
+  public TestMotorSpeedCommand(DriveSubsystem subsystem) {
+    Logger.log("TestMotorSpeedCommand", 3, "TestMotorSpeedCommand()");
 
     m_subsystem = subsystem;
 
-    m_power = power;
-    m_time = time;
+    m_leftEncoder = subsystem.getLeftEncoder();
+    m_rightEncoder = subsystem.getRightEncoder();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
-    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("DriveForTimeCommands", 2, "initialize()");
-     Logger.log("PowerCheck", 2, String.format("Power: %f", m_power));
-      m_subsystem.setPower(m_power , m_power);
-      m_timer.reset();
-      m_timer.start();
+    Logger.log("TestMotorSpeedCommand", 2, "initialize()");
+    Logger.log("TestMotorSpeedCommand", 0, String.format("%f, %d, %d,", m_power, m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
+
+
+    m_power = 0; 
+    m_power += 0.0025;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("DriveForTimeCommands", -1, "execute()");
+    Logger.log("TestMotorSpeedCommand", -1, "execute()");
+
+    Logger.log("TestMotorSpeedCommand", 0, String.format("%f, %d, %d,", m_power, m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
+    m_power += 0.0025;
+
+    m_subsystem.setPower(m_power, m_power);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("DriveForTimeCommands", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setPower(0, 0);
+    Logger.log("TestMotorSpeedCommand", 2, String.format("end(%b)", interrupted));
+    
+    m_subsystem.setPower(0,0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("DriveForTimeCommands", -1, "isFinished()");
-    return(m_timer.get() >= m_time);
+    Logger.log("TestMotorSpeedCommand", -1, "isFinished()");
+    return 1.3 < m_power;
   }
 }

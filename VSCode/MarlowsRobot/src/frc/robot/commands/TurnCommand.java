@@ -7,64 +7,78 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
 import robotCore.Logger;
-
+import robotCore.Encoder;
 /**
  * An example command that uses an example subsystem.
  */
-public class DriveForTimeCommands extends Command {
+public class TurnCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private Timer m_timer = new Timer();
-  private double m_power;
-  private double m_time;
+  private double m_speed;
+  private double m_angle;
+  private final double k_ticksPerDegree = 1850.0 / 360;
+  private final Encoder m_leftEncoder;
+  private final Encoder m_rightEncoder;
 
   /**
-   * Creates a new DriveForTimeCommands.
+   * Creates a new TurnCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public DriveForTimeCommands(DriveSubsystem subsystem, double power, double time) {
-    Logger.log("DriveForTimeCommands", 3, "DriveForTimeCommands()");
+  public TurnCommand(DriveSubsystem subsystem, double speed, double angle) {
+    Logger.log("TurnCommand", 3, "TurnCommand()");
 
     m_subsystem = subsystem;
+    m_speed = speed;
+    m_angle = angle;
+    m_leftEncoder = subsystem.getLeftEncoder();
+    m_rightEncoder = subsystem.getRightEncoder();
 
-    m_power = power;
-    m_time = time;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
-    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("DriveForTimeCommands", 2, "initialize()");
-     Logger.log("PowerCheck", 2, String.format("Power: %f", m_power));
-      m_subsystem.setPower(m_power , m_power);
-      m_timer.reset();
-      m_timer.start();
+    Logger.log("TurnCommand", 2, "initialize()");
+    m_leftEncoder.reset();
+    m_rightEncoder.reset();
+
+    if (m_angle > 0);
+    { 
+      m_subsystem.setPower(m_speed, -m_speed);
+    } 
+    if (m_angle < 0);
+    {
+      m_subsystem.setPower(-m_speed,m_speed);
+    }
+     
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("DriveForTimeCommands", -1, "execute()");
+    Logger.log("TurnCommand", -1, "execute()");
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("DriveForTimeCommands", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setPower(0, 0);
+    Logger.log("TurnCommand", 2, String.format("end(%b)", interrupted));
+    m_subsystem.setPower(0,0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("DriveForTimeCommands", -1, "isFinished()");
-    return(m_timer.get() >= m_time);
+    Logger.log("TurnCommand", -1, "isFinished()");
+    Logger.log("TurnCommand", 1, String.format("left=%d, right=%d", m_leftEncoder.get(), m_rightEncoder.get()));
+    int delta = m_leftEncoder.get() - m_rightEncoder.get();
+
+    Logger.log("TurnCommand", 5, "Delta: " + delta);
+    return (Math.abs(delta) >= Math.abs(k_ticksPerDegree * m_angle));
   }
 }
