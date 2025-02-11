@@ -1,2 +1,5 @@
 October 1st, Still need to get robot to move at 1000 but cant incresse speed for some reason
 October 3rd, Robot drives straight, next is to make it turn
+i forgor to update this :skull:
+oct 24, robot is bugging out, idk why,anyway plz fix
+dec 3, first day back, left off on command combineing, cant get first one to work

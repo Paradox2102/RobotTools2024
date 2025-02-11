@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import frc.robot.Robot;
 import robotCore.Encoder;
 import robotCore.Gyro;
 import robotCore.Logger;
@@ -10,7 +11,7 @@ import robotCore.PWMMotor;
 import robotCore.SmartMotor.SmartMotorMode;
 
 public class SwerveModule {
-    private final static double k_deadZone = 2.0;
+    private final static double k_deadZone = 3.0;
 
     private final PWMMotor m_driveMotor;
     private final PWMMotor m_steeringMotor;
@@ -163,16 +164,51 @@ public class SwerveModule {
         return new SwerveModuleState(getDriveSpeedInMetersPerSecond(), getSteeringRotation2d());
     }
 
+    public SwerveModuleState optimize(
+        SwerveModuleState desiredState, Rotation2d currentAngle) {
+      var delta = desiredState.angle.minus(currentAngle);
+    //   Logger.log(String.format("SwerveModule-%s", m_name), 1, String.format("flip=%b,delta=%f,des=%f,cur=%f", Math.abs(delta.getDegrees())>90,delta.getDegrees(), desiredState.angle.getDegrees(), currentAngle.getDegrees()));
+      if (Math.abs(delta.getDegrees()) > 90.0) {
+        var ret = new SwerveModuleState(
+            -desiredState.speedMetersPerSecond,
+            desiredState.angle.rotateBy(Rotation2d.fromDegrees(180.0)));
+
+            // Logger.log(String.format("SwerveModule-%s", m_name), 1, String.format("Opt: ds=%f,rs=%f", desiredState.speedMetersPerSecond, ret.speedMetersPerSecond));
+            return ret;
+      } else {
+        return new SwerveModuleState(desiredState.speedMetersPerSecond, desiredState.angle);
+      }
+    }
+
     public void setDesiredState(SwerveModuleState desiredState) {
 
         Rotation2d encoderRotation = getSteeringPositionRotation2d();
 
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state = SwerveModuleState.optimize(desiredState, encoderRotation);
+        SwerveModuleState state = optimize(desiredState, encoderRotation);
 
         state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
 
+        double da = state.angle.minus(encoderRotation).getDegrees();
+
+        // if (Math.abs(da) > 90) {
+        //     Logger.log(String.format("SwerveModule-%s", m_name), 1, String.format("ds=%f,ca=%f,da=%f",
+        //             desiredState.angle.getDegrees(), encoderRotation.getDegrees(), da));
+        // }
+
+        // Logger.log(String.format("SwerveModule-%s", m_name), 1,
+        //         String.format("s=%f,a=%f,da=%f,ca=%f,ds=%f", state.speedMetersPerSecond, state.angle.getDegrees(),
+        //                 desiredState.angle.getDegrees(), encoderRotation.getDegrees(),
+        //                 desiredState.speedMetersPerSecond));
+
+        // System.out.print(String.format("%.2f,", state.speedMetersPerSecond));
+        // if (m_name.equals("FrontRight")) {
+        //     System.out.println(String.format("%.0f", desiredState.angle.getDegrees()));
+        // }
+
         setDriveSpeedInMetersPerSecond(state.speedMetersPerSecond);
         setSteeringPosition(state.angle.getDegrees());
+
+        // Robot.sleep(500);
     }
 }

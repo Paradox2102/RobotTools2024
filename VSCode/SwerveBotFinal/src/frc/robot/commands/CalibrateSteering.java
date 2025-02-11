@@ -21,6 +21,7 @@ public class CalibrateSteering extends Command {
   private final SwerveModule m_BLmodule;
   private final SwerveModule m_BRmodule;
   private final SwerveModule m_FRmodule;
+  private SwerveModule m_module;
   private final double m_angle;
 
   /**
@@ -46,18 +47,17 @@ public class CalibrateSteering extends Command {
   @Override
   public void initialize() {
     Logger.log("CalibrateSteering", 2, "initialize()");
-    m_FLmodule.setSteeringPosition(m_angle);
-    m_BLmodule.setSteeringPosition(m_angle);
-    m_BRmodule.setSteeringPosition(m_angle);
-    m_FRmodule.setSteeringPosition(m_angle);
+    // m_FLmodule.setSteeringPosition(m_angle); m_module = m_FLmodule;
+    // m_BLmodule.setSteeringPosition(m_angle); m_module = m_BLmodule;
+    // m_BRmodule.setSteeringPosition(m_angle); m_module = m_BRmodule;
+    m_FRmodule.setSteeringPosition(m_angle); m_module = m_FRmodule;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     Logger.log("CalibrateSteering", -1, "execute()");
-    // Logger.log("CalibrateSteering", 1, String.format(",target,%f,angle,%f", m_angle, m_module.getSteeringPositionInDegrees()));
-    // m_FLmodule.setSteeri+gPosition(m_angle);
+    Logger.log("CalibrateSteering", 1, String.format(",target,%f,angle,%f", m_angle, m_module.getSteeringPositionInDegrees()));
   }
 
   // Called once the command ends or is interrupted.
