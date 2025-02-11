@@ -18,16 +18,23 @@ import robotCore.SmartMotor.SmartMotorMode;
 public class ShooterSubsystem extends SubsystemBase {
   private static final int k_PWMPin = Device.M3_2_PWM;
   private static final int k_DIRPin = Device.M3_2_DIR;
-  private static final int k_EncIntPin = Device.Q4_INT;
-  private static final int k_EncDirPin = Device.Q4_DIR;
+  private static final int k_EncIntPin = Device.Q3_INT;
+  private static final int k_EncDirPin = Device.Q3_DIR;
   private static final int k_I2CAddr = 5;
 
-  public static final double k_maxSpeed = 1600;
-  public static final double k_f = 1.0 / k_maxSpeed;
-  public static final double k_p = 0.002;
-  public static final double k_i = 0.0005;
+  // Large Motor
+  public static final double k_maxSpeed = 1900;
+  public static final double k_f = 1.05 / k_maxSpeed;
+  public static final double k_p = 0.0005;
+  public static final double k_i = 0.0002;
   public static final double k_iZone = 50;
 
+  // Small Motor
+  // public static final double k_maxSpeed = 1600;
+  // public static final double k_f = 1.0 / k_maxSpeed;
+  // public static final double k_p = 0.002;
+  // public static final double k_i = 0.0005;
+  // public static final double k_iZone = 50;
   
   PWMMotor m_motor = new PWMMotor(k_PWMPin, k_DIRPin, k_I2CAddr);
   Encoder m_encoder = new Encoder(EncoderType.Quadrature, k_EncIntPin, k_EncDirPin);

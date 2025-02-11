@@ -32,7 +32,8 @@ public class DriveCourseCommand extends SequentialCommandGroup {
     double speed = 0.5;
     double wait = 0.5;
   
-  addCommands( new DriveForDistanceCommand(m_subsystem, speed, 20),
+  addCommands( 
+              new DriveForDistanceCommand(m_subsystem, speed, 20),
                new WaitCommand(wait),
                new TurnCommand(m_subsystem, speed, turn90));
 

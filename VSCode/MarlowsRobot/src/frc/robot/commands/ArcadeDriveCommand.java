@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+/**package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.DriveSubsystem;
@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 
 /**
  * An example command that uses an example subsystem.
- */
+ 
 public class ArcadeDriveCommand extends Command {
   private final DriveSubsystem m_subsystem;
   private final CommandJoystick m_joystick;
@@ -23,7 +23,7 @@ public class ArcadeDriveCommand extends Command {
    * Creates a new ArcadeDriveCommand.
    *
    * @param subsystem The subsystem used by this command.
-   */
+   
   public ArcadeDriveCommand(DriveSubsystem subsystem, CommandJoystick joystick) {
     Logger.log("ArcadeDriveCommand", 3, "ArcadeDriveCommand()");
 
@@ -50,7 +50,7 @@ public class ArcadeDriveCommand extends Command {
     x= x * x * x;
     y= y * y * y;
 
-    m_subsystem.setpower(y + x, y - x);
+    m_subsystem.setPower(y + x, y - x);
   }
 
   // Called once the command ends or is interrupted.
@@ -66,3 +66,4 @@ public class ArcadeDriveCommand extends Command {
     return false;
   }
 }
+*/

@@ -17,7 +17,7 @@ import robotCore.Logger;
  */
 public class FeederCommand extends Command {
   private final FeederSubsystem m_subsystem;
-  private final double m_power = 0.33;
+  private final double m_power = 0.30;
   private final static int k_stallSpeed = 100;
   private final static double k_stallTime = 0.1;
   private final static double k_reverseTime = 0.4;

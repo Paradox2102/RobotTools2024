@@ -43,7 +43,7 @@ public class DriveForTimeCommands extends Command {
   public void initialize() {
     Logger.log("DriveForTimeCommands", 2, "initialize()");
      Logger.log("PowerCheck", 2, String.format("Power: %f", m_power));
-      m_subsystem.setpower(m_power , m_power);
+      m_subsystem.setPower(m_power , m_power);
       m_timer.reset();
       m_timer.start();
   }
@@ -58,7 +58,7 @@ public class DriveForTimeCommands extends Command {
   @Override
   public void end(boolean interrupted) {
     Logger.log("DriveForTimeCommands", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setpower(0, 0);
+    m_subsystem.setPower(0, 0);
   }
 
   // Returns true when the command should end.
