@@ -16,6 +16,7 @@ import frc.robot.commands.DriveForDistance;
 import frc.robot.commands.DriveForTimeCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TestMotorSpeed;
+import frc.robot.commands.TurnCommand;
 import frc.robot.subsystems.DriverSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 
@@ -55,6 +56,7 @@ public class RobotContainer {
     m_joystick.button(2).onTrue(new DriveForDistance(m_driverSubsystem, 0.75, 2000));
     m_joystick.button(3).onTrue(new TestMotorSpeed(m_driverSubsystem));
     m_joystick.button(4).whileTrue(new CalibrateSpeedCommand(m_driverSubsystem));
+    m_joystick.button(5).onTrue(new TurnCommand(m_driverSubsystem, 0.7, 1700));
   }
 
   /**
