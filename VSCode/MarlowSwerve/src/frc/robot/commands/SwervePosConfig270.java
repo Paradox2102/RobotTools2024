@@ -15,42 +15,38 @@ import robotCore.Logger;
 /**
  * An example command that uses an example subsystem.
  */
-public class SwervePosConfig extends Command {
+public class SwervePosConfig270 extends Command {
   private DriveSubsystem m_subsystem;
 
   
 
   /**
-   * Creates a new SwervePosConfig.
+   * Creates a new SwervePosconfig180.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SwervePosConfig(DriveSubsystem subsystem) {
-    Logger.log("SwervePosConfig", 3, "SwervePosConfig()");
+  public SwervePosConfig270(DriveSubsystem subsystem) {
+    Logger.log("SwervePosconfig180", 3, "SwervePosconfig180()");
  
     m_subsystem = subsystem;
     
   
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
+
     
   }
 
   // Called when the command is initially scheduled.
   @Override
   public  void initialize() {
-    m_subsystem.setRotation(0,0,0,0);
-    
-    
-    
-    
-    
-    
+    Logger.log("SwervePosConfig270", 1, "initialize()");
+    m_subsystem.setRotation(270,270,270,270);   
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("SwervePosConfig", -1, "execute()");
+    Logger.log("SwervePosconfig270", -1, "execute()");
     
 
     
@@ -64,13 +60,13 @@ public class SwervePosConfig extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("SwervePosConfig", 2, String.format("end(%b)", interrupted));
+    Logger.log("SwervePosconfig180", 2, String.format("end(%b)", interrupted));
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("SwervePosConfig", -1, "isFinished()");
+    Logger.log("SwervePosconfig180", -1, "isFinished()");
     return false;
   }
 }

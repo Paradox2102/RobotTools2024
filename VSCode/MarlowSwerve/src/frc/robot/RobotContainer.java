@@ -11,6 +11,10 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.SwervePosConfig;
+import frc.robot.commands.SwervePosConfig180;
+import frc.robot.commands.SwervePosConfig270;
+import frc.robot.commands.SwervePosConfig360;
+import frc.robot.commands.SwervePosConfig90;
 import frc.robot.commands.TestRamp;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -32,6 +36,7 @@ public class RobotContainer {
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
   private final CommandJoystick m_Joystick = new CommandJoystick(0);
   private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
+  
 
   /**
    * The container for the robot. Contains subsystems, OI devices, and commands.
@@ -39,6 +44,10 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the button bindings
     configureButtonBindings();
+    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_Joystick.getX(),
+    () -> -m_Joystick.getY(), () -> m_Joystick.getZ(), false));
+ 
+
   }
 
   /**
@@ -50,6 +59,10 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_Joystick.button(1).onTrue(new TestRamp(m_driveSubsystem));
     m_Joystick.button(2).onTrue(new SwervePosConfig(m_driveSubsystem));
+    m_Joystick.button(3).onTrue(new SwervePosConfig90(m_driveSubsystem));
+    m_Joystick.button(4).onTrue(new SwervePosConfig180(m_driveSubsystem));
+    m_Joystick.button(5).onTrue(new SwervePosConfig270(m_driveSubsystem));
+    m_Joystick.button(6).onTrue(new SwervePosConfig360(m_driveSubsystem));
    
     
 

@@ -12,19 +12,18 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.CommandJoystick; 
+import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import robotCore.Device;
 import robotCore.Encoder;
 import robotCore.Gyro;
 import robotCore.Logger;
-
 
 public class DriveSubsystem extends SubsystemBase {
   /**
    * Creates a new DriveSubsystem.
    * 
    */
- public static final int FLI2CAddr = 5;
+  public static final int FLI2CAddr = 5;
   public static final int FLDrivePWM = Device.M1_1_PWM;
   public static final int FLDriveDir = Device.M1_1_DIR;
   public static final int FLSteeringPWM = Device.M1_2_PWM;
@@ -33,7 +32,7 @@ public class DriveSubsystem extends SubsystemBase {
   public static final int FLDriveEncDir = Device.Q1_DIR;
   public static final int FLSteeringEncA = Device.A1_A;
   public static final int FLSteeringEncB = Device.A1_B;
- 
+
   public static final int BLI2CAddr = 5;
   public static final int BLDrivePWM = Device.M2_1_PWM;
   public static final int BLDriveDir = Device.M2_1_DIR;
@@ -43,7 +42,7 @@ public class DriveSubsystem extends SubsystemBase {
   public static final int BLDriveEncDir = Device.Q2_DIR;
   public static final int BLSteeringEncA = Device.A2_A;
   public static final int BLSteeringEncB = Device.A2_B;
- 
+
   public static final int BRI2CAddr = 6;
   public static final int BRDrivePWM = Device.M1_1_PWM;
   public static final int BRDriveDir = Device.M1_1_DIR;
@@ -53,7 +52,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int BRDriveEncDir = Device.Q1_DIR;
   private static final int BRSteeringEncA = Device.A1_A;
   private static final int BRSteeringEncB = Device.A1_B;
- 
+
   private static final int FRI2CAddr = 6;
   private static final int FRDrivePWM = Device.M2_1_PWM;
   private static final int FRDriveDir = Device.M2_1_DIR;
@@ -80,7 +79,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_frontRightSteeringP = 1.0 / 360;
 
   private static final double k_frontLeftSteeringD = 0.008;
-  private static final double k_backLeftSteeringD = 0.0012; 
+  private static final double k_backLeftSteeringD = 0.0012;
   private static final double k_backRightSteeringD = 0.008;
   private static final double k_frontRightSteeringD = 0.010;
 
@@ -95,12 +94,12 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backLeftDriveF = 1.1 / MaxSpeed;
   private static final double k_backRightDriveF = 1.1 / MaxSpeed;
   private static final double k_frontRightDriveF = .95 / MaxSpeed;
- 
+
   public static final double k_drivePTerm = 0.0008;
   public static final double k_driveITerm = 0.0003;
   public static final double k_driveIZone = 80;
 
-  public static final double k_maxAngularSpeed = 114;
+  public static final double k_maxAngularSpeed = 2;
 
   static final double k_ticksPerMeter = 3645;
   public static final double k_maxDriveSpeedMetersPerSecond = MaxSpeed / k_ticksPerMeter;
@@ -112,27 +111,25 @@ public class DriveSubsystem extends SubsystemBase {
 
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
       m_frontLeftLocation, m_backLeftLocation, m_backRightLocation, m_frontRightLocation);
-  
-   private final Gyro m_gyro = new Gyro();
- 
- public SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
+
+  private final Gyro m_gyro = new Gyro();
+
+  public SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
       FLSteeringPWM, FLSteeringDir, FLSteeringEncA, FLSteeringEncB, FLI2CAddr, "FL");
   public SwerveModule m_backLeft = new SwerveModule(BLDrivePWM, BLDriveDir, BLDriveEncInt, BLDriveEncDir,
       BLSteeringPWM, BLSteeringDir, BLSteeringEncA, BLSteeringEncB, BLI2CAddr, "BL");
   public SwerveModule m_backRight = new SwerveModule(BRDrivePWM, BRDriveDir, BRDriveEncInt, BRDriveEncDir,
       BRSteeringPWM, BRSteeringDir, BRSteeringEncA, BRSteeringEncB, BRI2CAddr, "BR");
   public SwerveModule m_frontRight = new SwerveModule(FRDrivePWM, FRDriveDir, FRDriveEncInt, FRDriveEncDir,
-      FRSteeringPWM, FRSteeringDir, FRSteeringEncA, FRSteeringEncB, FRI2CAddr, "FR"); 
+      FRSteeringPWM, FRSteeringDir, FRSteeringEncA, FRSteeringEncB, FRI2CAddr, "FR");
 
-
-  public DriveSubsystem() { 
+  public DriveSubsystem() {
     Logger.log("DriveSubsystem", 3, "DriveSubsystem()");
     m_backLeft.setZero(k_backLeftSteeringZero);
     m_frontRight.setZero(k_frontRightSteeringZero);
     m_frontLeft.setZero(k_frontLeftSteeringZero);
     m_backRight.setZero(k_backRightSteeringZero);
 
-    
     m_frontLeft.setSteeringMinPower(k_frontLeftMinSteeringPower);
     m_backLeft.setSteeringMinPower(k_backLeftMinSteeringPower);
     m_backRight.setSteeringMinPower(k_backRightMinSteeringPower);
@@ -140,7 +137,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_backRight.setSteeringPTerm(k_backRightSteeringP);
     m_backRight.setSteeringDTerm(k_backRightSteeringD);
-    
+
     m_backLeft.setSteeringPTerm(k_backLeftSteeringP);
     m_backLeft.setSteeringDTerm(k_backLeftSteeringD);
 
@@ -187,138 +184,99 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_gyro.reset(0);
 
-    
-
-
-
-
-
-
-
-    
-
-
-
-  
-
-
-    
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     Logger.log("DriveSubsystem", -1, "periodic()");
-    Logger.log("DriveSubsystem", -1, String.format( "FL, FR, BL, BR: %f,%f,%f,%f", m_frontLeft.getSteeringPos(),  m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos()));
-    
-    
+    Logger.log("DriveSubsystem", -1, String.format("FL, FR, BL, BR: %f,%f,%f,%f", m_frontLeft.getSteeringPos(),
+        m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos()));
+
   }
-  public SwerveModule getFrontleftModule(){
+
+  public SwerveModule getFrontleftModule() {
     return m_frontLeft;
   }
 
-  public SwerveModule getFrontRightModule(){
+  public SwerveModule getFrontRightModule() {
     return m_frontRight;
   }
 
-  public SwerveModule getBackRightModule(){
+  public SwerveModule getBackRightModule() {
     return m_backRight;
   }
 
-  public SwerveModule getBackleftModule(){
+  public SwerveModule getBackleftModule() {
     return m_backLeft;
   }
-  public void SwerveMotorCalibrate(double Power){
-    
+
+  public void SwerveMotorCalibrate(double Power) {
+
     m_backLeft.setSteeringPower(Power);
     m_frontRight.setSteeringPower(Power);
     m_backRight.setSteeringPower(Power);
     m_frontLeft.setSteeringPower(Power);
 
-    Logger.log("DriveSubsystem", 3, String.format( "FL, FR, BL, BR: %f,%f,%f,%f,%f", m_frontLeft.getSteeringPos(),  m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos(),Power));
+    Logger.log("DriveSubsystem", 3, String.format("FL, FR, BL, BR: %f,%f,%f,%f,%f", m_frontLeft.getSteeringPos(),
+        m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos(), Power));
 
-    
-
-
-   
   }
 
+  public void setPower(double BL, double FL, double BR, double FR) {
+    m_backLeft.Speedset(BL);
+    m_frontLeft.Speedset(FL);
+    m_backRight.Speedset(BR);
+    m_frontRight.Speedset(FR);
 
+  }
 
+  public void setRotation(int BL, int FL, int BR, int FR) {
+    m_backLeft.setSteeringPosition(BL);
+    m_frontLeft.setSteeringPosition(FL);
+    m_backRight.setSteeringPosition(BR);
+    m_frontRight.setSteeringPosition(FR);
 
+  }
 
- 
- public void setPower(double BL, double FL, double BR, double FR){
-  m_backLeft.Speedset(BL);
-  m_frontLeft.Speedset(FL);
-  m_backRight.Speedset(BR);
-  m_frontRight.Speedset(FR);
- 
+  public int getEncFL() {
+    return m_frontLeft.getDriveEncoderP();
+  }
 
-  
+  public int getEncBR() {
+    return m_backRight.getDriveEncoderP();
+  }
 
+  public int getEncFR() {
+    return m_frontRight.getDriveEncoderP();
+  }
 
- }
+  public int getEncBL() {
+    return m_backLeft.getDriveEncoderP();
 
- public void setRotation(int BL, int FL, int BR, int FR){
-  m_backLeft.setSteeringPosition(BL);
-  m_frontLeft.setSteeringPosition(FL);
-  m_backRight.setSteeringPosition(BR);
-  m_frontRight.setSteeringPosition(FR);
+  }
 
-  
+  public void setSpeed(double FL, double BL, double BR, double FR) {
+    m_backLeft.Speedset(BL);
+    m_frontLeft.Speedset(FL);
+    m_backRight.Speedset(BR);
+    m_frontRight.Speedset(FR);
+  }
 
+  private void setModuleStates(SwerveModuleState[] swerveModuleStates) {
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, k_maxDriveSpeedMetersPerSecond);
+    m_frontLeft.setDesiredState(swerveModuleStates[0]);
+    m_backLeft.setDesiredState(swerveModuleStates[1]);
+    m_backRight.setDesiredState(swerveModuleStates[2]);
+    m_frontRight.setDesiredState(swerveModuleStates[3]);
+  }
 
- }
-public int getEncFL(){
-  return m_frontLeft.getDriveEncoderP();
-}
-public int getEncBR(){
-  return m_backRight.getDriveEncoderP();
-}
-public int getEncFR(){
-  return m_frontRight.getDriveEncoderP();
-}
-public int getEncBL(){
-  return m_backLeft.getDriveEncoderP();
+  public void printzero() {
+    Logger.log("DriveSubsystem", 3, String.format("FL, FR, BL, BR: %f,%f,%f,%f", m_frontLeft.getSteeringPos(),
+        m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos()));
+  }
 
-
-}
-
-
-
-
-public void setSpeed(double BL, double FL, double BR, double FR){
-  m_backLeft.Speedset(BL);
-  m_frontLeft.Speedset(FL);
-  m_backRight.Speedset(BR);
-  m_frontRight.Speedset(FR);
-}
-
-private void setModuleStates(SwerveModuleState[] swerveModuleStates) {
-  SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, k_maxDriveSpeedMetersPerSecond);
-  m_frontLeft.setDesiredState(swerveModuleStates[0]);
-  m_backLeft.setDesiredState(swerveModuleStates[1]);
-  m_backRight.setDesiredState(swerveModuleStates[2]);
-  m_frontRight.setDesiredState(swerveModuleStates[3]);
-}
-
-
-  
-
-
-  
-  
-  
-
-public void printzero(){
-  Logger.log("DriveSubsystem", 3, String.format( "FL, FR, BL, BR: %f,%f,%f,%f", m_frontLeft.getSteeringPos(),  m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos()));
-}
-
-
-
-
-public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, double periodSeconds) {
+  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, double periodSeconds) {
     SwerveModuleState[] swerveModuleStates = m_kinematics.toSwerveModuleStates(
         ChassisSpeeds.discretize(
             fieldRelative
@@ -326,8 +284,15 @@ public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelativ
                     xSpeed, ySpeed, rot, m_gyro.getRotation2d())
                 : new ChassisSpeeds(xSpeed, ySpeed, rot),
             periodSeconds));
- 
+
     setModuleStates(swerveModuleStates);
   }
-}
 
+  public void stop() {
+    m_backLeft.setDrivePower(0);
+    m_frontRight.setDrivePower(0);
+    m_backRight.setDrivePower(0);
+    m_frontLeft.setDrivePower(0);
+
+  }
+}

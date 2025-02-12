@@ -60,8 +60,8 @@ public class ArcadeDrive extends Command {
   public void execute() {
     Logger.log("ArcadeDrive", -1, "execute()");
  
-    double x = m_x.getAsDouble();
-    double y = m_y.getAsDouble();
+    double x =  m_x.getAsDouble();
+    double y =  m_y.getAsDouble();
     double turn = m_turn.getAsDouble();
  
     // Get the x speed. We are inverting this because Xbox controllers return
@@ -85,7 +85,7 @@ public class ArcadeDrive extends Command {
     if ((xSpeed != 0) || (ySpeed != 0) || (rot != 0)) {
       m_subsystem.drive(xSpeed, ySpeed, rot, m_fieldRelative, ((TimedRobot) RobotCoreBase.getInstance()).getPeriod());
     } else {
-      //m_subsystem.stop();//
+      m_subsystem.stop();//
     }
   } 
   // Called once the command ends or is interrupted.
