@@ -1,0 +1,9 @@
+//most code is taken from the file DriveSubsystems.java
+public class DriveSubsystem extends SubsystemBase {
+private static final int k_leftMotorPWMPin = Device.M1_2_PWM;
+private static final int k_leftMotorDirPin = Device.m1_2_DIR;
+private static final int k_rightMotorPWMPin = Device.M1_PWM;
+private static final int k_rightMotorDirPin = Device.M1_1_DIR;
+
+
+}
