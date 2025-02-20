@@ -52,15 +52,35 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncA = Device.A2_A;
   private static final int FRTurnEncB = Device.A2_B;
 
-  private static final double k_frontLeftSteeringP = 1.2 / 360;
-  private static final double k_frontRightSteeringP = 0.95 / 360;
-  private static final double k_backLeftSteeringP = 1.0 / 360;
-  private static final double k_backRightSteeringP = 1.0 / 360;
+  private static final double k_frontLeftSteeringP = 1.03 / 360;
+  private static final double k_frontRightSteeringP = 0.9 / 360;
+  private static final double k_backLeftSteeringP = 1.03 / 360;
+  private static final double k_backRightSteeringP = 0.85 / 360;
   
-  private static final double k_frontLeftSteeringD = 0.009;
-  private static final double k_frontRightSteeringD = 0.004;
-  private static final double k_backLeftSteeringD = 0.006;
-  private static final double k_backRightSteeringD = 0.005;
+  private static final double k_frontLeftSteeringD = 0.012;
+  private static final double k_frontRightSteeringD = 0.006;
+  private static final double k_backLeftSteeringD = 0.008;
+  private static final double k_backRightSteeringD = 0.012;
+
+  private static final double k_frontLeftMinDrivePower = 0.25;
+  private static final double k_backLeftMinDrivePower = 0.21;
+  private static final double k_backRightMinDrivePower = 0.23;
+  private static final double k_frontRightMinDrivePower = 0.28;
+
+  public static final double k_maxDriveSpeed = 2200;
+
+  private static final double k_frontLeftDriveF   = 1.065 / k_maxDriveSpeed; // good
+  private static final double k_frontRightDriveF  = 0.9   / k_maxDriveSpeed; // good
+  private static final double k_backLeftDriveF    = 1.05  / k_maxDriveSpeed; // high
+  private static final double k_backRightDriveF   = 0.94  / k_maxDriveSpeed; // slightly high
+
+  public static final double k_drivePTerm = 0.001;
+  public static final double k_driveITerm = 0.0004;
+
+  public static final double k_ticksPerMeter = 1677.0 / 0.685;
+  public static final double k_maxDriveSpeedMetersPerSecond = 1677.0 / 0.685;
+
+  public static final double k_driveIZone = 200;
 
   SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
     FLTurnPWM, FLTurnDir, FLTurnEncA, FLTurnEncB, FLI2CAddr, "FrontLeft");
@@ -71,12 +91,12 @@ public class DriveSubsystem extends SubsystemBase {
   SwerveModule m_frontRight = new SwerveModule(FRDrivePWM, FRDriveDir, FRDriveEncInt, FRDriveEncDir,
     FRTurnPWM, FRTurnDir, FRTurnEncA, FRTurnEncB, FRI2CAddr, "FrontRight");
 
-    public enum ModulePosition {
-      FRONT_LEFT,
-      FRONT_RIGHT,
-      BACK_LEFT,
-      BACK_RIGHT
-    }
+  public enum ModulePosition {
+    FRONT_LEFT,
+    FRONT_RIGHT,
+    BACK_LEFT,
+    BACK_RIGHT
+  }
 
   /**
    * Creates a new DriveSubsystem.
@@ -88,11 +108,16 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSteeringMinPower(0.3075);
     m_backLeft.setSteeringMinPower(0.3775);
     m_backRight.setSteeringMinPower(0.4075);
-
-    m_frontLeft.setSteeringZero(-1905);
-    m_frontRight.setSteeringZero(293);
-    m_backLeft.setSteeringZero(-1977);
-    m_backRight.setSteeringZero(134);
+    
+    m_frontLeft.setSteeringZero(284);
+    m_frontRight.setSteeringZero(-1951);
+    m_backLeft.setSteeringZero(301);
+    m_backRight.setSteeringZero(-2002);
+    
+    // m_frontLeft.setSteeringZero(0);
+    // m_frontRight.setSteeringZero(0);
+    // m_backLeft.setSteeringZero(0);
+    // m_backRight.setSteeringZero(0);
 
     m_frontLeft.setSteeringPTerm(k_frontLeftSteeringP);
     m_frontRight.setSteeringPTerm(k_frontRightSteeringP);
@@ -103,6 +128,36 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setSteeringDTerm(k_frontRightSteeringD);
     m_backLeft.setSteeringDTerm(k_backLeftSteeringD);
     m_backRight.setSteeringDTerm(k_backRightSteeringD);
+
+    m_frontLeft.setDriveMinPower(k_frontLeftMinDrivePower);
+    m_backLeft.setDriveMinPower(k_backLeftMinDrivePower);
+    m_backRight.setDriveMinPower(k_backRightMinDrivePower);
+    m_frontRight.setDriveMinPower(k_frontRightMinDrivePower);
+
+    m_frontLeft.setDriveMaxSpeed(k_maxDriveSpeed);
+    m_frontRight.setDriveMaxSpeed(k_maxDriveSpeed);
+    m_backLeft.setDriveMaxSpeed(k_maxDriveSpeed);
+    m_backRight.setDriveMaxSpeed(k_maxDriveSpeed);
+
+    m_frontLeft.setDriveFTerm(k_frontLeftDriveF);
+    m_frontRight.setDriveFTerm(k_frontRightDriveF);
+    m_backLeft.setDriveFTerm(k_backLeftDriveF);
+    m_backRight.setDriveFTerm(k_backRightDriveF);
+
+    m_frontLeft.setDrivePTerm(k_drivePTerm);
+    m_frontRight.setDrivePTerm(k_drivePTerm);
+    m_backLeft.setDrivePTerm(k_drivePTerm);
+    m_backRight.setDrivePTerm(k_drivePTerm);
+
+    m_frontLeft.setDriveITerm(k_driveITerm);
+    m_frontRight.setDriveITerm(k_driveITerm);
+    m_backLeft.setDriveITerm(k_driveITerm);
+    m_backRight.setDriveITerm(k_driveITerm);
+
+    m_frontLeft.setDriveIZone(k_driveIZone);
+    m_frontRight.setDriveIZone(k_driveIZone);
+    m_backLeft.setDriveIZone(k_driveIZone);
+    m_backRight.setDriveIZone(k_driveIZone);
   }
 
   public SwerveModule getModule(ModulePosition pos) {

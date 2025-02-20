@@ -52,7 +52,7 @@ public class TestTurnPowerCommand extends Command {
     // m_timer.start();
     m_power = 0.0;
 
-    m_swerve.setTurningPower(m_power);
+    m_swerve.setSteeringPower(m_power);
     m_power += 0.0025;
   }
 
@@ -68,9 +68,9 @@ public class TestTurnPowerCommand extends Command {
     //           );
 
     // Logger.log("TestTurnPowerCommand", 0, String.format(",%f,%d", m_power, m_swerve.getSteerPosition()));
-    Logger.log("TestMotorSpeedCommand", 0, String.format(",%f,%f", m_power, m_swerve.getTurnPosition()));
+    Logger.log("TestMotorSpeedCommand", 0, String.format(",%f,%f", m_power, m_swerve.getSteerPosition()));
     
-    m_swerve.setTurningPower(m_power);
+    m_swerve.setSteeringPower(m_power);
     m_power += 0.0025;
   }
 
@@ -79,7 +79,7 @@ public class TestTurnPowerCommand extends Command {
   public void end(boolean interrupted) {
     Logger.log("TestTurnPowerCommand", 2, String.format("end(%b)", interrupted));
 
-    m_swerve.setTurningPower(0.0);
+    m_swerve.setSteeringPower(0.0);
   }
 
   // Returns true when the command should end.

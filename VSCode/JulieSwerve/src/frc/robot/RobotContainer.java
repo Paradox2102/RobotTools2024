@@ -10,9 +10,13 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
-import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.CalibrateDistanceCommand;
+import frc.robot.commands.CalibrateDriveCommand;
 import frc.robot.commands.GetZerosCommand;
+import frc.robot.commands.TestDriveCommand;
 import frc.robot.commands.TestTurnPowerCommand;
+import frc.robot.commands.TurnAllToCommand;
+import frc.robot.commands.TurnIncrementally;
 import frc.robot.commands.TurnToCommand;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveSubsystem.ModulePosition;
@@ -29,9 +33,8 @@ public class RobotContainer {
   @SuppressWarnings("unused")
   private final DriveSubsystem m_driveSubsystem = new DriveSubsystem();
 
-  private final ExampleCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
+  private final CalibrateDriveCommand m_autoCommand = null; // new ExampleCommand(m_exampleSubsystem);
 
-  private final CommandJoystick m_controller = new CommandJoystick(0);
   private final CommandXboxController m_xbox = new CommandXboxController(0);
 
   /**
@@ -53,11 +56,18 @@ public class RobotContainer {
     // m_controller.button(1).onTrue(new TestTurnPowerCommand(m_driveSubsystem, 0.75, 1.0));
     // m_controller.button(1).onTrue(new TestTurnPowerCommand(m_driveSubsystem, ModulePosition.FRONT_LEFT, 2.0));
     // m_xbox.a().onTrue(new TestTurnPowerCommand(m_driveSubsystem, ModulePosition.BACK_RIGHT));
-    // m_xbox.b().onTrue(new GetZerosCommand(m_driveSubsystem));
-    m_xbox.y().onTrue(new TurnToCommand(m_driveSubsystem, ModulePosition.BACK_LEFT, 0));
-    m_xbox.b().onTrue(new TurnToCommand(m_driveSubsystem, ModulePosition.BACK_LEFT, 90));
-    m_xbox.a().onTrue(new TurnToCommand(m_driveSubsystem, ModulePosition.BACK_LEFT, 180));
-    m_xbox.x().onTrue(new TurnToCommand(m_driveSubsystem, ModulePosition.BACK_LEFT, 270));
+    // m_xbox.leftBumper().onTrue(new GetZerosCommand(m_driveSubsystem));
+    // m_xbox.povUp().onTrue(new TurnAllToCommand(m_driveSubsystem, 0));
+    // m_xbox.povRight().onTrue(new TurnAllToCommand(m_driveSubsystem, 90));
+    // m_xbox.povDown().onTrue(new TurnAllToCommand(m_driveSubsystem, 180));
+    // m_xbox.povLeft().onTrue(new TurnAllToCommand(m_driveSubsystem, 270));    
+
+    // m_xbox.rightBumper().onTrue(new TestDriveCommand(m_driveSubsystem));
+
+    m_xbox.a().whileTrue(new CalibrateDriveCommand(m_driveSubsystem, 0.5));
+    m_xbox.b().onTrue(new GetZerosCommand(m_driveSubsystem));
+    m_xbox.x().onTrue(new TurnIncrementally(m_driveSubsystem, ModulePosition.BACK_LEFT));
+    m_xbox.y().onTrue(new TurnAllToCommand(m_driveSubsystem, 0));
   }
 
   /**
