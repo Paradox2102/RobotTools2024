@@ -47,9 +47,9 @@ public class CalibrateSteering extends Command {
   @Override
   public void initialize() {
     Logger.log("CalibrateSteering", 2, "initialize()");
-    // m_FLmodule.setSteeringPosition(m_angle); m_module = m_FLmodule;
-    // m_BLmodule.setSteeringPosition(m_angle); m_module = m_BLmodule;
-    // m_BRmodule.setSteeringPosition(m_angle); m_module = m_BRmodule;
+    m_FLmodule.setSteeringPosition(m_angle); m_module = m_FLmodule;
+    m_BLmodule.setSteeringPosition(m_angle); m_module = m_BLmodule;
+    m_BRmodule.setSteeringPosition(m_angle); m_module = m_BRmodule;
     m_FRmodule.setSteeringPosition(m_angle); m_module = m_FRmodule;
   }
 
