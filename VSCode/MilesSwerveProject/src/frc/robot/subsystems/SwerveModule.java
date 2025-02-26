@@ -2,6 +2,7 @@ package frc.robot.subsystems;
 
 import robotCore.Encoder;
 import robotCore.Gyro;
+import robotCore.Logger;
 import robotCore.PWMMotor;
 import robotCore.SmartMotor.SmartMotorMode;
 
@@ -12,6 +13,7 @@ public class SwerveModule {
     private final Encoder m_steeringEncoder;
     private final double k_degreesPerTick; 
     private final double k_deadZone = 3;
+    private final String m_name;
 
     public SwerveModule(int drivePWM, int driveDir, int driveEncInt, int driveEncDir, int steeringPWM, int steeringDir,
             int steeringEncA, int steeringEncB, int i2cAddr, String name) {
@@ -21,6 +23,7 @@ public class SwerveModule {
         m_driveEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, driveEncInt, driveEncDir, i2cAddr, true);
         m_driveMotor.setFeedbackDevice(m_driveEncoder);
         m_steeringMotor.setFeedbackDevice(m_steeringEncoder);
+        m_name = name;
 
         k_degreesPerTick = 360.0 / m_steeringEncoder.getRange();
         m_steeringMotor.setDeadZone(k_deadZone / k_degreesPerTick);
@@ -35,6 +38,8 @@ public class SwerveModule {
     }
     
     public void setSteeringMinPower(double power) {
+        // m_steeringMotor.setControlMode(SmartMotorMode.Power);
+        Logger.log("SwerveModule"+m_name, 1, String.format("mp=%f", power));
         m_steeringMotor.setMinPower(power);
     }
     public void setSteeringZero(int zero) {
@@ -57,6 +62,7 @@ public class SwerveModule {
     }
 
     public void setSteeringPTerm(double p) {
+        Logger.log("SwerveModuel"+m_name, 1, String.format("sp=%f",p));
         m_steeringMotor.setPTerm(p);
     }
  
@@ -64,6 +70,7 @@ public class SwerveModule {
         m_steeringMotor.setDTerm(d);
     }
     public void setSteeringPosition(double angleInDegrees) {
+        // Logger.log("SwerveModule"+m_name, 1, String.format("setPos=%f", angleInDegrees));
         m_steeringMotor.setControlMode(SmartMotorMode.Position);
         m_steeringMotor.set(angleInDegrees / k_degreesPerTick);     // Convert to encoder units
     }

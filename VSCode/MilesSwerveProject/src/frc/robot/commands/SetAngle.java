@@ -35,10 +35,10 @@ m_angle = angle;
   @Override
   public void initialize() {
     Logger.log("Set270Deg", 2, "initialize()");
-    m_subsystem.SwerveModuleGetFrontLeftModule().setSteeringPosition(m_angle);
+    // m_subsystem.SwerveModuleGetFrontLeftModule().setSteeringPosition(m_angle);
     m_subsystem.SwerveModuleGetFrontRightModule().setSteeringPosition(m_angle);
-    m_subsystem.SwerveModuleGetBackLeftModule().setSteeringPosition(m_angle);
-    m_subsystem.SwerveModuleGetBackRightModule().setSteeringPosition(m_angle);
+    // m_subsystem.SwerveModuleGetBackLeftModule().setSteeringPosition(m_angle);
+    // m_subsystem.SwerveModuleGetBackRightModule().setSteeringPosition(m_angle);
   }
 
   // Called every time the scheduler runs while the command is scheduled.

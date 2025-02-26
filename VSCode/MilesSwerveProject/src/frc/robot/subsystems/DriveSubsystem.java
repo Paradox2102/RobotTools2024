@@ -45,10 +45,10 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRSteeringEncA = Device.A2_A;
   private static final int FRSteeringEncB = Device.A2_B;
 
-  private static final double k_frontLeftMinSteeringPower = 0.33;
-  private static final double k_backLeftMinSteeringPower = 0.33;
-  private static final double k_backRightMinSteeringPower = 0.33;
-  private static final double k_frontRightMinsteeringPower = 0.33;
+  private static final double k_frontLeftMinSteeringPower = 0.35;
+  private static final double k_backLeftMinSteeringPower = 0.35;
+  private static final double k_backRightMinSteeringPower = 0.35;
+  private static final double k_frontRightMinsteeringPower = 0.35;
   
   private static final int k_frontLeftSteeringZero = -918;
   private static final int k_backLeftSteeringZero = 214;
@@ -66,10 +66,10 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_frontRightSteeringP = 0.90 / 360;
 
   
-  private static final double k_frontLeftSteeringD = 0.01;
-  private static final double k_backLeftSteeringD = 0.01;
-  private static final double k_backRightSteeringD = 0.01;
-  private static final double k_frontRightSteeringD = 0.01;
+  private static final double k_frontLeftSteeringD = 0.02;
+  private static final double k_backLeftSteeringD = 0.02;
+  private static final double k_backRightSteeringD = 0.02;
+  private static final double k_frontRightSteeringD = 0.02;
 
  static final double k_maxDriveSpeed = 1700;
   private static final double k_frontLeftDriveF = 1.0/k_maxDriveSpeed;
@@ -124,10 +124,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_backRight.setSteeringPTerm(k_backRightSteeringP);
 
 
-    m_frontLeft.setSteeringDTerm(k_frontLeftSteeringD);
-    m_frontRight.setSteeringDTerm(k_frontRightSteeringD);
-    m_backLeft.setSteeringDTerm(k_backLeftSteeringD);
-    m_backRight.setSteeringDTerm(k_backRightSteeringD);
+    // m_frontLeft.setSteeringDTerm(k_frontLeftSteeringD);
+    // m_frontRight.setSteeringDTerm(k_frontRightSteeringD);
+    // m_backLeft.setSteeringDTerm(k_backLeftSteeringD);
+    // m_backRight.setSteeringDTerm(k_backRightSteeringD);
 
     m_frontLeft.setMinDrivePower(k_frontLeftMinDrivePower);
     m_frontRight.setSteeringDTerm(k_frontRightMinDrivePower);
