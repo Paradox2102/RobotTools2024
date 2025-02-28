@@ -136,6 +136,7 @@ public class ArcadeDrive extends Command {
       case TrackTarget4:
         // Logger.log("ArcadeDrive", 1, String.format("Set Target %d", m_mode.ordinal() - 1));
         m_targetAngleInDegrees = m_subsystem.getTargetAngle(m_mode.ordinal() - 1);
+        // Logger.log("ArcadeDrive", 1, String.format("angle=%f", m_targetAngleInDegrees));
         rot = m_subsystem.computeAutoAim(m_targetAngleInDegrees);
         break;
     }
