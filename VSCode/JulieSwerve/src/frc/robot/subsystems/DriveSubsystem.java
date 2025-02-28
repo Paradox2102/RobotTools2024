@@ -7,8 +7,13 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import robotCore.Device;
+import robotCore.Gyro;
 import robotCore.Logger;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -68,6 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_frontRightMinDrivePower = 0.28;
 
   public static final double k_maxDriveSpeed = 2200;
+  public static final double k_maxAngularSpeed = 2.0;
 
   private static final double k_frontLeftDriveF   = 1.065 / k_maxDriveSpeed; // good
   private static final double k_frontRightDriveF  = 0.9   / k_maxDriveSpeed; // good
@@ -81,6 +87,20 @@ public class DriveSubsystem extends SubsystemBase {
   public static final double k_maxDriveSpeedMetersPerSecond = 1677.0 / 0.685;
 
   public static final double k_driveIZone = 200;
+
+  private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
+  private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
+  private final Translation2d m_backRightLocation = new Translation2d(-0.05842, -0.05842);
+  private final Translation2d m_frontRightLocation = new Translation2d(0.05842, -0.05842);
+
+  private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
+        m_frontLeftLocation,
+        m_backLeftLocation,
+        m_backRightLocation,
+        m_frontRightLocation
+  );
+
+  private final Gyro m_gyro = new Gyro();
 
   SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
     FLTurnPWM, FLTurnDir, FLTurnEncA, FLTurnEncB, FLI2CAddr, "FrontLeft");
@@ -134,10 +154,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_backRight.setDriveMinPower(k_backRightMinDrivePower);
     m_frontRight.setDriveMinPower(k_frontRightMinDrivePower);
 
-    m_frontLeft.setDriveMaxSpeed(k_maxDriveSpeed);
-    m_frontRight.setDriveMaxSpeed(k_maxDriveSpeed);
-    m_backLeft.setDriveMaxSpeed(k_maxDriveSpeed);
-    m_backRight.setDriveMaxSpeed(k_maxDriveSpeed);
+    // m_frontLeft.setDriveMaxSpeed(k_maxDriveSpeed);
+    // m_frontRight.setDriveMaxSpeed(k_maxDriveSpeed);
+    // m_backLeft.setDriveMaxSpeed(k_maxDriveSpeed);
+    // m_backRight.setDriveMaxSpeed(k_maxDriveSpeed);
 
     m_frontLeft.setDriveFTerm(k_frontLeftDriveF);
     m_frontRight.setDriveFTerm(k_frontRightDriveF);
@@ -158,6 +178,8 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontRight.setDriveIZone(k_driveIZone);
     m_backLeft.setDriveIZone(k_driveIZone);
     m_backRight.setDriveIZone(k_driveIZone);
+
+    m_gyro.reset(0);
   }
 
   public SwerveModule getModule(ModulePosition pos) {
@@ -175,8 +197,42 @@ public class DriveSubsystem extends SubsystemBase {
         return m_frontLeft;
     }
   }
+  
+  private void setModuleStates(SwerveModuleState[] swerveModuleStates) {
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, k_maxDriveSpeedMetersPerSecond);
+    m_frontLeft.setDesiredState(swerveModuleStates[0]);
+    m_backLeft.setDesiredState(swerveModuleStates[1]);
+    m_backRight.setDesiredState(swerveModuleStates[2]);
+    m_frontRight.setDesiredState(swerveModuleStates[3]);
+  }
 
+  /**
+   * Method to drive the robot using joystick info.
+   *
+   * @param xSpeed        Speed of the robot in the x direction (forward).
+   * @param ySpeed        Speed of the robot in the y direction (sideways).
+   * @param rot           Angular rate of the robot.
+   * @param fieldRelative Whether the provided x and y speeds are relative to the
+   *                      field.
+   */
+  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, double periodSeconds) {
+    SwerveModuleState[] swerveModuleStates = m_kinematics.toSwerveModuleStates(
+        ChassisSpeeds.discretize(
+            fieldRelative
+                ? ChassisSpeeds.fromFieldRelativeSpeeds(
+                    xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+                : new ChassisSpeeds(xSpeed, ySpeed, rot),
+            periodSeconds));
 
+    setModuleStates(swerveModuleStates);
+  }
+
+  public void stop() {
+    m_frontLeft.stop();
+    m_backLeft.stop();
+    m_frontRight.stop();
+    m_backLeft.stop();
+  }
 
   @Override
   public void periodic() {

@@ -68,7 +68,7 @@ public class TestTurnPowerCommand extends Command {
     //           );
 
     // Logger.log("TestTurnPowerCommand", 0, String.format(",%f,%d", m_power, m_swerve.getSteerPosition()));
-    Logger.log("TestMotorSpeedCommand", 0, String.format(",%f,%f", m_power, m_swerve.getSteerPosition()));
+    Logger.log("TestMotorSpeedCommand", 0, String.format(",%f,%f", m_power, m_swerve.getSteeringPosition()));
     
     m_swerve.setSteeringPower(m_power);
     m_power += 0.0025;
