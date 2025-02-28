@@ -1,6 +1,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import robotCore.Encoder;
 import robotCore.Gyro;
 import robotCore.Logger;
@@ -60,7 +62,7 @@ public class SwerveModule {
         m_turnMotor.set(power);
     }
 
-    public double getSteerPosition() {
+    public double getSteeringPosition() {
         return m_turnEncoder.getPosition();
     }
 
@@ -73,7 +75,7 @@ public class SwerveModule {
     }
 
     public double getSteeringPositionInDegrees() {
-        return Gyro.normalizeAngle(getSteerPosition() * k_degreesPerTick);
+        return Gyro.normalizeAngle(getSteeringPosition() * k_degreesPerTick);
     }
 
     public void setSteeringPTerm(double p) {
@@ -150,5 +152,17 @@ public class SwerveModule {
 
     public double getDrivePositionInMetersPerSecond() {
         return getDrivePosition() / DriveSubsystem.k_ticksPerMeter;
+    }
+
+    public void setDesiredState(SwerveModuleState desiredState) {
+        Rotation2d encoderRotation = Rotation2d.fromDegrees(getSteeringPosition());
+
+        // Optimize the reference state to avoid spinning further than 90 degrees
+        SwerveModuleState state = SwerveModuleState.optimize(desiredState, encoderRotation);
+
+        state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
+
+        setDriveSpeedInMetersPerSecond(state.speedMetersPerSecond);
+        setSteeringPosition(state.angle.getDegrees());
     }
 }

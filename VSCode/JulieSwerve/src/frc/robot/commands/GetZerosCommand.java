@@ -48,10 +48,10 @@ public class GetZerosCommand extends Command {
   public void initialize() {
     Logger.log("GetZerosCommand", 2, "initialize()");
 
-    Logger.log("GetZerosCommand", 4, String.format("FL: %f", m_swerveFL.getSteerPosition()));
-    Logger.log("GetZerosCommand", 4, String.format("FR: %f", m_swerveFR.getSteerPosition()));
-    Logger.log("GetZerosCommand", 4, String.format("BL: %f", m_swerveBL.getSteerPosition()));
-    Logger.log("GetZerosCommand", 4, String.format("BR: %f", m_swerveBR.getSteerPosition()));
+    Logger.log("GetZerosCommand", 4, String.format("FL: %f", m_swerveFL.getSteeringPosition()));
+    Logger.log("GetZerosCommand", 4, String.format("FR: %f", m_swerveFR.getSteeringPosition()));
+    Logger.log("GetZerosCommand", 4, String.format("BL: %f", m_swerveBL.getSteeringPosition()));
+    Logger.log("GetZerosCommand", 4, String.format("BR: %f", m_swerveBR.getSteeringPosition()));
   }
 
   // Called every time the scheduler runs while the command is scheduled.
