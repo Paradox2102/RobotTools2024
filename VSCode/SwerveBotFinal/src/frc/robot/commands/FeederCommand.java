@@ -64,7 +64,7 @@ public class FeederCommand extends Command {
 
     Logger.log("FeederCommand", -1, "execute()");
     // Logger.log("FeederCommand", 1, String.format("speed=%d", speed));
-    Logger.log("FeederCommand", 1, String.format("ball count = %d", m_subsystem.getBallCount()));
+    // Logger.log("FeederCommand", 1, String.format("ball count = %d", m_subsystem.getBallCount()));
 
     double time = m_timer.get();
 

@@ -73,6 +73,7 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRTurnEncB = Device.A2_B;
 
   // SwerveBot05 (White Robot new design)
+  private final double k_cameraAngle = 3.5;
   private final boolean k_invertGyro = false;
   private final double k_turnDeadZone = 3;
   private final double k_turnP = 20.0 / 180.0;
@@ -579,8 +580,8 @@ public class DriveSubsystem extends SubsystemBase {
         new Pose2d(1, 3, Rotation2d.fromDegrees(0)));
 
     ApriltagLocations.setLocations(m_aprilTags);
-    m_camera.setCameraInfo(0, 5, 0, ApriltagsCameraType.PiCam_640x480);
-    // m_camera.connect(k_cameraIP, k_cameraPort);
+    m_camera.setCameraInfo(0, 5, k_cameraAngle, ApriltagsCameraType.PiCam_640x480);
+    m_camera.connect(k_cameraIP, k_cameraPort);
     m_posServer.start();
 
     AutoBuilder.configureHolonomic(this::getPose2d,

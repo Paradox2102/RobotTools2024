@@ -102,13 +102,10 @@ public class RobotContainer {
    * passing it to a {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    // m_commandXbox.leftBumper().toggleOnTrue(new
-    // SpinupCommand(m_shooterSubsystem));
-    // m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem,
-    // true, 0));
 
     // m_commandXbox.a().onTrue(new ResetGyro());
 
+    // Demo commands
     m_commandXbox.a().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
     m_commandXbox.b().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget1));
     m_commandXbox.leftBumper().toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
@@ -118,6 +115,8 @@ public class RobotContainer {
     // m_commandXbox.x().onTrue(new
     // SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget4));
     // m_commandXbox.start().toggleOnTrue(m_auto1);
+    
+    // Demo commands
 
     // m_commandJoystick.button(1).whileTrue(new FeederCommand(m_feederSubsystem,
     // false, 0));
