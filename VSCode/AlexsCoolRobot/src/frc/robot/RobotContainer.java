@@ -12,6 +12,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.commands.ArcadeDriveCommand;
+import frc.robot.commands.CalibrateSpeedCommand;
 import frc.robot.commands.DriveForDistanceCommand;
 import frc.robot.commands.DriveForTimeCommand;
 import frc.robot.commands.TestMotorSpeedCommand;
@@ -42,11 +43,13 @@ public class RobotContainer {
     // Configure the button bindings
   configureButtonBindings();
   }
+  
 
   private void configureButtonBindings() {
   m_joystick.button(1).onTrue(new DriveForTimeCommand(m_driveSubsystem, 0.50, 3.0));
   m_joystick.button(2).onTrue(new DriveForDistanceCommand(m_driveSubsystem, 0.75, 2000));
   m_joystick.button(3).onTrue(new TestMotorSpeedCommand(m_driveSubsystem));
+  m_joystick.button(4).whileTrue(new CalibrateSpeedCommand(m_driveSubsystem));
   }
 
   /**

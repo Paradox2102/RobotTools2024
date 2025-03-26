@@ -8,73 +8,64 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.subsystems.DriveSubsystem;
+import robotCore.Encoder;
 import robotCore.Logger;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class ArcadeDriveCommand extends Command {
+public class CalibrateSpeedCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private final CommandJoystick m_joystick;
+  private final double k_speed = 0.75;
+  private Encoder m_leftEncoder;
+  private Encoder m_rightEncoder;
+
 
   /**
-   * Creates a new ArcadeDriveCommand.
-   */ /*The subsystem used by this command.*/
-  
-  public ArcadeDriveCommand(DriveSubsystem subsystem, CommandJoystick joystick) {
-    Logger.log("ArcadeDriveCommand", 3, "ArcadeDriveCommand()");
-
-    m_joystick = joystick;
+   * Creates a new CalibrateSpeedCommand.
+   *
+   * @param subsystem The subsystem used by this command.
+   */
+  public CalibrateSpeedCommand(DriveSubsystem subsystem) {
+    Logger.log("CalibrateSpeedCommand", 3, "CalibrateSpeedCommand()");
 
     m_subsystem = subsystem;
+    m_leftEncoder = m_subsystem.getLeftEncoder();
+    m_rightEncoder = m_subsystem.getLeftEncoder();
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_subsystem);
   }
 
-// Called when the command is initially scheduled.
+
+  // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("ArcadeDriveCommand", 2, "initialize()");
+    Logger.log("CalibrateSpeedCommand", 2, "initialize()");
+    Logger.log("TestSpeedCommand", 3, "..., Target Speed,Left Speed, Right Speed");
+    m_subsystem.setSpeed(k_speed, k_speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("ArcadeDriveCommand", -1, "execute()");
-    double y = m_joystick.getY();
-    double x = m_joystick.getX();
-    if (x < 0)
-    {
-      x = -x * x;
-    }
-    else
-    {
-      x = x * x;
-    }
-    if (y < 0)
-    {
-      y = -y * y;
-    }
-    else
-    {
-      y = y * y;
-    }
-  
-    m_subsystem.setSpeed(y + x, y - x);
+    Logger.log("CalibrateSpeedCommand", -1, "execute()");
+    Logger.log("TestSpeedControl", 3, String.format(" ,%.0f,%d,%d" ,k_speed * DriveSubsystem.k_maxSpeed, 
+    m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("ArcadeDriveCommand", 2, String.format("end(%b)", interrupted));
+    Logger.log("CalibrateSpeedCommand", 2, String.format("end(%b)", interrupted));
+    m_subsystem.setPower(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("ArcadeDriveCommand", -1, "isFinished()");
+    Logger.log("CalibrateSpeedCommand", -1, "isFinished()");
     return false;
   }
 }

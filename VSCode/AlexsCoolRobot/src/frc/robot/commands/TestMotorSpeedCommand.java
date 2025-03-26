@@ -51,6 +51,7 @@ public class TestMotorSpeedCommand extends Command {
     Logger.log("TestMotorSpeedCommand", -1, "execute()");
         Logger.log("TestMotorSpeedCommand", 0, String.format(" ,%f,%d,%d" , m_power, m_leftEncoder.getSpeed(), m_rightEncoder.getSpeed()));
         m_power += 0.0025;
+        m_subsystem.setPower(m_power, m_power);
   }
 
   // Called once the command ends or is interrupted.

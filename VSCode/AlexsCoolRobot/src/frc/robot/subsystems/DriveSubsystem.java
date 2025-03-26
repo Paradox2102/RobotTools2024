@@ -12,7 +12,7 @@ import robotCore.Device;
 import robotCore.Encoder;
 import robotCore.Logger;
 import robotCore.PWMMotor;
-
+import robotCore.SmartMotor.SmartMotorMode;;
 
   
 
@@ -29,21 +29,58 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int k_rightEncoderPin1 = Device.Q2_INT;
   private static final int k_rightEncoderPin2 = Device.Q2_DIR;
 
+
   private PWMMotor m_leftMotor = new PWMMotor(k_leftMotorPWMPin, k_leftMotorDirPin);
   private PWMMotor m_rightMotor = new PWMMotor(k_rightMotorPWMPin, k_rightMotorDirPin);
 
   private Encoder m_leftEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, k_leftEncoderPin1, k_leftEncoderPin2);
   private Encoder m_rightEncoder = new Encoder(robotCore.Encoder.EncoderType.Quadrature, k_rightEncoderPin1, k_rightEncoderPin2);
 
+  public static final double k_maxSpeed = 1050;
+  private static final double k_minPowerLeft = 0.3;
+  private static final double k_minPowerRight = 0.3;
+
+  private static final double k_Fleft = 1.05/k_maxSpeed;
+  private static final double k_Fright = 1.05/k_maxSpeed;
+
+  private static final double k_P = 0.0001;
+  private static final double k_I = 0.003;
+
+  private static final double k_IZone = 50;
 
   /**
    * Creates a new DriveSubsystem.
    */
-  public DriveSubsystem() {
+ 
+ 
+   public DriveSubsystem() {
     Logger.log("DriveSubsystem", 3, "DriveSubsystem()");
+
+    m_leftMotor.setFeedbackDevice(m_leftEncoder);
+    m_rightMotor.setFeedbackDevice(m_rightEncoder);
+    m_leftMotor.setMaxSpeed(k_maxSpeed);
+    m_rightMotor.setMaxSpeed(k_maxSpeed);
+
+    m_leftMotor.setMinPower(k_minPowerLeft);
+    m_rightMotor.setMinPower(k_minPowerRight);
+
+    m_leftMotor.setFTerm(k_Fleft);
+    m_rightMotor.setFTerm(k_Fright);
+
+    m_leftMotor.setPTerm(k_P);
+    m_rightMotor.setPTerm(k_P);
+
+    m_leftMotor.setITerm(k_I);
+    m_rightMotor.setITerm(k_I);
+
+    m_leftMotor.setIZone(k_IZone);
+    m_rightMotor.setIZone(k_IZone);
+  
     m_rightEncoder.setInverted(true);
   }
   public void setPower(double leftPower, double rightPower) {
+    m_leftMotor.setControlMode(SmartMotorMode.Power);
+    m_rightMotor.setControlMode(SmartMotorMode.Power);
     m_rightMotor.set(rightPower);
     m_leftMotor.set(leftPower);
   }
@@ -64,4 +101,15 @@ public class DriveSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     Logger.log("DriveSubsystem", -1, "periodic()");
   }
-}
+  public void setSpeed(double leftSpeed, double rightSpeed) {
+    m_leftMotor.setControlMode(SmartMotorMode.Speed);
+    m_rightMotor.setControlMode(SmartMotorMode.Speed);
+    m_rightMotor.set(rightSpeed);
+    m_leftMotor.set(leftSpeed);
+  }
+
+  }
+
+
+  
+

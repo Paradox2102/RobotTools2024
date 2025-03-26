@@ -18,35 +18,44 @@ import robotCore.Logger;
 public class DriveForDistanceCommand extends Command {
   private final DriveSubsystem m_subsystem;
   private double m_distance;
-  private double m_power;
+  private double m_speed;
   private Encoder m_leftEncoder;
+  private Encoder m_rightEncoder;
+  private static final double k_scale  = 0.005;
 
-  public DriveForDistanceCommand(DriveSubsystem subsystem, double power, double distance) {
+  public DriveForDistanceCommand(DriveSubsystem subsystem, double speed, double distance) {
 
     Logger.log("DriveForDistanceCommand" , 3, "DriveForDistanceCommand()");
     m_subsystem = subsystem;
-    m_power = power;
+    m_speed = speed;
     m_distance = distance;
     m_leftEncoder = subsystem.getLeftEncoder();
+    m_rightEncoder = subsystem.getRightEncoder();
     addRequirements(m_subsystem);
   }
 
   @Override
   public void initialize() {
     Logger.log("DriveForDistanceCommand" , 2, "initialize ()");
-    m_subsystem.setPower(m_power, m_power);
+    m_subsystem.setSpeed(m_speed, m_speed);
     m_leftEncoder.reset();
+    m_rightEncoder.reset();
 
   }
   @Override
   public void execute() {
     Logger.log("DriveForDistanceCommand" , -1, "execute()");
+    int leftDistance = m_leftEncoder.get();
+    int rightDistance = m_rightEncoder.get();
+    int deltaDistance = rightDistance - leftDistance;
+    m_subsystem.setSpeed(m_speed + deltaDistance * k_scale, m_speed - deltaDistance * k_scale);
+
   }
 
   @Override
   public void end(boolean interrupted) {
   Logger.log("DriveForDistanceCommand",2, String.format("end(%b)", interrupted));
-  m_subsystem.setPower(0,0);
+  m_subsystem.setSpeed(0,0);
   }
 
   @Override
@@ -75,7 +84,7 @@ public class DriveForDistanceCommand extends Command {
   @Override
   public void initialize() {
     Logger.log("DriveForDistanceCommand", 2, "initialize()");
-    m_subsystem.setPower(0.75, 0.75);
+    m_subsystem.setSpeed(0.75, 0.75);
     m_timer.reset();
     m_timer.start();
   }
@@ -90,7 +99,7 @@ public class DriveForDistanceCommand extends Command {
   @Override
   public void end(boolean interrupted) {
     Logger.log("DriveForDistanceCommand", 2, String.format("end(%b)", interrupted));
-    m_subsystem.setPower(0, 0);
+    m_subsystem.setSpeed(0, 0);
   }
 
   // Returns true when the command should end.
