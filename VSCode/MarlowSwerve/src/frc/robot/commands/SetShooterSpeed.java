@@ -8,50 +8,48 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import frc.robot.subsystems.DriveSubsystem;
 
+import frc.robot.subsystems.ShooterSubsystem;
 import robotCore.Logger;
 
 /**
  * An example command that uses an example subsystem.
  */
-public class SwervePosConfig180 extends Command {
-  private DriveSubsystem m_subsystem;
-
-  
+public class SetShooterSpeed extends Command {
+  private final ShooterSubsystem m_subsystem;
+  private int m_Speed;
 
   /**
-   * Creates a new SwervePosconfig180.
+   * Creates a new SetShooterSpeed.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public SwervePosConfig180(DriveSubsystem subsystem) {
-    Logger.log("SwervePosconfig180", 3, "SwervePosconfig180()");
- 
-    m_subsystem = subsystem;
-    
-  
-    addRequirements(m_subsystem);
+  public SetShooterSpeed(ShooterSubsystem subsystem, int  Speed) {
+    Logger.log("SetShooterSpeed", 3, "SetShooterSpeed()");
 
-    
+    m_subsystem = subsystem;
+    m_Speed = Speed;
+    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(m_subsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public  void initialize() {
-    Logger.log("SwervePosConfig180", 1, "initialize()");
-    m_subsystem.setRotation(180,180,180,180);  
+  public void initialize() {
+    Logger.log("SetShooterSpeed", 2, "initialize()"); 
+    //m_power = 0;
+  
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("SwervePosconfig180", -1, "execute()");
-    
-
-    
+    Logger.log("SetShooterSpeed", -1, String.format( "PWR: %f %d", m_Speed , m_subsystem.getShooterEncoder())); 
   
-  
+    m_subsystem.setShooterSpeed(m_Speed);
+   // m_power += .01;
+    
     
 
 
@@ -60,13 +58,14 @@ public class SwervePosConfig180 extends Command {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("SwervePosconfig180", 2, String.format("end(%b)", interrupted));
+    Logger.log("SetShooterSpeed", 2, String.format("end(%b)", interrupted));
+    m_subsystem.setShooterSpeed(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("SwervePosconfig180", -1, "isFinished()");
-    return false;
+    Logger.log("SetShooterSpeed", -1, "isFinished()");
+    return (false);
   }
 }

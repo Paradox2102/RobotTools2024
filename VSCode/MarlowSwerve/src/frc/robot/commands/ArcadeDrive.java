@@ -66,13 +66,13 @@ public class ArcadeDrive extends Command {
  
     // Get the x speed. We are inverting this because Xbox controllers return
     // negative values when we push forward.
-    final var xSpeed = -m_xspeedLimiter.calculate(MathUtil.applyDeadband(y, 0.02))
+    final var xSpeed = -m_xspeedLimiter.calculate(MathUtil.applyDeadband(y, 0.05))
         * DriveSubsystem.k_maxDriveSpeedMetersPerSecond;
  
     // Get the y speed or sideways/strafe speed. We are inverting this because
     // we want a positive value when we pull to the left. Xbox controllers
     // return positive values when you pull to the right by default.
-    final var ySpeed = -m_yspeedLimiter.calculate(MathUtil.applyDeadband(x, 0.02))
+    final var ySpeed = -m_yspeedLimiter.calculate(MathUtil.applyDeadband(x, 0.05))
         * DriveSubsystem.k_maxDriveSpeedMetersPerSecond;
  
     // Get the rate of angular rotation. We are inverting this because we want a

@@ -1,10 +1,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.math.geometry.Rotation2d;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import robotCore.Encoder;
 import robotCore.Gyro;
-import robotCore.Logger;
+//import robotCore.Logger;
 import robotCore.PWMMotor;
 import robotCore.SmartMotor.SmartMotorMode;
 
@@ -15,9 +16,9 @@ public class SwerveModule {
     private final Encoder m_steeringEncoder;
     private double k_degreesPerTick;
 
-    private String m_name;
+    // private String m_name;
 
-    private double k_deadZone = 3;
+    private double k_deadZone = 6;
 
     public SwerveModule(int drivePWM, int driveDir, int driveEncInt, int driveEncDir, int steeringPWM, int steeringDir,
             int steeringEncA, int steeringEncB, int i2cAddr, String name) {
@@ -30,9 +31,24 @@ public class SwerveModule {
         m_steeringMotor.setFeedbackDevice(m_steeringEncoder);
         k_degreesPerTick = 360.0 / m_steeringEncoder.getRange();
         m_steeringMotor.setDeadZone(k_deadZone / k_degreesPerTick);
-        m_name = name;
+        // m_name = name;
+        
 
     }
+
+    public double getDrivePositionInMeters() {
+        return getDrivePosition() / DriveSubsystem.k_ticksPerMeter;
+    }
+
+    public SwerveModulePosition getPosition() {
+        return new SwerveModulePosition(getDrivePositionInMeters(), getSteeringPositionRotation2d());
+    }
+
+    public Rotation2d getSteeringPositionRotation2d(){
+        
+        return Rotation2d.fromDegrees(getSteeringPosDeg());
+    }
+
 
     public void setSteeringPower(double power) {
         m_steeringMotor.setControlMode(SmartMotorMode.Power);
@@ -128,20 +144,32 @@ public class SwerveModule {
         return getDriveEncoderP() / DriveSubsystem.k_ticksPerMeter;
     }
 
+    public double getDrivePosition() {
+        return getDriveEncoderP();
+
+    }
+
     public void setDesiredState(SwerveModuleState desiredState) {
 
         Rotation2d encoderRotation = Rotation2d.fromDegrees(getSteeringPosDeg());
 
         // Optimize the reference state to avoid spinning further than 90 degrees
-        SwerveModuleState state =  desiredState; //SwerveModuleState.optimize(desiredState, encoderRotation);
+        SwerveModuleState state = desiredState; // SwerveModuleState.optimize(desiredState, encoderRotation);
 
         state.speedMetersPerSecond *= state.angle.minus(encoderRotation).getCos();
 
-        // Logger.log(String.format("SwerveModule:%s", m_name), 1, String.format("angle:%f", state.angle.getDegrees()));
-        Logger.log(String.format("SwerveModule:%s", m_name), 1, String.format("speed:%f", state.speedMetersPerSecond));
+        // Logger.log(String.format("SwerveModule:%s", m_name), 1,
+        // String.format("angle:%f", state.angle.getDegrees()));
+        // Logger.log(String.format("SwerveModule:%s", m_name), 1,
+        // String.format("speed:%f", state.speedMetersPerSecond));
 
         setDriveSpeedInMetersPerSecond(state.speedMetersPerSecond);
         setSteeringPosition(state.angle.getDegrees());
+
+    }
+
+    public SwerveModuleState getState() {
+        return new SwerveModuleState(getDriveSpeedInMetersPerSecond(), getSteeringPositionRotation2d());
     }
 
 }

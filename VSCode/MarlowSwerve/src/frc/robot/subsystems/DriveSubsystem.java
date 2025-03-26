@@ -7,22 +7,39 @@
 
 package frc.robot.subsystems;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
+
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
+
 import robotCore.Device;
-import robotCore.Encoder;
+
 import robotCore.Gyro;
 import robotCore.Logger;
+import robotCore.apriltags.ApriltagLocation;
+import robotCore.apriltags.ApriltagLocations;
+import robotCore.apriltags.ApriltagsCamera;
+import robotCore.apriltags.PositionServer;
+import robotCore.apriltags.ApriltagsCamera.ApriltagsCameraType;
 
 public class DriveSubsystem extends SubsystemBase {
   /**
    * Creates a new DriveSubsystem.
    * 
    */
+
+
+
   public static final int FLI2CAddr = 5;
   public static final int FLDrivePWM = Device.M1_1_PWM;
   public static final int FLDriveDir = Device.M1_1_DIR;
@@ -32,6 +49,9 @@ public class DriveSubsystem extends SubsystemBase {
   public static final int FLDriveEncDir = Device.Q1_DIR;
   public static final int FLSteeringEncA = Device.A1_A;
   public static final int FLSteeringEncB = Device.A1_B;
+
+  private final double k_turnDeadZone = 3;
+  private final double k_turnP = 20.0 / 180.0;
 
   public static final int BLI2CAddr = 5;
   public static final int BLDrivePWM = Device.M2_1_PWM;
@@ -63,46 +83,60 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRSteeringEncA = Device.A2_A;
   private static final int FRSteeringEncB = Device.A2_B;
 
-  private static final double k_backLeftMinSteeringPower = 0.36;
-  private static final double k_backRightMinSteeringPower = 0.39;
-  private static final double k_frontRightMinsteeringPower = 0.38;
-  private static final double k_frontLeftMinSteeringPower = 0.33;
+  private static final double k_backLeftMinSteeringPower = 0.35;
+  private static final double k_backRightMinSteeringPower = 0.33;
+  private static final double k_frontRightMinsteeringPower = 0.29;
+  private static final double k_frontLeftMinSteeringPower = 0.37;
 
-  private static final int k_frontLeftSteeringZero = -780;
-  private static final int k_backLeftSteeringZero = -695;
-  private static final int k_backRightSteeringZero = -1830;
-  private static final int k_frontRightSteeringZero = -1905;
+  private static final int k_frontLeftSteeringZero = -772;
+  private static final int k_backLeftSteeringZero = -682;
+  private static final int k_backRightSteeringZero = -1860;
+  private static final int k_frontRightSteeringZero = -1825;
 
-  private static final double k_frontLeftSteeringP = 1.0 / 360;
-  private static final double k_backLeftSteeringP = 0.7 / 360;
-  private static final double k_backRightSteeringP = 1.0 / 360;
-  private static final double k_frontRightSteeringP = 1.0 / 360;
+  private static final double k_frontLeftSteeringP = 0.8 / 360;
+  private static final double k_backLeftSteeringP = 0.75 / 360;
+  private static final double k_backRightSteeringP = 0.8 / 360;
+  private static final double k_frontRightSteeringP = 0.85 / 360;
 
-  private static final double k_frontLeftSteeringD = 0.008;
-  private static final double k_backLeftSteeringD = 0.0012;
+  private static final double k_frontLeftSteeringD = 0.006;
+  private static final double k_backLeftSteeringD = 0.007;
   private static final double k_backRightSteeringD = 0.008;
-  private static final double k_frontRightSteeringD = 0.010;
+  private static final double k_frontRightSteeringD = 0.006;
 
-  private static final double BLMinPower = .44;
-  private static final double BRMinPower = .4;
-  private static final double FRMinPower = .3;
-  private static final double FLMinPower = .4;
+  private static final double BLMinPower = .31;
+  private static final double BRMinPower = .30;
+  private static final double FRMinPower = .29;
+  private static final double FLMinPower = .28;
 
   private static final int MaxSpeed = 2250;
 
-  private static final double k_frontLeftDriveF = .8 / MaxSpeed;
-  private static final double k_backLeftDriveF = 1.1 / MaxSpeed;
-  private static final double k_backRightDriveF = 1.1 / MaxSpeed;
+  private static final double k_frontLeftDriveF = 1.05 / MaxSpeed;
+  private static final double k_backLeftDriveF = 1 / MaxSpeed;
+  private static final double k_backRightDriveF = .9 / MaxSpeed;
   private static final double k_frontRightDriveF = .95 / MaxSpeed;
 
   public static final double k_drivePTerm = 0.0008;
-  public static final double k_driveITerm = 0.0003;
-  public static final double k_driveIZone = 80;
+  public static final double k_driveITerm = 0.0002;
+  public static final double k_driveIZone = 210;
 
   public static final double k_maxAngularSpeed = 2;
 
   static final double k_ticksPerMeter = 3645;
   public static final double k_maxDriveSpeedMetersPerSecond = MaxSpeed / k_ticksPerMeter;
+
+  
+  private static final String k_cameraIP = "127.0.1.1";
+  private static final int k_cameraPort = 5800;
+ 
+  public static ApriltagLocation m_aprilTags[] = {
+      new ApriltagLocation(1, 3, 2, 90),
+      new ApriltagLocation(2, 4, 3, 180),
+      new ApriltagLocation(3, 3, 4, -90),
+      new ApriltagLocation(4, 3, 3, 0),
+  };
+  private static final ApriltagsCamera m_camera = new ApriltagsCamera();
+
+ 
 
   private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
   private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
@@ -112,7 +146,12 @@ public class DriveSubsystem extends SubsystemBase {
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
       m_frontLeftLocation, m_backLeftLocation, m_backRightLocation, m_frontRightLocation);
 
-  private final Gyro m_gyro = new Gyro();
+  public final Gyro m_gyro = new Gyro();
+
+  private final PositionServer m_PositionServer = new PositionServer(m_camera);
+
+
+  
 
   public SwerveModule m_frontLeft = new SwerveModule(FLDrivePWM, FLDriveDir, FLDriveEncInt, FLDriveEncDir,
       FLSteeringPWM, FLSteeringDir, FLSteeringEncA, FLSteeringEncB, FLI2CAddr, "FL");
@@ -123,8 +162,22 @@ public class DriveSubsystem extends SubsystemBase {
   public SwerveModule m_frontRight = new SwerveModule(FRDrivePWM, FRDriveDir, FRDriveEncInt, FRDriveEncDir,
       FRSteeringPWM, FRSteeringDir, FRSteeringEncA, FRSteeringEncB, FRI2CAddr, "FR");
 
+  private SwerveDrivePoseEstimator m_poseEstimator = new SwerveDrivePoseEstimator(m_kinematics, m_gyro.getRotation2d(),
+      getModulePositions(),
+      new Pose2d(1, 1, Rotation2d.fromDegrees(0)));
+
   public DriveSubsystem() {
     Logger.log("DriveSubsystem", 3, "DriveSubsystem()");
+    AutoBuilder.configureHolonomic(this::getPose2d,this::ResetPose, this::getChassisSpeeds, this::setChassisSpeeds,
+        new HolonomicPathFollowerConfig(
+            new PIDConstants(1, 0, 0),
+            new PIDConstants(1, 0, 0),
+            k_maxDriveSpeedMetersPerSecond,
+            (3.266 * 2.54) / 100,
+            new ReplanningConfig(false, false)), () -> false, this
+   
+      );
+
     m_backLeft.setZero(k_backLeftSteeringZero);
     m_frontRight.setZero(k_frontRightSteeringZero);
     m_frontLeft.setZero(k_frontLeftSteeringZero);
@@ -157,10 +210,10 @@ public class DriveSubsystem extends SubsystemBase {
     m_backRight.setDriveMinPower(BRMinPower);
     m_frontRight.setDriveMinPower(FRMinPower);
 
-    m_frontLeft.setDriveMaxSpeed(MaxSpeed);
-    m_backLeft.setDriveMaxSpeed(MaxSpeed);
-    m_backRight.setDriveMaxSpeed(MaxSpeed);
-    m_frontRight.setDriveMaxSpeed(MaxSpeed);
+    // m_frontLeft.setDriveMaxSpeed(MaxSpeed);
+    // m_backLeft.setDriveMaxSpeed(MaxSpeed);
+    // m_backRight.setDriveMaxSpeed(MaxSpeed);
+    // m_frontRight.setDriveMaxSpeed(MaxSpeed);
 
     m_frontLeft.setDriveFTerm(k_frontLeftDriveF);
     m_backLeft.setDriveFTerm(k_backLeftDriveF);
@@ -184,6 +237,42 @@ public class DriveSubsystem extends SubsystemBase {
 
     m_gyro.reset(0);
 
+    m_PositionServer.start();
+
+
+    ApriltagLocations.setLocations(m_aprilTags);
+    m_camera.setCameraInfo(0, 5, 0, ApriltagsCameraType.PiCam_640x480);
+    m_camera.connect(k_cameraIP, k_cameraPort);
+
+  }
+
+  public SwerveModuleState[] getModuleStates() {
+    SwerveModuleState[] states = {
+        m_frontLeft.getState(), m_frontRight.getState(), m_backLeft.getState(),
+        m_backRight.getState() };
+    return states;
+  }
+
+
+  public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
+    setModuleStates(m_kinematics.toSwerveModuleStates(chassisSpeeds));
+  }
+
+  
+  public ChassisSpeeds getChassisSpeeds() {
+
+    return m_kinematics.toChassisSpeeds(getModuleStates());
+  } 
+
+
+  private void ResetPose(Pose2d pose) {
+
+    m_poseEstimator.resetPosition(m_gyro.getRotation2d(), getModulePositions(), pose);
+  }
+
+
+  public Pose2d getPose2d() {
+    return m_poseEstimator.getEstimatedPosition();
   }
 
   @Override
@@ -193,6 +282,9 @@ public class DriveSubsystem extends SubsystemBase {
     Logger.log("DriveSubsystem", -1, String.format("FL, FR, BL, BR: %f,%f,%f,%f", m_frontLeft.getSteeringPos(),
         m_frontRight.getSteeringPos(), m_backLeft.getSteeringPos(), m_backRight.getSteeringPos()));
 
+    m_poseEstimator.updateWithTime(ApriltagsCamera.getTime(), m_gyro.getRotation2d(), getModulePositions());
+    m_PositionServer.setPosition(m_poseEstimator.getEstimatedPosition());
+    m_camera.processRegions(m_poseEstimator);
   }
 
   public SwerveModule getFrontleftModule() {
@@ -209,6 +301,32 @@ public class DriveSubsystem extends SubsystemBase {
 
   public SwerveModule getBackleftModule() {
     return m_backLeft;
+  }
+
+  public Rotation2d getRot2d() {
+    return m_gyro.getRotation2d();
+  }
+
+  public double computeAutoAim(double targetAngleInDegrees) {
+    Pose2d pos = m_poseEstimator.getEstimatedPosition();
+ 
+    double da = Gyro.normalizeAngle(pos.getRotation().getDegrees() - targetAngleInDegrees);
+ 
+    if (Math.abs(da) > k_turnDeadZone) {
+      return -k_turnP * da;
+    }
+ 
+    return 0; // On target
+  }
+
+
+  public SwerveModulePosition[] getModulePositions() {
+    return new SwerveModulePosition[] {
+        m_frontLeft.getPosition(),
+        m_backLeft.getPosition(),
+        m_backRight.getPosition(),
+        m_frontRight.getPosition()
+    };
   }
 
   public void SwerveMotorCalibrate(double Power) {
@@ -281,11 +399,25 @@ public class DriveSubsystem extends SubsystemBase {
         ChassisSpeeds.discretize(
             fieldRelative
                 ? ChassisSpeeds.fromFieldRelativeSpeeds(
-                    xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+                    xSpeed, ySpeed, rot, m_poseEstimator.getEstimatedPosition().getRotation())
                 : new ChassisSpeeds(xSpeed, ySpeed, rot),
             periodSeconds));
 
     setModuleStates(swerveModuleStates);
+  }
+
+  public double getTargetAngle(int target) {
+    ApriltagLocation location = ApriltagLocations.findTag(target);
+ 
+    if (location == null) {
+      throw new RuntimeException(String.format("Invalid target: %d", target));
+    }
+ 
+    Pose2d pose = m_poseEstimator.getEstimatedPosition();
+    double dx = location.m_xMeters - pose.getX();
+    double dy = location.m_yMeters - pose.getY();
+ 
+    return Math.toDegrees(Math.atan2(dy, dx));
   }
 
   public void stop() {
@@ -295,4 +427,5 @@ public class DriveSubsystem extends SubsystemBase {
     m_frontLeft.setDrivePower(0);
 
   }
+
 }
