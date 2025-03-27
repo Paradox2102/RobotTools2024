@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import frc.robot.commands.ArcadeDrive;
+import frc.robot.commands.CalculateSpeed;
 import frc.robot.commands.CalibrateDistance;
 import frc.robot.commands.CalibrateDrive;
 import frc.robot.commands.CalibrateSteering;
@@ -30,11 +31,13 @@ import frc.robot.commands.TestDriveRamp;
 import frc.robot.commands.TestSteering;
 import frc.robot.commands.TestSteeringRamp;
 import frc.robot.commands.TurnToTarget;
+import frc.robot.commands.ArcadeDrive.Mode;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.FeederSubsystem;
 import frc.robot.subsystems.ShooterSubsystem;
 import robotCore.Logger;
+import robotCore.TimeCommand;
 
 /**
  * This class is where the bulk of the robot should be declared. Since
@@ -76,18 +79,18 @@ public class RobotContainer {
    * The container for the robot. Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
-    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_joystick.getX(),
-    // () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
+    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_joystick.getX(),
+    () -> -m_joystick.getY(), () -> m_joystick.getZ(), true));
 
-    m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(),
-        () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
+    // m_driveSubsystem.setDefaultCommand(new ArcadeDrive(m_driveSubsystem, () -> m_xbox.getLeftX(),
+    //     () -> -m_xbox.getLeftY(), () -> m_xbox.getRightX(), true));
 
     NamedCommands.registerCommand("Shoot", new FeederCommand(m_feederSubsystem, true, 4));
     NamedCommands.registerCommand("Aim", new TurnToTarget(m_driveSubsystem, 1));
     NamedCommands.registerCommand("Spinup", new SpinupCommand(m_shooterSubsystem));
 
-    // m_auto1 = new PathPlannerAuto("Example");
-    m_auto1 = new PathPlannerAuto("Auto1");
+    m_auto1 = new PathPlannerAuto("Drive");
+    // m_auto1 = new PathPlannerAuto("Auto1");
     // m_auto1 = new PathPlannerAuto("FullPath");
 
     // Configure the button bindings
@@ -106,10 +109,11 @@ public class RobotContainer {
     // m_commandXbox.a().onTrue(new ResetGyro());
 
     // Demo commands
-    m_commandXbox.a().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
-    m_commandXbox.b().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget1));
-    m_commandXbox.leftBumper().toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
-    m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem, true, 0));
+    // m_commandXbox.a().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.MaintainOrientation));
+    // m_commandXbox.b().onTrue(new SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget1));
+    // m_commandXbox.leftBumper().toggleOnTrue(new SpinupCommand(m_shooterSubsystem));
+    // m_commandXbox.rightBumper().whileTrue(new FeederCommand(m_feederSubsystem, true, 0));
+    
     // m_commandXbox.y().onTrue(new
     // SetArcadeDriveMode(ArcadeDrive.Mode.TrackTarget2));
     // m_commandXbox.x().onTrue(new
@@ -146,7 +150,13 @@ public class RobotContainer {
     m_commandJoystick.button(9).whileTrue(new CalibrateSteering(m_driveSubsystem, 180 + da));
     m_commandJoystick.button(10).whileTrue(new CalibrateSteering(m_driveSubsystem, 270 + da));
 
-    // m_commandJoystick.button(11).onTrue(m_auto1);
+    m_commandJoystick.button(1).onTrue(new SetArcadeDriveMode(Mode.MaintainOrientation));
+    m_commandJoystick.button(2).onTrue(new SetArcadeDriveMode(Mode.TrackTarget4));
+    m_commandJoystick.button(5).onTrue(new SetArcadeDriveMode(Mode.Normal));
+    m_commandJoystick.button(6).onTrue(new CalculateSpeed(m_driveSubsystem));
+    m_commandJoystick.button(3).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->-1.0, true));
+    m_commandJoystick.button(4).whileTrue(new ArcadeDrive(m_driveSubsystem, ()->0, ()->0, ()->1.0, true));
+    m_commandJoystick.button(11).onTrue(new TimeCommand(m_auto1));
   }
 
   /**
