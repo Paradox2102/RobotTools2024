@@ -87,15 +87,15 @@ public class DriveSubsystem extends SubsystemBase {
   //Front Left F is NOT set and good. ( at time of writing)
   private static final double k_FLDriveFTerm = 1/k_maxDriveSpeed;
 
-  public static final double k_FLdrivePTerm = 0.0001;
-  public static final double k_FRdrivePTerm = 0.0001;
+  public static final double k_FLdrivePTerm = 0.00004;
+  public static final double k_FRdrivePTerm = 0.00005;
   public static final double k_BLdrivePTerm = 0.00005;
-  public static final double k_BRdrivePTerm = 0.00005;
+  public static final double k_BRdrivePTerm = 0.00003;
 
-  public static final double k_FLdriveITerm = 0.0005;
+  public static final double k_FLdriveITerm = 0.0002;
   public static final double k_FRdriveITerm = 0.0003;
-  public static final double k_BLdriveITerm = 0.0005;
-  public static final double k_BRdriveITerm = 0.0006;
+  public static final double k_BLdriveITerm = 0.0003;
+  public static final double k_BRdriveITerm = 0.0002;
 
   public static final double k_driveIZone = 200;
 
