@@ -22,13 +22,14 @@ public class DriveForDistanceCommand extends Command {
   private Encoder m_leftEncoder;
   private Encoder m_rightEncoder;
   private static final double k_scale  = 0.005;
+  private static final double k_ticksPerInch = 2000 / 42.5;
 
   public DriveForDistanceCommand(DriveSubsystem subsystem, double speed, double distance) {
 
     Logger.log("DriveForDistanceCommand" , 3, "DriveForDistanceCommand()");
     m_subsystem = subsystem;
     m_speed = speed;
-    m_distance = distance;
+    m_distance = distance * k_ticksPerInch;
     m_leftEncoder = subsystem.getLeftEncoder();
     m_rightEncoder = subsystem.getRightEncoder();
     addRequirements(m_subsystem);
