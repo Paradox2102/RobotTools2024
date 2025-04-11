@@ -16,7 +16,7 @@ import robotCore.Logger;
  */
 public class CalibrateDriveCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private double m_speed = 2000;
+  private double m_speed = 1000;
   private double m_timer = 0;
   /**
    * Creates a new CalibrateDrive.
