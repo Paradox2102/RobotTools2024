@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandJoystick;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.TestDriveMotors;
+import frc.robot.commands.TestDriveSpeed;
 import frc.robot.commands.TestSteeringMotors;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -50,6 +51,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     m_commandJoystick.button(1).onTrue(new TestSteeringMotors(m_driveSubsystem));
     m_commandJoystick.button(2).onTrue(new TestDriveMotors(m_driveSubsystem));
+    m_commandJoystick.button(3).onTrue(new TestDriveSpeed(m_driveSubsystem));
   }
 
   /**
