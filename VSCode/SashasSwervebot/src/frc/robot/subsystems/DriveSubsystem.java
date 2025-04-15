@@ -7,9 +7,14 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.math.geometry.Translation2d;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
+import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.SwerveModule;
 import robotCore.Device;
+import robotCore.Gyro;
 import robotCore.Logger;
 
 public class DriveSubsystem extends SubsystemBase {
@@ -77,6 +82,8 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_FLsteeringDTerm = 0.009;
 
   private static final double k_maxDriveSpeed = 2500;
+  public static final double k_ticksPerMeter = 4160 / 1.702;
+  public static final double k_maxDriveSpeedMetersPerSecond = k_maxDriveSpeed / k_ticksPerMeter;
 
   //Back Right F is NOT set and good. ( at time of writing)
   private static final double k_BRDriveFTerm = 1/k_maxDriveSpeed;
@@ -87,15 +94,15 @@ public class DriveSubsystem extends SubsystemBase {
   //Front Left F is NOT set and good. ( at time of writing)
   private static final double k_FLDriveFTerm = 1/k_maxDriveSpeed;
 
-  public static final double k_FLdrivePTerm = 0.0001;
-  public static final double k_FRdrivePTerm = 0.0001;
+  public static final double k_FLdrivePTerm = 0.00004;
+  public static final double k_FRdrivePTerm = 0.00005;
   public static final double k_BLdrivePTerm = 0.00005;
-  public static final double k_BRdrivePTerm = 0.00005;
+  public static final double k_BRdrivePTerm = 0.00003;
 
-  public static final double k_FLdriveITerm = 0.0005;
+  public static final double k_FLdriveITerm = 0.0002;
   public static final double k_FRdriveITerm = 0.0003;
-  public static final double k_BLdriveITerm = 0.0005;
-  public static final double k_BRdriveITerm = 0.0006;
+  public static final double k_BLdriveITerm = 0.0003;
+  public static final double k_BRdriveITerm = 0.0002;
 
   public static final double k_driveIZone = 200;
 
@@ -103,6 +110,18 @@ public class DriveSubsystem extends SubsystemBase {
   private static final double k_backLeftMinDrivePower = 0.25;
   private static final double k_backRightMinDrivePower = 0.25;
   private static final double k_frontRightMinDrivePower = 0.25;
+
+  private final Translation2d m_frontLeftLocation = new Translation2d(0.05842, 0.05842);
+  private final Translation2d m_backLeftLocation = new Translation2d(-0.05842, 0.05842);
+  private final Translation2d m_backRightLocation = new Translation2d(-0.05842, -0.05842);
+  private final Translation2d m_frontRightLocation = new Translation2d(0.05842, -0.05842);
+
+  private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
+      m_frontLeftLocation, m_backLeftLocation, m_backRightLocation, m_frontRightLocation);
+
+  private final Gyro m_gyro = new Gyro();
+
+  public final static double k_maxAngularSpeed = 2;
 
   
 
@@ -179,6 +198,16 @@ public class DriveSubsystem extends SubsystemBase {
     m_backLeft.setDrivingPTerm(k_BLdrivePTerm);
     m_backLeft.setDrivingITerm(k_BLdriveITerm);
     m_backLeft.setDrivingIZone(k_driveIZone);
+
+    m_gyro.reset(0);
+  }
+
+  private void setModuleStates(SwerveModuleState[] swerveModuleStates) {
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, k_maxDriveSpeedMetersPerSecond);
+    m_frontLeft.setDesiredState(swerveModuleStates[0]);
+    m_backLeft.setDesiredState(swerveModuleStates[1]);
+    m_backRight.setDesiredState(swerveModuleStates[2]);
+    m_frontRight.setDesiredState(swerveModuleStates[3]);
   }
 
   @Override
@@ -186,4 +215,36 @@ public class DriveSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     Logger.log("DriveSubsystem", -1, "periodic()");
   }
+
+    /**
+   * Method to drive the robot using joystick info.
+   *
+   * @param xSpeed        Speed of the robot in the x direction (forward).
+   * @param ySpeed        Speed of the robot in the y direction (sideways).
+   * @param rot           Angular rate of the robot.
+   * @param fieldRelative Whether the provided x and y speeds are relative to the
+   *                      field.
+   */
+  public void drive(double xSpeed, double ySpeed, double rot, boolean fieldRelative, double periodSeconds) {
+    // Logger.log("DriveSubsystem", 1, String.format("xSpeed=%f, ySpeed=%f, rot=%f", xSpeed, ySpeed, rot));
+    SwerveModuleState[] swerveModuleStates = m_kinematics.toSwerveModuleStates(
+        ChassisSpeeds.discretize(
+            fieldRelative
+                ? ChassisSpeeds.fromFieldRelativeSpeeds(
+                    xSpeed, ySpeed, rot, m_gyro.getRotation2d())
+                : new ChassisSpeeds(xSpeed, ySpeed, rot),
+            periodSeconds));
+
+    setModuleStates(swerveModuleStates);
+  }
+    public void stop() {
+      getFrontLeftModule().setDrivePower(0);
+      getFrontRightModule().setDrivePower(0);
+      getBackRightModule().setDrivePower(0);
+      getBackLeftModule().setDrivePower(0);
+      getBackLeftModule().setSteeringPower(0);
+      getBackRightModule().setSteeringPower(0);
+      getFrontLeftModule().setSteeringPower(0);
+      getFrontRightModule().setSteeringPower(0);
+    }
 }

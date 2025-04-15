@@ -14,17 +14,18 @@ import robotCore.Logger;
 /**
  * An example command that uses an example subsystem.
  */
-public class CalibrateDriveCommand extends Command {
+public class CalibrateDistanceCommand extends Command {
   private final DriveSubsystem m_subsystem;
-  private double m_speed = 1000;
-  private double m_timer = 0;
+  private double m_speed = 500;
+  private double m_timer = 100;
+
   /**
-   * Creates a new CalibrateDrive.
+   * Creates a new CalibrateDistanceCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public CalibrateDriveCommand(DriveSubsystem subsystem) {
-    Logger.log("CalibrateDrive", 3, "CalibrateDrive()");
+  public CalibrateDistanceCommand(DriveSubsystem subsystem) {
+    Logger.log("CalibrateDistanceCommand", 3, "CalibrateDistanceCommand()");
 
     m_subsystem = subsystem;
     // Use addRequirements() here to declare subsystem dependencies.
@@ -34,41 +35,40 @@ public class CalibrateDriveCommand extends Command {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Logger.log("CalibrateDrive", 2, "initialize()");
+    Logger.log("CalibrateDistanceCommand", 2, "initialize()");
     m_subsystem.getFrontLeftModule().setSteeringPosition(0);
     m_subsystem.getFrontRightModule().setSteeringPosition(0);
     m_subsystem.getBackLeftModule().setSteeringPosition(0);
     m_subsystem.getBackRightModule().setSteeringPosition(0);
+    m_subsystem.getFrontLeftModule().setDrivePower(m_speed);
+    m_subsystem.getFrontRightModule().setDrivePower(m_speed);
+    m_subsystem.getBackRightModule().setDrivePower(m_speed);
+    m_subsystem.getBackLeftModule().setDrivePower(m_speed);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Logger.log("CalibrateDrive", -1, "execute()");
-    Logger.log("testMotorSpeedCommand",0,String.format(",%f,%f,%f,%f", m_subsystem.getFrontRightModule().getDrivingSpeed(), m_subsystem.getFrontLeftModule().getDrivingSpeed(), m_subsystem.getBackLeftModule().getDrivingSpeed(), m_subsystem.getBackRightModule().getDrivingSpeed()));
-    m_subsystem.getFrontLeftModule().setDrivePower(m_speed);
-    m_subsystem.getFrontRightModule().setDrivePower(m_speed);
-    m_subsystem.getBackRightModule().setDrivePower(m_speed);
-    m_subsystem.getBackLeftModule().setDrivePower(m_speed);
-    m_timer += .01;
+    Logger.log("CalibrateDistanceCommand", -1, "execute()");
+    Logger.log("testMotorSpeedCommand",0,String.format(",%f,%f,%f,%f", m_subsystem.getFrontRightModule().getDrivePosition(), m_subsystem.getFrontLeftModule().getDrivePosition(), m_subsystem.getBackRightModule().getDrivePosition(), m_subsystem.getBackLeftModule().getDrivePosition()));
+    m_timer -= 1;
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Logger.log("CalibrateDrive", 2, String.format("end(%b)", interrupted));
-    m_speed = 0;
-    m_subsystem.getFrontLeftModule().setDrivePower(m_speed);
-    m_subsystem.getFrontRightModule().setDrivePower(m_speed);
-    m_subsystem.getBackLeftModule().setDrivePower(m_speed);
-    m_subsystem.getBackRightModule().setDrivePower(m_speed);
-
+    Logger.log("CalibrateDistanceCommand", 2, String.format("end(%b)", interrupted));
+    m_subsystem.getFrontLeftModule().setDrivePower(0);
+    m_subsystem.getFrontRightModule().setDrivePower(0);
+    m_subsystem.getBackRightModule().setDrivePower(0);
+    m_subsystem.getBackLeftModule().setDrivePower(0);
+    m_timer = 100;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    Logger.log("CalibrateDrive", -1, "isFinished()");
-    return m_timer >= 5;
+    Logger.log("CalibrateDistanceCommand", -1, "isFinished()");
+    return m_timer <= 0;
   }
 }
