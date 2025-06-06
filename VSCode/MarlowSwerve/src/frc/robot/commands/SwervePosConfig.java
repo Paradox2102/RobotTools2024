@@ -40,7 +40,8 @@ public class SwervePosConfig extends Command {
   // Called when the command is initially scheduled.
   @Override
   public  void initialize() {
-    m_subsystem.setRotation(m_Pos,m_Pos,m_Pos,m_Pos);
+    m_subsystem.printzero();
+    //m_subsystem.setRotation(m_Pos,m_Pos,m_Pos,m_Pos);
     
     
     

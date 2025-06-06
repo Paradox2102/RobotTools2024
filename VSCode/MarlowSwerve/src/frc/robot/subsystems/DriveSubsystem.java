@@ -83,35 +83,36 @@ public class DriveSubsystem extends SubsystemBase {
   private static final int FRSteeringEncA = Device.A2_A;
   private static final int FRSteeringEncB = Device.A2_B;
 
-  private static final double k_backLeftMinSteeringPower = 0.35;
+  private static final double k_backLeftMinSteeringPower = 0.32;
   private static final double k_backRightMinSteeringPower = 0.33;
   private static final double k_frontRightMinsteeringPower = 0.29;
   private static final double k_frontLeftMinSteeringPower = 0.37;
 
-  private static final int k_frontLeftSteeringZero = -772;
+   private static final int k_frontLeftSteeringZero = -780;
   private static final int k_backLeftSteeringZero = -682;
-  private static final int k_backRightSteeringZero = -1860;
-  private static final int k_frontRightSteeringZero = -1825;
+  private static final int k_backRightSteeringZero = 300;
+  private static final int k_frontRightSteeringZero = -1825; 
 
-  private static final double k_frontLeftSteeringP = 0.8 / 360;
-  private static final double k_backLeftSteeringP = 0.75 / 360;
+
+  private static final double k_frontLeftSteeringP = 0.7 / 360;
+  private static final double k_backLeftSteeringP = 0.8 / 360;
   private static final double k_backRightSteeringP = 0.8 / 360;
-  private static final double k_frontRightSteeringP = 0.85 / 360;
+  private static final double k_frontRightSteeringP = 0.7 / 360;
 
-  private static final double k_frontLeftSteeringD = 0.006;
-  private static final double k_backLeftSteeringD = 0.007;
-  private static final double k_backRightSteeringD = 0.008;
-  private static final double k_frontRightSteeringD = 0.006;
+  private static final double k_frontLeftSteeringD = 0.008;
+  private static final double k_backLeftSteeringD = 0.006;
+  private static final double k_backRightSteeringD = 0.006;
+  private static final double k_frontRightSteeringD = 0.008;
 
-  private static final double BLMinPower = .31;
+  private static final double BLMinPower = .30;
   private static final double BRMinPower = .30;
   private static final double FRMinPower = .29;
   private static final double FLMinPower = .28;
 
   private static final int MaxSpeed = 2250;
 
-  private static final double k_frontLeftDriveF = 1.05 / MaxSpeed;
-  private static final double k_backLeftDriveF = 1 / MaxSpeed;
+  private static final double k_frontLeftDriveF = .9 / MaxSpeed;
+  private static final double k_backLeftDriveF = .85 / MaxSpeed;
   private static final double k_backRightDriveF = .9 / MaxSpeed;
   private static final double k_frontRightDriveF = .95 / MaxSpeed;
 

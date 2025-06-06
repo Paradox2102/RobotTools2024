@@ -18,7 +18,7 @@ public class SwerveModule {
 
     // private String m_name;
 
-    private double k_deadZone = 6;
+    private double k_deadZone = 3;
 
     public SwerveModule(int drivePWM, int driveDir, int driveEncInt, int driveEncDir, int steeringPWM, int steeringDir,
             int steeringEncA, int steeringEncB, int i2cAddr, String name) {

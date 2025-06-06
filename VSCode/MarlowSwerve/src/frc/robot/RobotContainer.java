@@ -54,7 +54,7 @@ public class RobotContainer {
    */
   public RobotContainer() {
     // Configure the button bindings
-    
+    NamedCommands.registerCommand("TurnToTarget", new TurnToTarget(m_driveSubsystem, 1));
     NamedCommands.registerCommand("FeederCommand", new FeederCommand(m_shooterSubsystem, m_FeederSubsystem, 2, 1000, 1000));
     configureButtonBindings();
   
